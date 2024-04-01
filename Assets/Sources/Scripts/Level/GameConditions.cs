@@ -10,7 +10,8 @@ public class GameConditions : MonoBehaviour
 {
     public static Action LevelStarted;
     [SerializeField] LoosePanel loosePanel;
-    [SerializeField] LoosePanel winPanel;
+    [SerializeField] WinPanel winPanel;
+    [SerializeField] LevelsProgression levelsProgression;
 
     [SerializeField] Fader fader;
 
@@ -39,12 +40,35 @@ public class GameConditions : MonoBehaviour
         loosePanel.restartButton.interactable = true;
     }
 
-    void Win(List<Unit> units)
+    async void Win(List<Unit> units)
     {
+        SaveFile saveFile = XmlManager.Load();
+
         foreach(var unit in units)
         {
             unit.GetComponent<Animator>();
         }
+
+        await fader.Fade(0.9f, 2f);
+        winPanel.gameObject.SetActive(true);
+        winPanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
+
+        winPanel.continueButton.onClick.AddListener(() => {
+            int nextLevel = saveFile._level + 1;
+
+            nextLevel = saveFile._level + 1 >= levelsProgression.GetLevelsCount()
+            ? 0 : saveFile._level + 1;
+
+            saveFile._level = nextLevel;
+            XmlManager.Save(saveFile);
+
+            SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
+        });
+
+        winPanel.continueButton.enabled = true;
+        winPanel.continueButton.interactable = false;
+        await winPanel.continueButton.image.DOFade(1, 2f).AsyncWaitForCompletion();
+        winPanel.continueButton.interactable = true;
     }
 
     private void OnDestroy()

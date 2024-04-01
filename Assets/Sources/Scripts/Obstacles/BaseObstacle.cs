@@ -6,6 +6,11 @@ public class BaseObstacle : MonoBehaviour
 {
     public GameObject dieEffect;
 
+    private void Start()
+    {
+        FinishLine.FinishLineReached += Stop;
+    }
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
