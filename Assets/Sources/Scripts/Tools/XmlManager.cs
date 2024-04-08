@@ -9,7 +9,7 @@ public class XmlManager : MonoBehaviour
     {
         var serializer = new XmlSerializer(typeof(SaveFile));
 
-        using (var writer = XmlWriter.Create(Application.dataPath + "/saveFile.xml"))
+        using (var writer = XmlWriter.Create(Application.persistentDataPath + "/saveFile.xml"))
         {
             serializer.Serialize(writer, saveFile);
         }
@@ -17,7 +17,7 @@ public class XmlManager : MonoBehaviour
 
     public static SaveFile? Load()
     {
-        string path = Application.dataPath + "/saveFile.xml";
+        string path = Application.persistentDataPath + "/saveFile.xml";
 
         var serializer = new XmlSerializer(typeof(SaveFile));
 

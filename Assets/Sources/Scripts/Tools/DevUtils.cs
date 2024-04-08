@@ -6,6 +6,8 @@ namespace OwnGameDevUtils
 {
     public class DevUtils : MonoBehaviour
     {
+
+        // Mouse Position
         public static Vector3 GetMouseWorldPosition(Camera camera)
         {
             Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, camera);
@@ -33,6 +35,25 @@ namespace OwnGameDevUtils
             else
                 return false;
 
+        }
+
+        // Touch Position
+        public static Vector3 GetTouchWorldPosition(Camera camera, Vector2 touchPos)
+        {
+            Vector3 vec = GetTouchWorldPositionWithZ(touchPos, camera);
+            vec.z = 0f;
+            return vec;
+        }
+
+        public static Vector3 GetTouchWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera)
+        {
+            Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
+            return worldPosition;
+        }
+
+        public static Vector3 GetTouchWorldPositionWithZ(Camera camera)
+        {
+            return GetMouseWorldPositionWithZ(Input.mousePosition, camera);
         }
 
         public static List<Vector3> UnitPos(int unitsCount
