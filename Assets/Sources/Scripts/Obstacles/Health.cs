@@ -19,7 +19,7 @@ public class Health : BaseObstacle
             var unit = other.gameObject.GetComponent<Unit>();
             var point = other.ClosestPoint(transform.position);
 
-            unit.unitPosition.AddUnit(point + new Vector3(0,1,0));
+            unit.unitPosition.AddUnit(new Vector3(point.x, unit.transform.position.y, point.z));
             Destroy(gameObject);
         }
     }

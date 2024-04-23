@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0621da30dc4d34d1f998954ad58ae857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieEffect: {fileID: 4301057783707249758, guid: 74ccf31d718fbea49a5c201d4b7c5af2, type: 3}
+  dieEffect: {fileID: 9122409607527181618, guid: a4d6934c2d792406094c4cea1faa8458, type: 3}
 --- !u!1001 &8984199550758104372
 PrefabInstance:
   m_ObjectHideFlags: 0

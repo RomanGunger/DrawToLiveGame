@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8564287566966747446}
   - component: {fileID: 3971151289985452626}
   - component: {fileID: 4730076773169304448}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor_low.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 609512270634590829}
   - component: {fileID: 8760156803703260340}
   - component: {fileID: 4522545486756244311}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor_low.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 2947931115115806363}
   - component: {fileID: 3975222889264762417}
   - component: {fileID: 1735559622501367671}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor_low.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 26213433530441846}
   - component: {fileID: 814091400403832846}
   - component: {fileID: 6230428803926546452}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 3906598995589488188}
   - component: {fileID: 2127821303601690468}
   - component: {fileID: 4336501968536802199}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,8 @@ GameObject:
   - component: {fileID: 5983800529466921071}
   - component: {fileID: 6408720911658795757}
   - component: {fileID: 5461270777738878549}
-  m_Layer: 0
+  - component: {fileID: 3651600210565335983}
+  m_Layer: 3
   m_Name: Level_Block_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,6 +493,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 28.382278, y: 0.79882836, z: 6.8198795}
   m_Center: {x: 0, y: -0.39758968, z: 0}
+--- !u!54 &3651600210565335983
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4969459076358239771}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6980043453991261158
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +531,7 @@ GameObject:
   - component: {fileID: 2900500552434395226}
   - component: {fileID: 1920622294331536604}
   - component: {fileID: 3175440853516516481}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor_low.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +614,7 @@ GameObject:
   - component: {fileID: 6192220164049774630}
   - component: {fileID: 3731480040574551957}
   - component: {fileID: 887447417430418061}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor_low.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +697,7 @@ GameObject:
   - component: {fileID: 2567565844353731951}
   - component: {fileID: 8661370398516618559}
   - component: {fileID: 7114019253511025116}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floor_low.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}

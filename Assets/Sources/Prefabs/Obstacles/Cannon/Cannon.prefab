@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 4334735523196325755, guid: 6b8f3f45ac44344a38f467c2ecd41b70, type: 3}
   fireEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
-  dieEffect: {fileID: 4301057783707249758, guid: 74ccf31d718fbea49a5c201d4b7c5af2, type: 3}
+  dieEffect: {fileID: 9122409607527181618, guid: a4d6934c2d792406094c4cea1faa8458, type: 3}
   firePosition: {fileID: 5794190993585995946}
   fireRate: 2
 --- !u!1 &8621134394813771855

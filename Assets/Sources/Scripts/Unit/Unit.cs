@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
         startTime = Time.time;
         startMarker = transform.localPosition;
 
-        endMarker = new Vector3(movePos.x, 1, movePos.z);
+        endMarker = new Vector3(movePos.x, 0, movePos.z);
 
         journeyLength = Vector3.Distance(startMarker, endMarker);
         rearranging = true;

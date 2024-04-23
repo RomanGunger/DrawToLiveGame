@@ -75,7 +75,7 @@ namespace OwnGameDevUtils
                 var pos = new Vector3(overal, 0, 0);
                 overal += spasing;
 
-                var offsetVector = new Vector3(offsetX + sizeOfUnit.x / 2, 1, bounds.size.z - offsetZ);
+                var offsetVector = new Vector3(offsetX + sizeOfUnit.x / 2, 0, bounds.size.z - offsetZ);
 
                 finalPosition = bounds.min + offsetVector + pos + spaseBetweenRows;
 
@@ -85,7 +85,7 @@ namespace OwnGameDevUtils
                     pos = new Vector3(overal, 0, 0);
 
                     spaseBetweenRows.z -= spasing;
-                    offsetVector = new Vector3(offsetX + sizeOfUnit.x / 2, 1, bounds.size.z - offsetZ);
+                    offsetVector = new Vector3(offsetX + sizeOfUnit.x / 2, 0, bounds.size.z - offsetZ);
                     finalPosition = bounds.min + offsetVector + pos + spaseBetweenRows;
                     overal += spasing;
                 }

@@ -88,7 +88,7 @@ public class UnitPosition : MonoBehaviour
                     slices.RemoveAt(0);
 
                     Vector3 localPos = new Vector3(midPoint.x * 0.5f
-                        , 1
+                        , 0
                         , midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y);
 
                     unit.Rearrange(localPos);
@@ -100,7 +100,7 @@ public class UnitPosition : MonoBehaviour
                 foreach (var unit in units)
                 {
                     Vector3 localPos = new Vector3(currentLine.points[i].x * 0.5f
-                        , 1
+                        , 0
                         , currentLine.points[i].y - camera.ScreenToWorldPoint(rect.transform.position).y);
 
                     i++;
