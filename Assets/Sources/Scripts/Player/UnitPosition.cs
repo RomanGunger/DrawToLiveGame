@@ -10,12 +10,15 @@ public class UnitPosition : MonoBehaviour
     public static Action LevelFailed;
     public static Action<List<Unit>> LevelPassed;
 
+    public int initialCount = 10;
+
     [SerializeField] Transform spawnArea;
     [SerializeField] Transform finishLine;
     [SerializeField] Camera camera;
 
     [HideInInspector] public List<Unit> units = new List<Unit>();
-    public GameObject unitPrefab;
+
+    public List<GameObject> unitPrefab;
 
     [Header("Positioning")]
     [SerializeField] float offsetZ = 1f;
@@ -27,13 +30,20 @@ public class UnitPosition : MonoBehaviour
     {
         FinishLine.FinishLineReached += FinishLineReached;
 
-        DevUtils.UnitPos(units.Count
-                , spawnArea.GetComponent<Collider>()
-                , offsetZ, offsetX, spasing
-                , sizeOfUnit);
+        SpawnUnits();
+    }
 
-        foreach (var item in units)
-            item.GetComponent<Unit>().unitPosition = this;
+    void SpawnUnits()
+    {
+       List<Vector3> positions = DevUtils.UnitPos(initialCount
+            , spawnArea.GetComponent<Collider>()
+            , 0, 0, spasing * 1.4f
+            , sizeOfUnit);
+
+        foreach (var pos in positions)
+        {
+            AddUnit(pos);
+        }
     }
 
     async void FinishLineReached()
@@ -61,7 +71,7 @@ public class UnitPosition : MonoBehaviour
 
     public void ArrangeUnitsLine(Line currentLine, RectTransform rect)
     {
-        if (currentLine.points.Count > 1 && units.Count > 0)
+        if (currentLine.PointsCount >= 1 && units.Count > 0)
         {
             int splitCount = currentLine.points.Count / units.Count;
 
@@ -106,7 +116,8 @@ public class UnitPosition : MonoBehaviour
 
     public void AddUnit(Vector3 position)
     {
-        GameObject newUnit = Instantiate(unitPrefab, position, Quaternion.identity);
+        var rnd = new System.Random();
+        GameObject newUnit = Instantiate(unitPrefab[rnd.Next(0, unitPrefab.Count)], position, Quaternion.identity);
 
         var unit = newUnit.GetComponent<Unit>();
         unit.unitPosition = this;

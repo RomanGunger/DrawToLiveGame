@@ -5,12 +5,14 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+
 
 public class GameConditions : MonoBehaviour
 {
     public static Action LevelStarted;
-    [SerializeField] LoosePanel loosePanel;
-    [SerializeField] WinPanel winPanel;
+    //[SerializeField] LoosePanel loosePanel;
+    //[SerializeField] WinPanel winPanel;
     [SerializeField] LevelsProgression levelsProgression;
 
     [SerializeField] Fader fader;
@@ -20,24 +22,31 @@ public class GameConditions : MonoBehaviour
         UnitPosition.LevelFailed += Loose;
         UnitPosition.LevelPassed += Win;
 
-        await fader.Fade(0, 2f);
+        await FadeHandle(0, 2f);
         LevelStarted?.Invoke();
+    }
+
+    async Task FadeHandle(float value, float duration)
+    {
+        fader.gameObject.SetActive(true);
+        await fader.Fade(value, duration);
+        fader.gameObject.SetActive(false);
     }
 
     async void Loose()
     {
-        await fader.Fade(0.9f, 2f);
-        loosePanel.gameObject.SetActive(true);
-        loosePanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
+        await FadeHandle(0.9f, 2f);
+        //loosePanel.gameObject.SetActive(true);
+        //loosePanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
 
-        loosePanel.restartButton.onClick.AddListener(() => {
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
-        });
+        //loosePanel.restartButton.onClick.AddListener(() => {
+        //    SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        //});
 
-        loosePanel.restartButton.enabled = true;
-        loosePanel.restartButton.interactable = false;
-        await loosePanel.restartButton.image.DOFade(1, 2f).AsyncWaitForCompletion();
-        loosePanel.restartButton.interactable = true;
+        //loosePanel.restartButton.enabled = true;
+        //loosePanel.restartButton.interactable = false;
+        //await loosePanel.restartButton.image.DOFade(1, 2f).AsyncWaitForCompletion();
+        //loosePanel.restartButton.interactable = true;
     }
 
     async void Win(List<Unit> units)
@@ -49,26 +58,27 @@ public class GameConditions : MonoBehaviour
             unit.GetComponent<Animator>();
         }
 
-        await fader.Fade(0.9f, 2f);
-        winPanel.gameObject.SetActive(true);
-        winPanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
 
-        winPanel.continueButton.onClick.AddListener(() => {
-            int nextLevel = saveFile._level + 1;
+        await FadeHandle(0.9f, 2f);
+        //winPanel.gameObject.SetActive(true);
+        //winPanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
 
-            nextLevel = saveFile._level + 1 >= levelsProgression.GetLevelsCount()
-            ? 0 : saveFile._level + 1;
+        //winPanel.continueButton.onClick.AddListener(() => {
+        //    int nextLevel = saveFile._level + 1;
 
-            saveFile._level = nextLevel;
-            XmlManager.Save(saveFile);
+        //    nextLevel = saveFile._level + 1 >= levelsProgression.GetLevelsCount()
+        //    ? 0 : saveFile._level + 1;
 
-            SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
-        });
+        //    saveFile._level = nextLevel;
+        //    XmlManager.Save(saveFile);
 
-        winPanel.continueButton.enabled = true;
-        winPanel.continueButton.interactable = false;
-        await winPanel.continueButton.image.DOFade(1, 2f).AsyncWaitForCompletion();
-        winPanel.continueButton.interactable = true;
+        //    SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
+        //});
+
+        //winPanel.continueButton.enabled = true;
+        //winPanel.continueButton.interactable = false;
+        //await winPanel.continueButton.image.DOFade(1, 2f).AsyncWaitForCompletion();
+        //winPanel.continueButton.interactable = true;
     }
 
     private void OnDestroy()

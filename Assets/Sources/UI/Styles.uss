@@ -1,0 +1,145 @@
+.base-ui-container{
+    height: 100%;
+    width: 100%;
+}
+
+.pause-button{
+    position: absolute;
+    right: 1%;
+    top: 5%;
+    height: 10%;
+    width: 15%;
+    align-self:flex-end;
+    border-width: 0;
+    background-color: rgba(0,0,0,0);
+    background-image: url("project://database/Assets/Sources/Images/UI/Icons/pause-button.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(229, 229, 229);
+}
+
+.pause{
+    height: 100%;
+    background-color: rgba(0,0,0,0);
+    opacity: 1;
+    display:flex;
+}
+
+.sections{
+    flex: 1;
+}
+
+.header{
+    height: 15%;
+    align-items: center;
+    justify-content:center;
+    font-size: 500;
+}
+
+.font-style-heaader{
+    color: rgb(188, 68, 32);
+    justify-content: center;
+    -unity-font: url("project://database/Assets/Sources/UI/Fonts/youmurdererbb_reg.ttf");
+    -unity-font-definition: initial;
+    top: 20%;
+}
+
+.overlay{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 1;
+    position: absolute;
+    transition-property: opacity;
+    transition-duration: 0.2s; 
+    transition-timing-function: ease-in-out-bounce;
+}
+
+.body{
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-items{
+    background-color: rgba(0, 0, 0, 0.5);  
+    border-radius: 100px;
+    justify-content: baseline;
+    width: 95%;
+    height: 70%;
+    transition-property: scale;
+    transition-duration: 0.4s; 
+    transition-timing-function: ease-in-out-bounce;
+}
+
+.menu-items{
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.margin-top{
+    margin-top: 10%;
+}
+
+.items{
+    flex: 1;
+}
+
+.menu-item{ 
+    background-color: rgba(155, 128, 78, 0);
+    height: 20%;
+    width: 90%;
+    border-width: 0;
+}
+
+.menu-item-content{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(242, 242, 242);
+    align-items: center;
+    justify-content: center;
+    font-size: 400;
+}
+
+.font-style{
+    color: rgb(0, 0, 0);
+    -unity-font: url("project://database/Assets/Sources/UI/Fonts/youmurdererbb_reg.ttf");
+    -unity-font-definition: initial;
+}
+
+.menu-item-shadow{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(88, 85, 85);
+    top: 5%;
+    left: 1.5%;
+}
+
+.borders{
+    border-radius: 20px;
+}
+
+.transition-scale-0{
+    scale: 0;
+}
+
+.transition-scale-1{
+    scale: 1;
+}
+
+.transition-opacity-0{
+    opacity: 0;
+}
+
+.transition-opacity-1{
+    opacity: 1;
+}
+
+.continue-button{
+    
+}
+
+.restart-button{
+
+}

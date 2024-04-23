@@ -1,5 +1,6 @@
 using UnityEngine;
 using OwnGameDevUtils;
+using System.Threading.Tasks;
 
 public class LineDrawer : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class LineDrawer : MonoBehaviour
 
     bool canDraw = false;
 
-    Line currentLine;
+    [SerializeField]Line currentLine;
 
     private void Start()
     {
@@ -25,54 +26,65 @@ public class LineDrawer : MonoBehaviour
     }
 
 
-    void TouchInput()
-    {
-        if (Input.touchCount == 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            BeginDraw();
+    //void TouchInput()
+    //{
+    //    if (Input.touchCount == 0)
+    //    {
+    //        Touch touch = Input.GetTouch(0);
+    //        BeginDraw();
 
-            if (touch.phase == TouchPhase.Began)
-            {
-                Vector2 pos = touch.position;
-                Draw(true, DevUtils.GetTouchWorldPosition(camera, pos));
-            }
+    //        if (touch.phase == TouchPhase.Began)
+    //        {
+    //            Vector2 pos = touch.position;
+    //            Draw(pos);
+    //        }
 
-            if (touch.phase == TouchPhase.Ended)
-            {
-                EndDraw();
-            }
-        }
-    }
+    //        if (touch.phase == TouchPhase.Ended)
+    //        {
+    //            EndDraw();
+    //        }
+    //    }
+    //}
 
     private void Update()
+    {
+        MouseInput();
+
+        //TouchInput();
+    }
+
+    private void MouseInput()
     {
         if (Input.GetMouseButtonDown(0))
             BeginDraw();
 
         if (currentLine != null)
-            Draw(false, DevUtils.GetMouseWorldPosition(camera));
+            Draw(DevUtils.GetMouseWorldPosition(camera));
 
         if (Input.GetMouseButtonUp(0))
             EndDraw();
-
-        //TouchInput();
     }
 
     void BeginDraw()
     {
-        currentLine = Instantiate(linePrefab, transform).GetComponent<Line>();
+        if (canDraw && currentLine == null)
+        {
+            currentLine = Instantiate(linePrefab, transform).GetComponent<Line>();
 
-        currentLine.SetLineColor(lineColor);
-        currentLine.SetPointsMinDistance(linePointsMinDistance);
-        currentLine.SetLineWidth(lineWidth);
+            currentLine.SetLineColor(lineColor);
+            currentLine.SetPointsMinDistance(linePointsMinDistance);
+            currentLine.SetLineWidth(lineWidth);
+        }
+
     }
 
-    void Draw(bool touch, Vector2 pos)
+    void Draw(Vector2 pos)
     {
-        if (DevUtils.MouseRect(rect, Input.mousePosition) && canDraw)
+        if (DevUtils.MouseRect(rect, DevUtils.GetTouchWorldPosition(camera, pos)) && canDraw)
             currentLine.AddPoint(pos);
 
+        if (DevUtils.MouseRect(rect, Input.mousePosition) && canDraw)
+            currentLine.AddPoint(pos);
     }
 
     void EndDraw()
@@ -82,7 +94,6 @@ public class LineDrawer : MonoBehaviour
             unitPosition.ArrangeUnitsLine(currentLine, rect);
             Destroy(currentLine.gameObject);
             currentLine = null;
-
         }
     }
 

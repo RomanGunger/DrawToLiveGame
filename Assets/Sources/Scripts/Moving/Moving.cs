@@ -4,7 +4,15 @@ using UnityEngine;
 public class Moving : MonoBehaviour
 {
     SplineFollower splineFollower;
-
+    [SerializeField] float followSpeed = 3.5f;
+    public float Speed
+    {
+        get
+        {
+            return splineFollower.followSpeed;
+        }
+        private set { }
+    }
 
     private void Start()
     {
@@ -13,16 +21,12 @@ public class Moving : MonoBehaviour
         UnitPosition.LevelFailed += Stop;
 
         splineFollower = GetComponent<SplineFollower>();
+        splineFollower.followSpeed = 0;
     }
 
     void Begin()
     {
-        splineFollower.followSpeed = 3.5f;
-
-        foreach (var animator in GetComponentsInChildren<Animator>())
-        {
-            animator.SetFloat("Speed", splineFollower.followSpeed);
-        }
+        splineFollower.followSpeed = followSpeed;
     }
 
     void Stop()

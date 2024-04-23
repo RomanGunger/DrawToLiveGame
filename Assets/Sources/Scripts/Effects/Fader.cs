@@ -5,7 +5,12 @@ using System.Threading.Tasks;
 
 public class Fader : MonoBehaviour
 {
-    [SerializeField] Image faderImage;
+    Image faderImage;
+
+    private void Awake()
+    {
+        faderImage = GetComponent<Image>();
+    }
 
     async public Task Fade(float value, float duration)
     {
