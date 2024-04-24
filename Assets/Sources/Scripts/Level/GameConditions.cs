@@ -13,7 +13,7 @@ public class GameConditions : MonoBehaviour
     public static Action LevelStarted;
     //[SerializeField] LoosePanel loosePanel;
     //[SerializeField] WinPanel winPanel;
-    [SerializeField] LevelsProgression levelsProgression;
+    [SerializeField] PauseMenuUIManager pauseMenuUIManager;
 
     [SerializeField] Fader fader;
 
@@ -22,20 +22,23 @@ public class GameConditions : MonoBehaviour
         UnitPosition.LevelFailed += Loose;
         UnitPosition.LevelPassed += Win;
 
-        await FadeHandle(0, 2f);
+        await FadeHandle(0, 2f, true);
         LevelStarted?.Invoke();
     }
 
-    async Task FadeHandle(float value, float duration)
+    async Task FadeHandle(float value, float duration, bool hideFader)
     {
         fader.gameObject.SetActive(true);
         await fader.Fade(value, duration);
-        fader.gameObject.SetActive(false);
+
+        if(hideFader)
+            fader.gameObject.SetActive(false);
     }
 
     async void Loose()
     {
-        await FadeHandle(0.9f, 2f);
+        await FadeHandle(0.7f, 2f, false);
+        pauseMenuUIManager.OpenLooseUI();
         //loosePanel.gameObject.SetActive(true);
         //loosePanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
 
@@ -51,7 +54,7 @@ public class GameConditions : MonoBehaviour
 
     async void Win(List<Unit> units)
     {
-        SaveFile saveFile = XmlManager.Load();
+
 
         foreach(var unit in units)
         {
@@ -59,21 +62,12 @@ public class GameConditions : MonoBehaviour
         }
 
 
-        await FadeHandle(0.9f, 2f);
+        await FadeHandle(0.7f, 2f, false);
+        pauseMenuUIManager.OpenWinUI();
         //winPanel.gameObject.SetActive(true);
         //winPanel.GetComponent<CanvasGroup>().DOFade(1, 2.5f);
 
-        //winPanel.continueButton.onClick.AddListener(() => {
-        //    int nextLevel = saveFile._level + 1;
 
-        //    nextLevel = saveFile._level + 1 >= levelsProgression.GetLevelsCount()
-        //    ? 0 : saveFile._level + 1;
-
-        //    saveFile._level = nextLevel;
-        //    XmlManager.Save(saveFile);
-
-        //    SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
-        //});
 
         //winPanel.continueButton.enabled = true;
         //winPanel.continueButton.interactable = false;

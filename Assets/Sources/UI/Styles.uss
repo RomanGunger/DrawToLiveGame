@@ -17,15 +17,18 @@
     -unity-background-image-tint-color: rgb(229, 229, 229);
 }
 
-.pause{
+.pause, .win-panel, .loose-panel{
     height: 100%;
+    width: 100%;
     background-color: rgba(0,0,0,0);
     opacity: 1;
     display:flex;
+    position: absolute;
 }
 
 .sections{
     flex: 1;
+    background-color: rgba(0, 0, 0, 0);  
 }
 
 .header{
@@ -46,7 +49,7 @@
 .overlay{
     height: 100%;
     width: 100%;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.7);
     opacity: 1;
     position: absolute;
     transition-property: opacity;
@@ -55,12 +58,13 @@
 }
 
 .body{
+    background-color: rgba(0, 0, 0, 0);  
     flex: 1;
     align-items: center;
     justify-content: center;
 }
 
-.body-items{
+.body-items-pause, .body-items-win, .body-items-loose{
     background-color: rgba(0, 0, 0, 0.5);  
     border-radius: 100px;
     justify-content: baseline;

@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1471488631348086373, guid: e268a7eb345024ae8966e4f563c97e0d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5360188eb7c2f4b85bfc81ec777d92ca, type: 2}
     - target: {fileID: 6343010511093973423, guid: e268a7eb345024ae8966e4f563c97e0d, type: 3}
       propertyPath: m_Name
-      value: Fire_Cannon_Base
+      value: Fire_Cannon_01
       objectReference: {fileID: 0}
+    - target: {fileID: 8235645230910649565, guid: e268a7eb345024ae8966e4f563c97e0d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5360188eb7c2f4b85bfc81ec777d92ca, type: 2}
     - target: {fileID: 8777070153031196695, guid: e268a7eb345024ae8966e4f563c97e0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using OwnGameDevUtils;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UnitPosition : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class UnitPosition : MonoBehaviour
 
     private void Start()
     {
-        FinishLine.FinishLineReached += FinishLineReached;
+        FinishLine.FinishLineReached += ArrangeUnitsFinishLine;
 
         SpawnUnits();
     }
@@ -46,18 +47,13 @@ public class UnitPosition : MonoBehaviour
         }
     }
 
-    async void FinishLineReached()
+    async void ArrangeUnitsFinishLine()
     {
-        await ArrangeUnitsFinishLine(DevUtils.UnitPos(units.Count
+        List<Vector3> positions = DevUtils.UnitPos(units.Count
     , finishLine.GetComponent<Collider>()
     , offsetZ, offsetX, spasing
-    , sizeOfUnit));
+    , sizeOfUnit);
 
-        LevelPassed?.Invoke(units);
-    }
-
-    public async Task ArrangeUnitsFinishLine(List<Vector3> positions)
-    {
         var tasks = new List<Task>();
 
         for (int i = 0; i < units.Count; i++)
@@ -67,6 +63,7 @@ public class UnitPosition : MonoBehaviour
         }
 
         await Task.WhenAll(tasks);
+        LevelPassed?.Invoke(units);
     }
 
     public void ArrangeUnitsLine(Line currentLine, RectTransform rect)
@@ -138,6 +135,6 @@ public class UnitPosition : MonoBehaviour
 
     private void OnDestroy()
     {
-        FinishLine.FinishLineReached -= FinishLineReached;
+        FinishLine.FinishLineReached -= ArrangeUnitsFinishLine;
     }
 }

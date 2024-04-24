@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1647199617349406806, guid: 49c474732f8ef4fac930e887f278f12c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79c6f0a227b8d43fcbeda9f332eb4994, type: 2}
     - target: {fileID: 3074420871283507874, guid: 49c474732f8ef4fac930e887f278f12c, type: 3}
       propertyPath: m_Name
       value: Health_01
