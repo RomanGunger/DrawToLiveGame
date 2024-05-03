@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: robot_1_rig|run_02 (1)
-      takeName: robot_1_rig|run_02
+      name: robot_1_rig|idle_01
+      takeName: robot_1_rig|idle_01
       internalID: -100064468277368956
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 37
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
