@@ -11,23 +11,23 @@ public enum Direction
     Backward
 }
 
-public enum LeftRight
-{
-    Left,
-    Right
-}
-
 public class RotationOverTime : MonoBehaviour
 {
-    [SerializeField] float rotationSpeed = 20f;
+    [SerializeField] float rotationSpeed = 2f;
     public Direction direction;
-    public LeftRight leftRight;
 
-    public bool rotateVs = false;
+    public bool yoYo = false;
+
+    [SerializeField] Transform rotateTransform;
 
     Vector3 dir = Vector3.zero;
 
-    void Update()
+    private void Start()
+    {
+        Rotate();
+    }
+
+    void Rotate()
     {
         switch (direction)
         {
@@ -45,25 +45,11 @@ public class RotationOverTime : MonoBehaviour
                 break;
         }
 
-        transform.Rotate(dir * (rotationSpeed * Time.deltaTime));
-
-        if (rotateVs)
-        {
-            switch (leftRight)
-            {
-                case LeftRight.Left:
-                    if (transform.rotation.y < -0.7f || transform.rotation.y > 0)
-                    {
-                        rotationSpeed *= -1;
-                    }
-                    break;
-                case LeftRight.Right:
-                    if (transform.rotation.y > 0.7f || transform.rotation.y < 0)
-                    {
-                        rotationSpeed *= -1;
-                    }
-                    break;
-            }
-        }
+        if (yoYo)
+            rotateTransform.DOLocalRotate(dir * 180, rotationSpeed).SetLoops(-1, LoopType.Yoyo);
+        else
+            rotateTransform.DOLocalRotate(dir * 360, rotationSpeed, RotateMode.FastBeyond360)
+                .SetLoops(-1, LoopType.Restart)
+                .SetEase(Ease.Linear);
     }
 }
