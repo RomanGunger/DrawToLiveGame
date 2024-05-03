@@ -1,44 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(UIDocument))]
 public class MainMenuUIManager : MonoBehaviour
 {
-    [SerializeField] UIDocument uiDoc;
+    UIDocument uiDocument;
     VisualElement rootElement;
 
-    private void OnEnable()
+    Button playButton;
+
+    [SerializeField] LevelsProgression levelsProgression;
+
+    private void Start()
     {
-        rootElement = uiDoc.rootVisualElement;
+        uiDocument = GetComponent<UIDocument>();
+        rootElement = uiDocument.rootVisualElement;
 
-        foreach (var item in rootElement.Query(className: "basePanel").ToList())
-        {
-            item.AddToClassList("bg-orange");
-            var text = item.Q<Label>(className: "labelText");
-            text.text = "1111111";
-
-            item.RegisterCallback<MouseDownEvent>((itemClick) => {
-                var item = itemClick.target as VisualElement;
-                var text = item.Q<Label>(className: "labelText");
-                Debug.Log($"Clicked: {text.text}");
-            });
-        }
-
-        rootElement.Add(BuildPanel());
+        playButton = rootElement.Q<Button>("play-button");
+        playButton.RegisterCallback<ClickEvent>(PlayButton);
     }
 
-    VisualElement BuildPanel()
+    void PlayButton(ClickEvent evt)
     {
-        var box = new VisualElement();
-        box.AddToClassList("basePanel");
-        box.AddToClassList("basePanelYellow");
+        var xmlManager = new XmlManager();
+        SaveFile saveFile = xmlManager.Load();
 
-        var label = new Label("newLabel");
-        label.AddToClassList("text");
-
-        box.Add(label);
-
-        return box;
+        SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(saveFile._level), LoadSceneMode.Single);
     }
 }

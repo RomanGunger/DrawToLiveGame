@@ -2,10 +2,14 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System;
 
 [RequireComponent(typeof(UIDocument))]
 public class PauseMenuUIManager : MonoBehaviour
 {
+    public static Action LevelStarted;
+
     UIDocument uiDocument;
     VisualElement rootElement;
     VisualElement pauseElement;
@@ -25,9 +29,13 @@ public class PauseMenuUIManager : MonoBehaviour
     Button nextLevelButton;
 
     [SerializeField] LevelsProgression levelsProgression;
+    [SerializeField] Fader fader;
 
-    private void Start()
+    private async void Start()
     {
+        UnitPosition.LevelPassed += OpenWinUI;
+        UnitsSpawner.LevelFailed += OpenLooseUI;
+
         uiDocument = GetComponent<UIDocument>();
         rootElement = uiDocument.rootVisualElement;
 
@@ -66,11 +74,14 @@ public class PauseMenuUIManager : MonoBehaviour
             item.RegisterCallback<ClickEvent>(MenuButton);
         }
 
-        bodyItemsPauseElement.AddToClassList("transition-scale-0");
-        bodyItemsWinElement.AddToClassList("transition-scale-0");
-        bodyItemsLooseElement.AddToClassList("transition-scale-0");
+        bodyItemsPauseElement.AddToClassList("transition-translate-down");
+        bodyItemsWinElement.AddToClassList("transition-translate-down");
+        bodyItemsLooseElement.AddToClassList("transition-translate-down");
 
         overlay.AddToClassList("transition-opacity-0");
+
+        await FadeHandle(0, 2f, true);
+        LevelStarted?.Invoke();
     }
 
     void PauseButon(ClickEvent evt)
@@ -80,8 +91,8 @@ public class PauseMenuUIManager : MonoBehaviour
         pauseElement.style.display = DisplayStyle.Flex;
         pauseButton.style.display = DisplayStyle.None;
 
-        bodyItemsPauseElement.RemoveFromClassList("transition-scale-0");
-        bodyItemsPauseElement.AddToClassList("transition-scale-1");
+        bodyItemsPauseElement.RemoveFromClassList("transition-translate-down");
+        bodyItemsPauseElement.AddToClassList("transition-translate-up");
 
         overlay.RemoveFromClassList("transition-opacity-0");
         overlay.AddToClassList("transition-opacity-1");
@@ -101,29 +112,44 @@ public class PauseMenuUIManager : MonoBehaviour
         pauseElement.style.display = DisplayStyle.None;
         pauseButton.style.display = DisplayStyle.Flex;
 
-        bodyItemsPauseElement.RemoveFromClassList("transition-scale-1");
-        bodyItemsPauseElement.AddToClassList("transition-scale-0");
+        bodyItemsPauseElement.RemoveFromClassList("transition-translate-up");
+        bodyItemsPauseElement.AddToClassList("transition-translate-down");
 
         overlay.RemoveFromClassList("transition-opacity-1");
         overlay.AddToClassList("transition-opacity-0");
     }
 
-    void MenuButton(ClickEvent evt)
+    async void MenuButton(ClickEvent evt)
     {
         Time.timeScale = 1;
 
+        await FadeHandle(1f, 2f, false);
         SceneManager.LoadSceneAsync("Main_Menu", LoadSceneMode.Single);
     }
 
-    public void OpenWinUI()
+    async Task FadeHandle(float value, float duration, bool hideFader)
     {
+        if (fader == null)
+            return;
+
+        fader.gameObject.SetActive(true);
+        await fader.Fade(value, duration);
+
+        if (hideFader)
+            fader.gameObject.SetActive(false);
+    }
+
+    public async void OpenWinUI()
+    {
+        await FadeHandle(.7f, 2f, false);
+
         Time.timeScale = 0;
 
         winElement.style.display = DisplayStyle.Flex;
         pauseButton.style.display = DisplayStyle.None;
 
-        bodyItemsWinElement.RemoveFromClassList("transition-scale-0");
-        bodyItemsWinElement.AddToClassList("transition-scale-1");
+        bodyItemsWinElement.RemoveFromClassList("transition-translate-down");
+        bodyItemsWinElement.AddToClassList("transition-translate-up");
 
         overlay.RemoveFromClassList("transition-opacity-1");
         overlay.AddToClassList("transition-opacity-0");
@@ -133,7 +159,8 @@ public class PauseMenuUIManager : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        SaveFile saveFile = XmlManager.Load();
+        var xmlManager = new XmlManager();
+        SaveFile saveFile = xmlManager.Load();
 
         int nextLevel = saveFile._level + 1;
 
@@ -141,27 +168,24 @@ public class PauseMenuUIManager : MonoBehaviour
         ? 0 : saveFile._level + 1;
 
         saveFile._level = nextLevel;
-        XmlManager.Save(saveFile);
+        xmlManager.Save(saveFile);
 
         SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
     }
 
-    public void OpenLooseUI()
+    public async void OpenLooseUI()
     {
+        await FadeHandle(.7f, 2f, false);
+
         Time.timeScale = 0;
 
         looseElement.style.display = DisplayStyle.Flex;
         pauseButton.style.display = DisplayStyle.None;
 
-        bodyItemsLooseElement.RemoveFromClassList("transition-scale-0");
-        bodyItemsLooseElement.AddToClassList("transition-scale-1");
+        bodyItemsLooseElement.RemoveFromClassList("transition-translate-down");
+        bodyItemsLooseElement.AddToClassList("transition-translate-up");
 
         overlay.RemoveFromClassList("transition-opacity-1");
         overlay.AddToClassList("transition-opacity-0");
-    }
-
-    void Close()
-    {
-
     }
 }

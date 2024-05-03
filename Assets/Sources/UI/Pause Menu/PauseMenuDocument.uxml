@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Sources/UI/Styles.uss?fileID=7433441132597879392&amp;guid=d852e050eb6484172b129ee6881e7a34&amp;type=3#Styles" />
     <ui:VisualElement name="baseUIContainer" class="base-ui-container">
-        <ui:VisualElement name="overlay" class="overlay"/>
+        <ui:VisualElement name="overlay" class="overlay" />
         <ui:Button name="pause-button" class="pause-button" />
         <ui:VisualElement name="pause" class="pause">
             <ui:VisualElement name="sections" class="sections">
@@ -18,14 +18,12 @@
                                         <ui:Label text="Continue" class="font-style" />
                                     </ui:VisualElement>
                                 </ui:Button>
-
                                 <ui:Button name="restart-button" class="menu-item restart-button borders">
                                     <ui:VisualElement name="menu item shadow" class="menu-item-shadow borders" />
                                     <ui:VisualElement class="menu-item-content borders">
                                         <ui:Label text="Restart" class="font-style" />
                                     </ui:VisualElement>
                                 </ui:Button>
-                                
                                 <ui:Button name="menu-button" class="menu-item menu-button borders margin-top">
                                     <ui:VisualElement name="menu item shadow" class="menu-item-shadow borders" />
                                     <ui:VisualElement class="menu-item-content borders">
@@ -38,8 +36,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-
-
         <ui:VisualElement name="win-panel" class="win-panel">
             <ui:VisualElement name="sections" class="sections">
                 <ui:VisualElement name="body" class="body">
@@ -55,14 +51,12 @@
                                         <ui:Label text="Next Level" class="font-style" />
                                     </ui:VisualElement>
                                 </ui:Button>
-
                                 <ui:Button name="restart-button" class="menu-item restart-button borders">
                                     <ui:VisualElement name="menu item shadow" class="menu-item-shadow borders" />
                                     <ui:VisualElement class="menu-item-content borders">
                                         <ui:Label text="Restart" class="font-style" />
                                     </ui:VisualElement>
                                 </ui:Button>
-
                                 <ui:Button name="menu-button" class="menu-item menu-button borders margin-top">
                                     <ui:VisualElement name="menu item shadow" class="menu-item-shadow borders" />
                                     <ui:VisualElement class="menu-item-content borders">
@@ -75,8 +69,6 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-
-
         <ui:VisualElement name="loose-panel" class="loose-panel">
             <ui:VisualElement name="sections" class="sections">
                 <ui:VisualElement name="body" class="body">

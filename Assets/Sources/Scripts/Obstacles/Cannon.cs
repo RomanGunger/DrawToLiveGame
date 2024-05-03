@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using CartoonFX;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -18,7 +15,7 @@ public class Cannon : MonoBehaviour
     private void Start()
     {
         FinishLine.FinishLineReached += Begin;
-        GameConditions.LevelStarted += Begin;
+        PauseMenuUIManager.LevelStarted += Begin;
 
     }
 
@@ -45,6 +42,6 @@ public class Cannon : MonoBehaviour
     private void OnDestroy()
     {
         FinishLine.FinishLineReached -= Begin;
-        GameConditions.LevelStarted -= Begin;
+        PauseMenuUIManager.LevelStarted -= Begin;
     }
 }
