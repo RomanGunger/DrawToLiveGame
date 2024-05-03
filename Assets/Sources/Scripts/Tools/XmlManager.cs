@@ -3,9 +3,9 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class XmlManager : MonoBehaviour
+public class XmlManager
 {
-    public static void Save(SaveFile saveFile)
+    public void Save(SaveFile saveFile)
     {
         var serializer = new XmlSerializer(typeof(SaveFile));
 
@@ -15,7 +15,7 @@ public class XmlManager : MonoBehaviour
         }
     }
 
-    public static SaveFile? Load()
+    public SaveFile? Load()
     {
         string path = Application.persistentDataPath + "/saveFile.xml";
 

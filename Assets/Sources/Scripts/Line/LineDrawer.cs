@@ -1,6 +1,5 @@
 using UnityEngine;
 using OwnGameDevUtils;
-using System.Threading.Tasks;
 
 public class LineDrawer : MonoBehaviour
 {
@@ -16,41 +15,59 @@ public class LineDrawer : MonoBehaviour
 
     bool canDraw = false;
 
-    [SerializeField]Line currentLine;
+    RuntimePlatform currentPlatform = RuntimePlatform.Android;
+
+    Line currentLine;
 
     private void Start()
     {
-        GameConditions.LevelStarted += CanDraw;
-        FinishLine.FinishLineReached += CanDraw;
-        UnitPosition.LevelFailed += CanDraw;
+        currentPlatform = SetPlatform();
+
+        PauseMenuUIManager.LevelStarted += CanDraw;
+    }
+
+    RuntimePlatform SetPlatform()
+    {
+        switch (Application.platform)
+        {
+            case RuntimePlatform.Android:
+                return RuntimePlatform.Android;
+            case RuntimePlatform.IPhonePlayer:
+                return RuntimePlatform.IPhonePlayer;
+            default:
+                return RuntimePlatform.Android;
+        }
     }
 
 
-    //void TouchInput()
-    //{
-    //    if (Input.touchCount == 0)
-    //    {
-    //        Touch touch = Input.GetTouch(0);
-    //        BeginDraw();
+    void TouchInput()
+    {
+        if (Input.touchCount == 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            BeginDraw();
 
-    //        if (touch.phase == TouchPhase.Began)
-    //        {
-    //            Vector2 pos = touch.position;
-    //            Draw(pos);
-    //        }
+            if (touch.phase == TouchPhase.Began)
+            {
+                Vector2 pos = touch.position;
+                Draw(pos);
+            }
 
-    //        if (touch.phase == TouchPhase.Ended)
-    //        {
-    //            EndDraw();
-    //        }
-    //    }
-    //}
+            if (touch.phase == TouchPhase.Ended)
+            {
+                EndDraw();
+            }
+        }
+    }
 
     private void Update()
     {
         MouseInput();
 
-        //TouchInput();
+        //if (currentPlatform == RuntimePlatform.IPhonePlayer || currentPlatform == RuntimePlatform.Android)
+        //    TouchInput();
+        //else
+        //    MouseInput();
     }
 
     private void MouseInput()
@@ -104,8 +121,6 @@ public class LineDrawer : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameConditions.LevelStarted -= CanDraw;
-        FinishLine.FinishLineReached -= CanDraw;
-        UnitPosition.LevelFailed -= CanDraw;
+        PauseMenuUIManager.LevelStarted -= CanDraw;
     }
 }

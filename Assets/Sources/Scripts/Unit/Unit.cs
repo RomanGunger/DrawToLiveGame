@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    [HideInInspector] public UnitPosition unitPosition;
-
     [SerializeField] float rearrangeSpeed = 10f;
 
     private float startTime;
@@ -15,7 +13,7 @@ public class Unit : MonoBehaviour
     bool rearranging = false;
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (rearranging)
         {

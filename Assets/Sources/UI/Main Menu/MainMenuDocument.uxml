@@ -1,6 +1,33 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Sources/UI/Styles.uss?fileID=7433441132597879392&amp;guid=d852e050eb6484172b129ee6881e7a34&amp;type=3#Styles" />
-    <ui:VisualElement class="overlay">
-
+    <ui:VisualElement name="baseUIContainer" class="base-ui-container">
+        <ui:VisualElement name="overlay" class="overlay" />
+        <ui:VisualElement name="pause" class="pause">
+            <ui:VisualElement name="sections" class="sections">
+                <ui:VisualElement name="body" class="body">
+                    <ui:VisualElement name="body-items-pause" class="body-items-pause">
+                        <ui:VisualElement name="header" class="header header-menu">
+                            <ui:Label text="Draw To Live" class="font-style-heaader font-style-heaader-menu" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="items" class="items">
+                            <ui:VisualElement name="menu-items" class="menu-items">
+                                <ui:Button name="play-button" class="menu-item play-button borders margin-bottom">
+                                    <ui:VisualElement name="menu item shadow" class="menu-item-shadow borders" />
+                                    <ui:VisualElement class="menu-item-content borders">
+                                        <ui:Label text="Play" class="font-style" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                                <ui:Button name="restart-button" class="menu-item restart-button borders">
+                                    <ui:VisualElement name="menu item shadow" class="menu-item-shadow borders" />
+                                    <ui:VisualElement class="menu-item-content borders">
+                                        <ui:Label text="Restart" class="font-style" />
+                                    </ui:VisualElement>
+                                </ui:Button>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

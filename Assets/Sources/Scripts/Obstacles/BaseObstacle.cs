@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,10 +7,8 @@ public class BaseObstacle : MonoBehaviour
 {
     public GameObject dieEffect;
 
-    private void Start()
-    {
-        FinishLine.FinishLineReached += Stop;
-    }
+    public static Action<Unit> UnitKilled;
+    public static Action<Vector3> UnitAdded;
 
     protected virtual void OnTriggerEnter(Collider other)
     {
@@ -17,38 +16,17 @@ public class BaseObstacle : MonoBehaviour
         {
             var unit = other.gameObject.GetComponent<Unit>();
 
-            unit.unitPosition.RemoveUnit(other.gameObject.GetComponent<Unit>());
+            UnitKilled?.Invoke(other.gameObject.GetComponent<Unit>());
 
-            if (!unit.unitPosition.units.Contains(other.gameObject.GetComponent<Unit>()))
-            {
-                Instantiate(dieEffect, other.transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
-            }
-        }
-    }
-
-    protected virtual void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            var unit = other.gameObject.GetComponent<Unit>();
-
-            while (unit.unitPosition.units.Contains(other.gameObject.GetComponent<Unit>()))
-            {
-                unit.unitPosition.RemoveUnit(other.gameObject.GetComponent<Unit>());
-                Instantiate(dieEffect, other.transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
-            }
+            Instantiate(dieEffect,
+                other.transform.position + new Vector3(0, other.GetComponent<CapsuleCollider>().height, 0)
+                , Quaternion.identity);
+            Destroy(other.gameObject);
         }
     }
 
     protected virtual void Stop()
     {
         GetComponent<Collider>().enabled = false;
-    }
-
-    private void OnDestroy()
-    {
-        FinishLine.FinishLineReached -= Stop;
     }
 }

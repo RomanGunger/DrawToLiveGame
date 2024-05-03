@@ -28,7 +28,7 @@
 
 .sections{
     flex: 1;
-    background-color: rgba(0, 0, 0, 0);  
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .header{
@@ -38,12 +38,19 @@
     font-size: 500;
 }
 
+.header-menu{
+    font-size: 400;
+}
+
 .font-style-heaader{
     color: rgb(188, 68, 32);
     justify-content: center;
     -unity-font: url("project://database/Assets/Sources/UI/Fonts/youmurdererbb_reg.ttf");
     -unity-font-definition: initial;
     top: 20%;
+}
+
+.font-style-heaader-menu{
 }
 
 .overlay{
@@ -69,8 +76,9 @@
     border-radius: 100px;
     justify-content: baseline;
     width: 95%;
-    height: 70%;
-    transition-property: scale;
+    height: 90%;
+
+    transition-property: translate;
     transition-duration: 0.4s; 
     transition-timing-function: ease-in-out-bounce;
 }
@@ -84,6 +92,15 @@
 .margin-top{
     margin-top: 10%;
 }
+
+.margin-bottom{
+    margin-bottom: 10%;
+}
+
+.play-button{
+    
+}
+
 
 .items{
     flex: 1;
@@ -130,6 +147,14 @@
 
 .transition-scale-1{
     scale: 1;
+}
+
+.transition-translate-up{
+    translate: 0% 0%;
+}
+
+.transition-translate-down{
+    translate: 0% -100%;
 }
 
 .transition-opacity-0{

@@ -36,7 +36,6 @@ public class ParticleCollisionEvents : MonoBehaviour
             //dust.GetComponentInChildren<Material>().DOColor(color, 2f);
             dust.GetComponentInChildren<MeshRenderer>().material.DOColor(color, 3f);
             Destroy(dust.gameObject, 3f);
-            Debug.Log(pos);
         }
 
     }

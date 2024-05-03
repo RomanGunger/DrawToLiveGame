@@ -4,22 +4,15 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using OwnGameDevUtils;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class UnitPosition : MonoBehaviour
 {
-    public static Action LevelFailed;
-    public static Action<List<Unit>> LevelPassed;
+    public static Action LevelPassed;
 
-    public int initialCount = 10;
+    [SerializeField] UnitsList unitsList;
 
-    [SerializeField] Transform spawnArea;
     [SerializeField] Transform finishLine;
     [SerializeField] Camera camera;
-
-    [HideInInspector] public List<Unit> units = new List<Unit>();
-
-    public List<GameObject> unitPrefab;
 
     [Header("Positioning")]
     [SerializeField] float offsetZ = 1f;
@@ -29,48 +22,33 @@ public class UnitPosition : MonoBehaviour
 
     private void Start()
     {
-        FinishLine.FinishLineReached += ArrangeUnitsFinishLine;
-
-        SpawnUnits();
+        FinishLine.FinishLineReached += OnFinishLineReached;
     }
 
-    void SpawnUnits()
+    async void OnFinishLineReached()
     {
-       List<Vector3> positions = DevUtils.UnitPos(initialCount
-            , spawnArea.GetComponent<Collider>()
-            , 0, 0, spasing * 1.4f
-            , sizeOfUnit);
-
-        foreach (var pos in positions)
-        {
-            AddUnit(pos);
-        }
-    }
-
-    async void ArrangeUnitsFinishLine()
-    {
-        List<Vector3> positions = DevUtils.UnitPos(units.Count
+        List<Vector3> positions = DevUtils.UnitPos(unitsList.unitsList.Count
     , finishLine.GetComponent<Collider>()
     , offsetZ, offsetX, spasing
     , sizeOfUnit);
 
         var tasks = new List<Task>();
 
-        for (int i = 0; i < units.Count; i++)
+        for (int i = 0; i < unitsList.unitsList.Count; i++)
         {
-            tasks.Add(units[i].transform.DOMove(positions[i], 1.5f).AsyncWaitForCompletion());
+            tasks.Add(unitsList.unitsList[i].transform.DOMove(positions[i], 1.5f).AsyncWaitForCompletion());
             await Task.Delay(100);
         }
 
         await Task.WhenAll(tasks);
-        LevelPassed?.Invoke(units);
+        LevelPassed?.Invoke();
     }
 
     public void ArrangeUnitsLine(Line currentLine, RectTransform rect)
     {
-        if (currentLine.PointsCount >= 1 && units.Count > 0)
+        if (currentLine.PointsCount >= 1 && unitsList.unitsList.Count > 0)
         {
-            int splitCount = currentLine.points.Count / units.Count;
+            int splitCount = currentLine.points.Count / unitsList.unitsList.Count;
 
             if(splitCount > 0)
             {
@@ -78,7 +56,7 @@ public class UnitPosition : MonoBehaviour
 
                 slices = currentLine.points.ChunkBy(splitCount);
 
-                foreach (var unit in units)
+                foreach (var unit in unitsList.unitsList)
                 {
                     var slice = slices[0];
                     Vector2 midPoint = slice[slice.Count / 2];
@@ -94,7 +72,7 @@ public class UnitPosition : MonoBehaviour
             else
             {
                 int i = 0;
-                foreach (var unit in units)
+                foreach (var unit in unitsList.unitsList)
                 {
                     Vector3 localPos = new Vector3(currentLine.points[i].x * 0.5f
                         , 0
@@ -109,32 +87,5 @@ public class UnitPosition : MonoBehaviour
             }
 
         }
-    }
-
-    public void AddUnit(Vector3 position)
-    {
-        var rnd = new System.Random();
-        GameObject newUnit = Instantiate(unitPrefab[rnd.Next(0, unitPrefab.Count)], position, Quaternion.identity);
-
-        var unit = newUnit.GetComponent<Unit>();
-        unit.unitPosition = this;
-
-        newUnit.transform.localScale = new Vector3(1,1,1);
-        newUnit.transform.SetParent(spawnArea);
-
-        units.Add(unit);
-    }
-
-    public void RemoveUnit(Unit unit)
-    {
-        units.Remove(unit);
-
-        if (units.Count <= 0)
-            LevelFailed?.Invoke();
-    }
-
-    private void OnDestroy()
-    {
-        FinishLine.FinishLineReached -= ArrangeUnitsFinishLine;
     }
 }

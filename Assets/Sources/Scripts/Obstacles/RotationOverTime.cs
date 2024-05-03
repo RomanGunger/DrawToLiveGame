@@ -8,9 +8,7 @@ public enum Direction
     Up,
     Forward,
     Down,
-    Backward,
-    Input,
-    Output
+    Backward
 }
 
 public enum LeftRight
