@@ -16,11 +16,16 @@ public class RotationOverTime : MonoBehaviour
     [SerializeField] float rotationSpeed = 2f;
     public Direction direction;
 
-    public bool rotateVs = false;
+    public bool yoYo = false;
 
-    [SerializeField] Transform cannon;
+    [SerializeField] Transform rotateTransform;
 
     Vector3 dir = Vector3.zero;
+
+    private void Start()
+    {
+        Rotate();
+    }
 
     void Rotate()
     {
@@ -40,16 +45,11 @@ public class RotationOverTime : MonoBehaviour
                 break;
         }
 
-        if (rotateVs)
-            cannon.DOLocalRotate(dir * 180, rotationSpeed).SetLoops(-1, LoopType.Yoyo);
+        if (yoYo)
+            rotateTransform.DOLocalRotate(dir * 180, rotationSpeed).SetLoops(-1, LoopType.Yoyo);
         else
-            transform.DOLocalRotate(dir * 360, rotationSpeed, RotateMode.FastBeyond360)
+            rotateTransform.DOLocalRotate(dir * 360, rotationSpeed, RotateMode.FastBeyond360)
                 .SetLoops(-1, LoopType.Restart)
                 .SetEase(Ease.Linear);
-    }
-
-    private void Start()
-    {
-        Rotate();
     }
 }

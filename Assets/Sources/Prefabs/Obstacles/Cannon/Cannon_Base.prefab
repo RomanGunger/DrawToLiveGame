@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 20
   direction: 0
-  rotateVs: 0
-  cannon: {fileID: 8306734987433856599}
+  yoYo: 1
+  rotateTransform: {fileID: 8306734987433856599}
 --- !u!114 &6309760293763391653
 MonoBehaviour:
   m_ObjectHideFlags: 0
