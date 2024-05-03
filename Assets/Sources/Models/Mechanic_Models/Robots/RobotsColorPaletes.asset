@@ -16,16 +16,16 @@ MonoBehaviour:
   - colorR: {r: 0.60784316, g: 0.18431373, b: 0.6901961, a: 0}
     colorG: {r: 0.30980393, g: 0.8392157, b: 0, a: 0}
     colorB: {r: 1, g: 0.8352941, b: 0, a: 0}
-    colorLights: {r: 1, g: 0.3058512, b: 0, a: 0}
+    colorLights: {r: 1, g: 0.3058512, b: 0, a: 1}
   - colorR: {r: 0.3019608, g: 0.7529412, b: 0.83137256, a: 0}
     colorG: {r: 1, g: 1, b: 1, a: 0}
     colorB: {r: 1, g: 0.47843137, b: 0.8235294, a: 0}
-    colorLights: {r: 0.098122105, g: 0.2290312, b: 0.990566, a: 0}
+    colorLights: {r: 0.098122105, g: 0.2290312, b: 0.990566, a: 1}
   - colorR: {r: 0, g: 0, b: 0, a: 0}
     colorG: {r: 0, g: 0, b: 0, a: 0}
     colorB: {r: 0, g: 0, b: 0, a: 0}
-    colorLights: {r: 0.9339623, g: 0.15419187, b: 0.8543586, a: 0}
+    colorLights: {r: 0.9339623, g: 0.15419187, b: 0.8543586, a: 1}
   - colorR: {r: 0, g: 0, b: 0, a: 0}
     colorG: {r: 0, g: 0, b: 0, a: 0}
     colorB: {r: 0, g: 0, b: 0, a: 0}
-    colorLights: {r: 0.14716153, g: 1, b: 0.10849059, a: 0}
+    colorLights: {r: 0.14716153, g: 1, b: 0.10849059, a: 1}

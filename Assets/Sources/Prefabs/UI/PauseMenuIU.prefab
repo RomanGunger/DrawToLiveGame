@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3079634704028980091}
   - component: {fileID: 3536846012053249411}
   m_Layer: 0
-  m_Name: UIDocument
+  m_Name: PauseMenuIU
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
