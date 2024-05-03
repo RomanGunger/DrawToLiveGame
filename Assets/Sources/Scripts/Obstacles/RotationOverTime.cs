@@ -44,7 +44,7 @@ public class RotationOverTime : MonoBehaviour
             cannon.DOLocalRotate(dir * 180, rotationSpeed).SetLoops(-1, LoopType.Yoyo);
         else
             transform.DOLocalRotate(dir * 360, rotationSpeed, RotateMode.FastBeyond360)
-                .SetLoops(1, LoopType.Restart)
+                .SetLoops(-1, LoopType.Restart)
                 .SetEase(Ease.Linear);
     }
 
