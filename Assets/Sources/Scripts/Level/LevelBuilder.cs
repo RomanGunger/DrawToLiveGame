@@ -15,9 +15,12 @@ public class LevelBuilder : MonoBehaviour
     {
         var rnd = new System.Random();
 
-        foreach (var obj in listLevelBlocks)
+        foreach (var obj in GetComponentsInChildren<LevelBlock>())
         {
-            DestroyImmediate(obj);
+            if (listLevelBlocks.Contains(obj.gameObject))
+                listLevelBlocks.Remove(obj.gameObject);
+
+            DestroyImmediate(obj.gameObject);
         }
 
         for (int i = 0; i < blocksCount; i++)
