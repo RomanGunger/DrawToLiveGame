@@ -38,5 +38,6 @@ public class Moving : MonoBehaviour
     {
         FinishLine.FinishLineReached -= Stop;
         PauseMenuUIManager.LevelStarted -= Begin;
+        UnitsSpawner.LevelFailed -= Stop;
     }
 }

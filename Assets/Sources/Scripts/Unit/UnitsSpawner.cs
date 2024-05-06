@@ -60,4 +60,10 @@ public class UnitsSpawner : MonoBehaviour
         if (unitsList.unitsList.Count <= 0)
             LevelFailed?.Invoke();
     }
+
+    private void OnDestroy()
+    {
+        BaseObstacle.UnitKilled -= RemoveUnit;
+        Health.UnitAdded -= AddUnit;
+    }
 }
