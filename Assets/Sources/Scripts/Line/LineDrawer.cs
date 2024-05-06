@@ -97,8 +97,8 @@ public class LineDrawer : MonoBehaviour
 
     void Draw(Vector2 pos)
     {
-        if (DevUtils.MouseRect(rect, DevUtils.GetTouchWorldPosition(camera, pos)) && canDraw)
-            currentLine.AddPoint(pos);
+        //if (DevUtils.MouseRect(rect, DevUtils.GetTouchWorldPosition(camera, pos)) && canDraw)
+        //    currentLine.AddPoint(pos);
 
         if (DevUtils.MouseRect(rect, Input.mousePosition) && canDraw)
             currentLine.AddPoint(pos);
