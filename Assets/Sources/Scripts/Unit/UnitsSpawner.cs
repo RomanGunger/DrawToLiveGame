@@ -24,7 +24,7 @@ public class UnitsSpawner : MonoBehaviour
         SpawnUnits();
 
         BaseObstacle.UnitKilled += RemoveUnit;
-        BaseObstacle.UnitAdded += AddUnit;
+        Health.UnitAdded += AddUnit;
     }
 
     public void SpawnUnits()
