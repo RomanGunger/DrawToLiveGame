@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 2947931115115806363}
   - component: {fileID: 3975222889264762417}
   - component: {fileID: 1735559622501367671}
+  - component: {fileID: 2700700868227992024}
   m_Layer: 3
   m_Name: floor_low.001
   m_TagString: Untagged
@@ -250,6 +251,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2700700868227992024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3142605423052656699}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 28.382278, y: 2.0455978, z: 6.8198795}
+  m_Center: {x: 0, y: 0.22579494, z: 3.4099398}
 --- !u!1 &4117823745102858096
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5983800529466921071}
   - component: {fileID: 6408720911658795757}
-  - component: {fileID: 5461270777738878549}
   - component: {fileID: 3651600210565335983}
   m_Layer: 3
   m_Name: Level_Block_Base
@@ -471,28 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2463483b2418f42bbaac448bdd276d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 5461270777738878549}
---- !u!65 &5461270777738878549
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4969459076358239771}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 28.382278, y: 0.79882836, z: 6.8198795}
-  m_Center: {x: 0, y: -0.39758968, z: 0}
+  boxCollider: {fileID: 2700700868227992024}
 --- !u!54 &3651600210565335983
 Rigidbody:
   m_ObjectHideFlags: 0
