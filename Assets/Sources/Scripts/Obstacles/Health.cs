@@ -1,9 +1,12 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
 
-public class Health : BaseObstacle
+public class Health : MonoBehaviour
 {
-    protected override void OnTriggerEnter(Collider other)
+    public static Action<Vector3> UnitAdded;
+
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {

@@ -8,7 +8,6 @@ public class BaseObstacle : MonoBehaviour
     public GameObject dieEffect;
 
     public static Action<Unit> UnitKilled;
-    public static Action<Vector3> UnitAdded;
 
     protected virtual void OnTriggerEnter(Collider other)
     {
