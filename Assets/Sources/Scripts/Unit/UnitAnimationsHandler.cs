@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class UnitAnimationsHandler : MonoBehaviour
 {
+<<<<<<< Updated upstream
     Animator animator;
     Moving moving;
+=======
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected Moving moving;
+>>>>>>> Stashed changes
 
     private void Start()
     {

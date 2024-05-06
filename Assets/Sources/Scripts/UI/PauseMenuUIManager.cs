@@ -188,4 +188,10 @@ public class PauseMenuUIManager : MonoBehaviour
         overlay.RemoveFromClassList("transition-opacity-1");
         overlay.AddToClassList("transition-opacity-0");
     }
+
+    private void OnDestroy()
+    {
+        UnitPosition.LevelPassed -= OpenWinUI;
+        UnitsSpawner.LevelFailed -= OpenLooseUI;
+    }
 }
