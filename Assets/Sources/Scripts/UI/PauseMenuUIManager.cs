@@ -9,6 +9,7 @@ using System;
 public class PauseMenuUIManager : MonoBehaviour
 {
     public static Action LevelStarted;
+    public static Action LevelStopped;
 
     UIDocument uiDocument;
     VisualElement rootElement;
@@ -121,10 +122,15 @@ public class PauseMenuUIManager : MonoBehaviour
 
     async void MenuButton(ClickEvent evt)
     {
+        UnitPosition.LevelPassed -= OpenWinUI;
+        UnitsSpawner.LevelFailed -= OpenLooseUI;
+
         Time.timeScale = 1;
 
+        var scene = SceneManager.LoadSceneAsync("Main_Menu", LoadSceneMode.Single);
+        scene.allowSceneActivation = false;
         await FadeHandle(1f, 2f, false);
-        SceneManager.LoadSceneAsync("Main_Menu", LoadSceneMode.Single);
+        scene.allowSceneActivation = true;
     }
 
     async Task FadeHandle(float value, float duration, bool hideFader)

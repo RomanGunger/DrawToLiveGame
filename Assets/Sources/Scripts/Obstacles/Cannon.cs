@@ -14,12 +14,12 @@ public class Cannon : MonoBehaviour
 
     private void Start()
     {
-        FinishLine.FinishLineReached += Begin;
-        PauseMenuUIManager.LevelStarted += Begin;
+        FinishLine.FinishLineReached += BeginStop;
+        PauseMenuUIManager.LevelStarted += BeginStop;
 
     }
 
-    void Begin()
+    void BeginStop()
     {
         isSleeping = isSleeping ? false : true;
     }
@@ -41,7 +41,7 @@ public class Cannon : MonoBehaviour
 
     private void OnDestroy()
     {
-        FinishLine.FinishLineReached -= Begin;
-        PauseMenuUIManager.LevelStarted -= Begin;
+        FinishLine.FinishLineReached -= BeginStop;
+        PauseMenuUIManager.LevelStarted -= BeginStop;
     }
 }
