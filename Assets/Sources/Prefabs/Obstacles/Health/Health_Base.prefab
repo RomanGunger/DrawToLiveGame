@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4447980307294156851}
   - component: {fileID: 5575749762055111851}
   - component: {fileID: 4021125192543558494}
+  - component: {fileID: 8165197660289869981}
+  - component: {fileID: 8008924701075711298}
   m_Layer: 0
   m_Name: Health_Base
   m_TagString: Untagged
@@ -69,6 +71,41 @@ CapsuleCollider:
   m_Height: 1.86
   m_Direction: 1
   m_Center: {x: 0, y: 0.91, z: 0}
+--- !u!95 &8165197660289869981
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074420871283507874}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8cbdfda57ad76544a84f1668a516be2f, type: 3}
+  m_Controller: {fileID: 9100000, guid: c7d1300b705c44301a8e7ba81d7643ac, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8008924701075711298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074420871283507874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54dd083999224b30b9d6478207696c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  moving: {fileID: 0}
 --- !u!1001 &8787119038421872989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -197,7 +234,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 9747f218d9e6b469d89d27470043a3cd, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 8cbdfda57ad76544a84f1668a516be2f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

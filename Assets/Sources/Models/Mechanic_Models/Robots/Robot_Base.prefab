@@ -94,10 +94,10 @@ GameObject:
   - component: {fileID: 6151953554378906869}
   - component: {fileID: 8608497145687381497}
   - component: {fileID: 8048117575879231845}
-  - component: {fileID: 5747144728654103185}
   - component: {fileID: -2881027417707209407}
   - component: {fileID: 4854229841911249010}
   - component: {fileID: 5667667912965056048}
+  - component: {fileID: 1048449750907386950}
   m_Layer: 0
   m_Name: Robot_Base
   m_TagString: Player
@@ -156,18 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rearrangeSpeed: 16
---- !u!114 &5747144728654103185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4572657464238368083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c666f03d9a414491ca802e4712328061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-2881027417707209407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +227,18 @@ CapsuleCollider:
   m_Height: 1.74
   m_Direction: 1
   m_Center: {x: 0, y: 0.86, z: 0}
+--- !u!114 &1048449750907386950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572657464238368083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8bcf7c5d2c641c09bc79b970b39352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4910312031605452571
 PrefabInstance:
   m_ObjectHideFlags: 0
