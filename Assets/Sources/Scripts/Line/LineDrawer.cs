@@ -60,16 +60,6 @@ public class LineDrawer : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        MouseInput();
-
-        //if (currentPlatform == RuntimePlatform.IPhonePlayer || currentPlatform == RuntimePlatform.Android)
-        //    TouchInput();
-        //else
-        //    MouseInput();
-    }
-
     private void MouseInput()
     {
         if (Input.GetMouseButtonDown(0))
@@ -81,6 +71,18 @@ public class LineDrawer : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
             EndDraw();
     }
+
+    private void Update()
+    {
+        MouseInput();
+        TouchInput();
+
+        //if (currentPlatform == RuntimePlatform.IPhonePlayer || currentPlatform == RuntimePlatform.Android)
+        //    TouchInput();
+        //else
+        //    MouseInput();
+    }
+
 
     void BeginDraw()
     {
