@@ -88,4 +88,9 @@ public class UnitPosition : MonoBehaviour
 
         }
     }
+
+    private void OnDestroy()
+    {
+        FinishLine.FinishLineReached -= OnFinishLineReached;
+    }
 }
