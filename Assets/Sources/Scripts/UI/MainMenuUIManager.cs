@@ -7,13 +7,15 @@ using UnityEngine.UIElements;
 public class MainMenuUIManager : MonoBehaviour
 {
     [SerializeField] Fader fader;
+    [SerializeField] LevelsProgression levelsProgression;
+
+    [SerializeField] SettingsUI settingsUI;
 
     UIDocument uiDocument;
     VisualElement rootElement;
 
     Button playButton;
-
-    [SerializeField] LevelsProgression levelsProgression;
+    Button settingsButton;
 
     private async void Start()
     {
@@ -22,6 +24,9 @@ public class MainMenuUIManager : MonoBehaviour
 
         playButton = rootElement.Q<Button>("play-button");
         playButton.RegisterCallback<ClickEvent>(PlayButton);
+
+        settingsButton = rootElement.Q<Button>("side-button-settings");
+        settingsButton.RegisterCallback<ClickEvent>(SettingsButton);
 
         await FadeHandle(0f, 2f, false);
     }
@@ -33,6 +38,11 @@ public class MainMenuUIManager : MonoBehaviour
 
         await FadeHandle(1f, 2f, true);
         SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(saveFile._level), LoadSceneMode.Single);
+    }
+
+    void SettingsButton(ClickEvent evt)
+    {
+        settingsUI.gameObject.SetActive(true);
     }
 
     async Task FadeHandle(float value, float duration, bool hideFader)

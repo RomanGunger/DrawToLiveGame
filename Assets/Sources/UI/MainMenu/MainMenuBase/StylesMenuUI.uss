@@ -1,0 +1,197 @@
+.base-ui-container {
+    height: 100%;
+    width: 100%;
+}
+
+.menu {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: flex;
+    position: absolute;
+}
+
+.sections {
+    flex: 1;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.header {
+    display: flex;
+    flex-grow: 0;
+    flex-direction: collumn;
+    height: 15%;
+    align-items: center;
+    justify-content: center;
+    font-size: 500;
+}
+
+.top-panel{
+    flex-grow: 1; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: row;
+    align-self: auto; 
+    width: 100%; 
+    height: 50%; 
+    background-color: rgba(0, 0, 0, 0); 
+    margin-top: 9%;
+}
+
+.top-panel-content-item{
+    margin-left: 2%;
+    margin-right: 2%;
+    align-items: center; 
+    justify-content: flex-start; 
+    flex-direction: row;
+    width: 100%; 
+    height: auto;
+    background-color: rgb(255, 255, 0);
+}
+
+.top-panel-content-item-image{
+    width: 70%; 
+    height: 100%; 
+    background-image: url("project://database/Assets/Sources/Images/UI/Icons/pause-button.png");
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-background-image-tint-color: rgb(229, 229, 229);
+}
+
+.top-panel-content-item-text-container{
+    width: 100%;
+    height: 100%;
+    align-items: flex-start; 
+    justify-content: center; 
+}
+
+.top-panel-content-item-text{
+    align-items: auto; 
+    font-size: 150px; 
+    height: 100%; 
+    width: 70%;
+    -unity-text-align: middle-left;
+}
+
+.header-menu {
+    font-size: 400;
+}
+
+.font-style-header {
+    flex-grow: 1;
+    flex-shrink: 1;
+    color: rgb(188, 68, 32);
+    justify-content: center;
+    -unity-font: url('project://database/Assets/Sources/UI/Fonts/youmurdererbb_reg.ttf?fileID=12800000&guid=b5080f96a5f7b4932b01a5407ebdf59c&type=3#youmurdererbb_reg');
+    -unity-font-definition: initial;
+    margin-top: 2%;
+}
+
+.body {
+    background-color: rgba(0, 0, 0, 0);
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-items-menu {
+    background-color: rgba(0, 0, 0, 0);
+    justify-content: baseline;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-items {
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-item {
+    background-color: rgba(155, 128, 78, 0);
+    height: 10%;
+    width: 40%;
+    border-width: 0;
+}
+
+.menu-item-content {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 100%;
+}
+
+.font-style {
+    color: rgb(0, 0, 0);
+    -unity-font: url('project://database/Assets/Sources/UI/Fonts/youmurdererbb_reg.ttf?fileID=12800000&guid=b5080f96a5f7b4932b01a5407ebdf59c&type=3#youmurdererbb_reg');
+    -unity-font-definition: initial;
+}
+
+.buttons-container {
+    flex-grow: 1;
+    justify-content: flex-start;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    height: auto;
+    margin-left: 5%;
+    margin-top: 20%;
+}
+
+.buttons-container-left {
+    align-items: flex-start;
+}
+
+.buttons-container-right {
+    align-items: flex-end;
+}
+
+.side-button {
+    background-size: contain;
+    width: 450;
+    height: 450;
+    background-color: rgb(0, 0, 0);
+    opacity: 1;
+    overflow: hidden;
+    margin-top: 17%;
+    margin-right: 5%;
+    margin-bottom: 17%;
+    margin-left: 5%;
+    border-width: 0;
+}
+
+.side-panel {
+    flex-grow: 1;
+    font-size: 1px;
+    justify-content: flex-start;
+    align-self: auto;
+}
+
+.side-panel-left {
+    align-items: flex-start;
+}
+
+.side-panel-right {
+    align-items: flex-end;
+}
+
+.footer {
+    flex-grow: 0.1;
+    flex-shrink: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-button {
+    width: 65%;
+    height: auto;
+    font-size: 200;
+    -unity-font-style: bold;
+    margin-bottom: 4%;
+    border-width: 0;
+}
+
+.content {
+    flex-grow: 1;
+    flex-direction: row;
+}
