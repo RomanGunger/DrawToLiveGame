@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Sources/UI/StylesLoadingScreen.uss?fileID=7433441132597879392&amp;guid=92f85849fe64c420a944da8aa916b4d1&amp;type=3#StylesLoadingScreen" />
+    <ui:VisualElement name="base-container" class="base-container">
+        <ui:VisualElement name="header" class="header" >
+            <ui:Label text="Draw To Live" class="font-style-heaader" />
+        </ui:VisualElement>
+        <ui:VisualElement name="footer" class="footer">
+            <ui:ProgressBar value="0" title="Loading..." class="loading-bar" name="loading-bar" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

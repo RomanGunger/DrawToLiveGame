@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Sources/UI/StylesLogoScreen.uss?fileID=7433441132597879392&amp;guid=3af128b61d63d4a92b2e106d1add8bb7&amp;type=3#StylesLogoScreen" />
+    <ui:VisualElement name="base-container" class="base-container">
+        <ui:VisualElement name="header" class="header" />
+        <ui:VisualElement name="content" class="content" >
+            <ui:VisualElement name="logo" class="logo" />
+        </ui:VisualElement>
+        <ui:VisualElement name="footer" class="footer" />
+    </ui:VisualElement>
+</ui:UXML>

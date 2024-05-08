@@ -47,7 +47,7 @@ public class LineDrawer : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             BeginDraw();
 
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Moved)
             {
                 Vector2 pos = touch.position;
                 Draw(pos);
