@@ -75,7 +75,7 @@ public class LineDrawer : MonoBehaviour
     private void Update()
     {
         MouseInput();
-        TouchInput();
+        //TouchInput();
 
         //if (currentPlatform == RuntimePlatform.IPhonePlayer || currentPlatform == RuntimePlatform.Android)
         //    TouchInput();

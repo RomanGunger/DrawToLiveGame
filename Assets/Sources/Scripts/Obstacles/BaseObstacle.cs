@@ -15,12 +15,12 @@ public class BaseObstacle : MonoBehaviour
         {
             var unit = other.gameObject.GetComponent<Unit>();
 
-            UnitKilled?.Invoke(other.gameObject.GetComponent<Unit>());
+            UnitKilled?.Invoke(unit);
 
             Instantiate(dieEffect,
-                other.transform.position + new Vector3(0, other.GetComponent<CapsuleCollider>().height, 0)
+                unit.transform.position + new Vector3(0, unit.GetComponent<CapsuleCollider>().height, 0)
                 , Quaternion.identity);
-            Destroy(other.gameObject);
+            Destroy(unit.gameObject);
         }
     }
 
