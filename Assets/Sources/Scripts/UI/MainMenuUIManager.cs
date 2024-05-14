@@ -28,6 +28,7 @@ public class MainMenuUIManager : MonoBehaviour
         settingsButton = rootElement.Q<Button>("side-button-settings");
         settingsButton.RegisterCallback<ClickEvent>(SettingsButton);
 
+
         await FadeHandle(0f, 2f, false);
     }
 

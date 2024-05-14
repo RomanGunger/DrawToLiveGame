@@ -12,8 +12,10 @@ public class Fader : MonoBehaviour
         faderImage = GetComponent<Image>();
     }
 
+
     async public Task Fade(float value, float duration)
     {
         await faderImage.DOFade(value, duration).AsyncWaitForCompletion();
     }
+
 }

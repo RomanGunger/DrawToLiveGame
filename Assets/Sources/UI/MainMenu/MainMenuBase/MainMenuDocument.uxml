@@ -32,7 +32,7 @@
                             <ui:VisualElement name="side-panel-right" class="side-panel side-panel-right">
                                 <ui:VisualElement name="buttons-container" class="buttons-container buttons-container-right">
                                     <ui:Button text="Button" name="Button" class="side-button" />
-                                    <ui:Button text="Button" name="side-button-settings" class="side-button side-button-settings" />
+                                    <ui:Button text="Button" name="side-button-settings" class="side-button-settings side-button" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
