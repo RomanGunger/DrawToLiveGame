@@ -10,6 +10,35 @@ public class LevelsPanel : MonoBehaviour
     [SerializeField] Fader fader;
     [SerializeField] GameObject buttonPrefab;
 
+    GridLayoutGroup gridLayout;
+
+    private void Start()
+    {
+        gridLayout = GetComponent<GridLayoutGroup>();
+
+        SetButtonsSize();
+    }
+
+    private void SetButtonsSize()
+    {
+        Vector2 resolution = Vector2.zero;
+        Resolution[] resolutions = Screen.resolutions;
+
+        foreach (var res in resolutions)
+        {
+            resolution.x = res.width;
+            resolution.y = res.height;
+        }
+
+        float width = resolution.x / 12;
+        Debug.Log(width);
+        float ratio = resolution.y / resolution.x;
+        if (ratio < 1.7f)
+            ratio = 1.7f;
+        float cellSize = ratio * width;
+        gridLayout.cellSize = new Vector2(cellSize, cellSize);
+    }
+
     public void SetButtons(LevelsProgression levelsProgression)
     {
         foreach (Transform trans in transform)
@@ -31,9 +60,6 @@ public class LevelsPanel : MonoBehaviour
 
     async void OnClickActionAsync(string sceneName)
     {
-        //var xmlManager = new XmlManager();
-        //SaveFile saveFile = xmlManager.Load();
-
         var asyncSceneLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         asyncSceneLoad.allowSceneActivation = false;
         await FadeHandle(1, 2f, true);
