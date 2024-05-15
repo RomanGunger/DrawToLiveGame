@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -8,6 +6,7 @@ public class LevelButton : MonoBehaviour
 {
     Button button;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] Image lockImage;
 
     private void Awake()
     {
@@ -22,5 +21,11 @@ public class LevelButton : MonoBehaviour
     public Button GetButton()
     {
         return button;
+    }
+
+    public void LockButton()
+    {
+        lockImage.gameObject.SetActive(true);
+        button.interactable = false;
     }
 }

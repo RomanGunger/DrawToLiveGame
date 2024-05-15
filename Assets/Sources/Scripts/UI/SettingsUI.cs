@@ -23,11 +23,11 @@ public class SettingsUI : MonoBehaviour
 
         soundToogle = rootElement.Q<Button>("settings-sound-toogle");
         soundToogle.RegisterCallback<ClickEvent>(SoundToogle);
-        soundToogle.style.alignSelf = saveFile.settingsSoundToogle ? Align.FlexEnd : Align.FlexStart;
+        soundToogle.style.alignSelf = saveFile._settingsSoundToogle ? Align.FlexEnd : Align.FlexStart;
 
         musicToogle = rootElement.Q<Button>("settings-music-toogle");
         musicToogle.RegisterCallback<ClickEvent>(MusicToogle);
-        soundToogle.style.alignSelf = saveFile.settingsmusicToogle ? Align.FlexEnd : Align.FlexStart;
+        soundToogle.style.alignSelf = saveFile._settingsmusicToogle ? Align.FlexEnd : Align.FlexStart;
 
         closeButton = rootElement.Q<Button>("close-button");
         closeButton.RegisterCallback<ClickEvent>(CloseButton);
@@ -40,15 +40,15 @@ public class SettingsUI : MonoBehaviour
         if (toogle == Align.FlexStart)
         {
             soundToogle.style.alignSelf = Align.FlexEnd;
-            saveFile.settingsSoundToogle = true;
+            saveFile._settingsSoundToogle = true;
         }
         else
         {
             soundToogle.style.alignSelf = Align.FlexStart;
-            saveFile.settingsSoundToogle = false;
+            saveFile._settingsSoundToogle = false;
         }
 
-        Debug.Log(saveFile.settingsSoundToogle);
+        Debug.Log(saveFile._settingsSoundToogle);
         xmlManager.Save(saveFile);
     }
 
@@ -59,12 +59,12 @@ public class SettingsUI : MonoBehaviour
         if (toogle == Align.FlexStart)
         {
             musicToogle.style.alignSelf = Align.FlexEnd;
-            saveFile.settingsmusicToogle = true;
+            saveFile._settingsmusicToogle = true;
         }
         else
         {
             musicToogle.style.alignSelf = Align.FlexStart;
-            saveFile.settingsmusicToogle = false;
+            saveFile._settingsmusicToogle = false;
         }
 
         xmlManager.Save(saveFile);

@@ -13,6 +13,12 @@ public class FinishLine : MonoBehaviour
         {
             FinishLineReached?.Invoke();
             baseCollider.enabled = false;
+
+            XmlManager xmlManager = new XmlManager();
+            SaveFile saveFile = xmlManager.Load();
+
+            saveFile._passedLevels.Add(LevelInfo.instance.CurrentChapter, LevelInfo.instance.CurentLevel);
+            xmlManager.Save(saveFile);
         }
     }
 }

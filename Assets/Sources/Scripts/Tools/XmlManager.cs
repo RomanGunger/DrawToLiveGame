@@ -1,12 +1,23 @@
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using DG.Tweening.Plugins.Core.PathCore;
 using UnityEngine;
 
 public class XmlManager
 {
     public void Save(SaveFile saveFile)
     {
+        saveFile._chapters.Clear();
+        saveFile._levels.Clear();
+
+        foreach (var kvp in saveFile._passedLevels)
+        {
+            saveFile._chapters.Add(kvp.Key);
+            saveFile._levels.Add(kvp.Value);
+        }
+
         var serializer = new XmlSerializer(typeof(SaveFile));
 
         using (var writer = XmlWriter.Create(Application.persistentDataPath + "/saveFile.xml"))
@@ -25,12 +36,22 @@ public class XmlManager
         {
             using (var reader = XmlReader.Create(path))
             {
-                return (SaveFile?)serializer.Deserialize(reader);
+                SaveFile saveFile = (SaveFile?)serializer.Deserialize(reader);
+
+                for (int i = 0; i != Math.Min(saveFile._chapters.Count, saveFile._levels.Count); i++)
+                    saveFile._passedLevels.Add(saveFile._chapters[i], saveFile._levels[i]);
+
+                return saveFile;
             }
         }
         else
         {
             return new SaveFile();
         }
+    }
+
+    public void RemoveXML()
+    {
+        File.Delete(Application.persistentDataPath + "/saveFile.xml");
     }
 }

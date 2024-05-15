@@ -39,7 +39,7 @@ public class LevelsPanel : MonoBehaviour
         gridLayout.cellSize = new Vector2(cellSize, cellSize);
     }
 
-    public void SetButtons(LevelsProgression levelsProgression)
+    public void SetButtons(LevelsProgression levelsProgression, int passedLevels, int chapter)
     {
         foreach (Transform trans in transform)
             Destroy(trans.gameObject);
@@ -49,17 +49,32 @@ public class LevelsPanel : MonoBehaviour
         for (int i = 0; i < levelsCount; i++)
         {
             string name = levelsProgression.GetSceneName(i);
+            int unitsCount = levelsProgression.GetUnitsCount(i);
             LevelButton button = Instantiate(buttonPrefab, transform).GetComponent<LevelButton>();
             button.SetText((i + 1).ToString());
 
+            int lockLevels = 0;
+            if (passedLevels != -1 && passedLevels < levelsProgression.GetLevelsCount())
+                lockLevels++;
+
+            if (i > lockLevels)
+            {
+                button.LockButton();
+            }
+
             Button buttonComponent = button.GetButton();
             buttonComponent.onClick.AddListener(() =>
-                OnClickActionAsync(name));
+                OnClickActionAsync(name, unitsCount, i, chapter));
+
         }
     }
 
-    async void OnClickActionAsync(string sceneName)
+    async void OnClickActionAsync(string sceneName, int unitsCount, int level, int chapter)
     {
+        LevelInfo.instance.UnitsCount = unitsCount;
+        LevelInfo.instance.CurentLevel = level;
+        LevelInfo.instance.CurrentChapter = chapter;
+
         var asyncSceneLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         asyncSceneLoad.allowSceneActivation = false;
         await FadeHandle(1, 2f, true);
