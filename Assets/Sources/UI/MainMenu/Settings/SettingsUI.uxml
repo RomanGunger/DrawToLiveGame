@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Sources/UI/MainMenu/Settings/SettingsStyles.uss?fileID=7433441132597879392&amp;guid=0ddd09d472fd640a2afa1dfdabb73b93&amp;type=3#SettingsStyles" />
+    <ui:VisualElement name="base-container" class="base-container">
+        <ui:VisualElement name="overlay" class="overlay" />
+        <ui:VisualElement name="setting-container" class="settings-container">
+            <ui:VisualElement name="header" class="header">
+                <ui:Label text="Options" name="options-label" class="options-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="content" class="content">
+                <ui:VisualElement name="settings-content-1" class="settings-content">
+                    <ui:VisualElement name="settings-sound-container" class="settings-sound-container">
+                        <ui:Label tabindex="-1" text="Sound" parse-escape-sequences="true" display-tooltip-when-elided="true" name="settings-sound-toogle-text" class="settings-toogle-text" />
+                        <ui:VisualElement name="settings-sound-toogle-base" class="settings-toogle-base">
+                            <ui:Button name="settings-sound-toogle" class="settings-toogle" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="line" class="line" />
+                </ui:VisualElement>
+                <ui:VisualElement name="settings-content-2" class="settings-content">
+                    <ui:VisualElement name="settings-sound-container" class="settings-sound-container">
+                        <ui:Label tabindex="-1" text="Music" parse-escape-sequences="true" display-tooltip-when-elided="true" name="settings-sound-toogle-text" class="settings-toogle-text" />
+                        <ui:VisualElement name="settings-sound-toogle-base" class="settings-toogle-base">
+                            <ui:Button name="settings-music-toogle" class="settings-toogle" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="line" class="line" />
+                </ui:VisualElement>
+                <ui:VisualElement name="settings-content-3" class="settings-content">
+                    <ui:VisualElement name="language-button-container" class="language-button-container">
+                        <ui:Button text="Language" parse-escape-sequences="true" display-tooltip-when-elided="true" name="language-button" class="language-button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Button text="Button" name="close-button" class="close-button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

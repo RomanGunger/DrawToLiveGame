@@ -10,6 +10,7 @@ public class Score : MonoBehaviour
     private void Start()
     {
         CurrencyItem.ScoreItemCollected += OnScoreItemCollected;
+        FinishLine.FinishLineReached += SaveCurrency;
     }
 
     void OnScoreItemCollected()
@@ -17,5 +18,14 @@ public class Score : MonoBehaviour
         CurrentScore++;
 
         ScoreAdded?.Invoke(CurrentScore);
+    }
+
+    void SaveCurrency()
+    {
+        XmlManager xmlManager = new XmlManager();
+        SaveFile saveFile = xmlManager.Load();
+
+        saveFile.currency += CurrentScore;
+        xmlManager.Save(saveFile);
     }
 }
