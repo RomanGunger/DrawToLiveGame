@@ -16,6 +16,9 @@ public class SaveFile
     public int _lives;
     public int _maxLives = 5;
 
+    public bool _soundON = true;
+    public bool _musicON = true;
+
     [XmlIgnore]
     public Dictionary<int, int> _passedLevels = new Dictionary<int, int>();
 }

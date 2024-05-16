@@ -9,8 +9,9 @@ public class MenuLivesBox : MonoBehaviour
 
     [SerializeField] float livesCooldownTime;
 
+    public int Lives { get; private set; }
+
     ulong lastTimeFreeLiveReceive;
-    int lives;
     int maxLives;
 
     private void Start()
@@ -25,9 +26,9 @@ public class MenuLivesBox : MonoBehaviour
         var saveFile = xmlManager.Load();
 
         lastTimeFreeLiveReceive = saveFile._lastTimeFreeLiveReceive;
-        lives = saveFile._lives;
+        Lives = saveFile._lives;
         maxLives = saveFile._maxLives;
-        livesCount.text = lives.ToString();
+        livesCount.text = Lives.ToString();
     }
 
     private void Update()
@@ -46,12 +47,12 @@ public class MenuLivesBox : MonoBehaviour
 
             int relogLives = (int)(diffInSeconds / livesCooldownTime);
 
-            lives += relogLives;
-            if (lives > maxLives)
+            Lives += relogLives;
+            if (Lives > maxLives)
             {
-                lives = maxLives;
+                Lives = maxLives;
             }
-            saveFile._lives = lives;
+            saveFile._lives = Lives;
             xmlManager.Save(saveFile);
 
             float deltaSecondsLeft = diffInSeconds % livesCooldownTime;
@@ -63,7 +64,7 @@ public class MenuLivesBox : MonoBehaviour
                 xmlManager.Save(saveFile);
             }
 
-            livesCount.text = lives.ToString(); ;
+            livesCount.text = Lives.ToString(); ;
         }
         else
         {
@@ -75,18 +76,18 @@ public class MenuLivesBox : MonoBehaviour
 
     void HandleLives()
     {
-        if (lives < maxLives)
+        if (Lives < maxLives)
         {
             ulong diffInSeconds = ((ulong)DateTime.Now.Ticks - lastTimeFreeLiveReceive) / TimeSpan.TicksPerSecond;
             float secondsLeft = livesCooldownTime - diffInSeconds;
 
             if (secondsLeft <= 0)
             {
-                lives++;
+                Lives++;
 
                 var xmlManager = new XmlManager();
                 var saveFile = xmlManager.Load();
-                saveFile._lives = lives;
+                saveFile._lives = Lives;
                 saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
                 xmlManager.Save(saveFile);
 
@@ -101,7 +102,7 @@ public class MenuLivesBox : MonoBehaviour
 
 
             livesCooldown.text = livesTimerValue;
-            livesCount.text = lives.ToString();
+            livesCount.text = Lives.ToString();
         }
         else
         {
@@ -111,14 +112,14 @@ public class MenuLivesBox : MonoBehaviour
 
     public void MinusLive()
     {
-        if (lives > 0)
+        if (Lives > 0)
         {
             var xmlManager = new XmlManager();
             var saveFile = xmlManager.Load();
 
-            lives--;
+            Lives--;
 
-            saveFile._lives = lives;
+            saveFile._lives = Lives;
             saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
             xmlManager.Save(saveFile);
         }
@@ -126,18 +127,18 @@ public class MenuLivesBox : MonoBehaviour
 
     public void PlusLive()
     {
-        if (lives < maxLives)
+        if (Lives < maxLives)
         {
             var xmlManager = new XmlManager();
             var saveFile = xmlManager.Load();
 
-            lives++;
+            Lives++;
 
-            saveFile._lives = lives;
+            saveFile._lives = Lives;
             saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
             xmlManager.Save(saveFile);
 
-            livesCount.text = lives.ToString();
+            livesCount.text = Lives.ToString();
         }
     }
 
