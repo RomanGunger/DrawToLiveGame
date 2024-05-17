@@ -18,6 +18,15 @@ public class XmlManager
             saveFile._levels.Add(kvp.Value);
         }
 
+        //saveFile._level.Clear();
+        //saveFile._stars.Clear();
+
+        //foreach (var kvp in saveFile._starsLevel)
+        //{
+        //    saveFile._level.Add(kvp.Key);
+        //    saveFile._stars.Add(kvp.Value);
+        //}
+
         var serializer = new XmlSerializer(typeof(SaveFile));
 
         using (var writer = XmlWriter.Create(Application.persistentDataPath + "/saveFile.xml"))
@@ -40,6 +49,9 @@ public class XmlManager
 
                 for (int i = 0; i != Math.Min(saveFile._chapters.Count, saveFile._levels.Count); i++)
                     saveFile._passedLevels.Add(saveFile._chapters[i], saveFile._levels[i]);
+
+                //for (int i = 0; i != Math.Min(saveFile._level.Count, saveFile._stars.Count); i++)
+                //    saveFile._passedLevels.Add(saveFile._level[i], saveFile._stars[i]);
 
                 return saveFile;
             }

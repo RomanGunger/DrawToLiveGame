@@ -53,12 +53,8 @@ public class ChapterSelector : MonoBehaviour
     {
         chaptersName.text = chapterProgression.GetChaptersName(currentChapter);
 
-        int passedLevels = -1;
-        if (saveFile._passedLevels.ContainsKey(currentChapter))
-            passedLevels = saveFile._passedLevels[currentChapter];
-
         levelsPanel.SetButtons(chapterProgression.GetLevelsProgression(currentChapter)
-            , passedLevels, currentChapter);
+            , saveFile._passedLevels[currentChapter], currentChapter);
 
         saveFile._currentChapter = currentChapter;
         xmlManager.Save(saveFile);

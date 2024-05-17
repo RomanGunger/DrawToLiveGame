@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class LevelButton : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class LevelButton : MonoBehaviour
     {
         button = GetComponent<Button>();
     }
+
 
     public void SetText(string text)
     {
@@ -26,6 +28,14 @@ public class LevelButton : MonoBehaviour
     public void LockButton()
     {
         lockImage.gameObject.SetActive(true);
+        text.gameObject.SetActive(false);
         button.interactable = false;
+    }
+
+    public void UnLockButton()
+    {
+        lockImage.gameObject.SetActive(false);
+        text.gameObject.SetActive(true);
+        button.interactable = true;
     }
 }

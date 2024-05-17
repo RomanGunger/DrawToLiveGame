@@ -163,20 +163,20 @@ public class PauseMenuUIManager : MonoBehaviour
 
     void NextLevelButton(ClickEvent evt)
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
 
-        var xmlManager = new XmlManager();
-        SaveFile saveFile = xmlManager.Load();
+        //var xmlManager = new XmlManager();
+        //SaveFile saveFile = xmlManager.Load();
 
-        int nextLevel = saveFile._level + 1;
+        //int nextLevel = saveFile._level + 1;
 
-        nextLevel = saveFile._level + 1 >= levelsProgression.GetLevelsCount()
-        ? 0 : saveFile._level + 1;
+        //nextLevel = saveFile._level + 1 >= levelsProgression.GetLevelsCount()
+        //? 0 : saveFile._level + 1;
 
-        saveFile._level = nextLevel;
-        xmlManager.Save(saveFile);
+        //saveFile._level = nextLevel;
+        //xmlManager.Save(saveFile);
 
-        SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
+        //SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(nextLevel), LoadSceneMode.Single);
     }
 
     public async void OpenLooseUI()

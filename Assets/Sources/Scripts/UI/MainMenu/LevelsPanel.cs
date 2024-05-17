@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class LevelsPanel : MonoBehaviour
 {
     [SerializeField] Fader fader;
+    [SerializeField] MenuLivesBox lives;
     [SerializeField] GameObject buttonPrefab;
 
     GridLayoutGroup gridLayout;
@@ -31,12 +34,11 @@ public class LevelsPanel : MonoBehaviour
         }
 
         float width = resolution.x / 12;
-        Debug.Log(width);
         float ratio = resolution.y / resolution.x;
         if (ratio < 1.7f)
             ratio = 1.7f;
         float cellSize = ratio * width;
-        gridLayout.cellSize = new Vector2(cellSize, cellSize);
+        gridLayout.cellSize = new Vector2(cellSize, cellSize * 1.15f);
     }
 
     public void SetButtons(LevelsProgression levelsProgression, int passedLevels, int chapter)
@@ -50,6 +52,7 @@ public class LevelsPanel : MonoBehaviour
         {
             string name = levelsProgression.GetSceneName(i);
             int unitsCount = levelsProgression.GetUnitsCount(i);
+            int level = i;
             LevelButton button = Instantiate(buttonPrefab, transform).GetComponent<LevelButton>();
             button.SetText((i + 1).ToString());
 
@@ -58,22 +61,36 @@ public class LevelsPanel : MonoBehaviour
                 lockLevels++;
 
             if (i > lockLevels)
-            {
                 button.LockButton();
-            }
+            else button.UnLockButton();
 
             Button buttonComponent = button.GetButton();
-            buttonComponent.onClick.AddListener(() =>
-                OnClickActionAsync(name, unitsCount, i, chapter));
 
+            buttonComponent.onClick.AddListener(async () =>
+            {
+                buttonComponent.interactable = false;
+                await buttonComponent.transform.DOPunchScale(new Vector3(-.15f, -.15f, -.15f), .2f, 0, 0)
+                .SetEase(Ease.InOutBounce).AsyncWaitForCompletion();
+                buttonComponent.interactable = true;
+            });
+
+            buttonComponent.onClick.AddListener(() =>
+                OnClickActionAsync(name, unitsCount, level, chapter));
         }
     }
 
     async void OnClickActionAsync(string sceneName, int unitsCount, int level, int chapter)
     {
+        int currentChapter = chapter;
+
+        if (lives.Lives <= 0)
+            return;
+
+        lives.MinusLive();
+
         LevelInfo.instance.UnitsCount = unitsCount;
         LevelInfo.instance.CurentLevel = level;
-        LevelInfo.instance.CurrentChapter = chapter;
+        LevelInfo.instance.CurrentChapter = currentChapter;
 
         var asyncSceneLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         asyncSceneLoad.allowSceneActivation = false;
@@ -83,8 +100,6 @@ public class LevelsPanel : MonoBehaviour
 
     async Task FadeHandle(float value, float duration, bool hideFader)
     {
-        Time.timeScale = 1;
-
         if (fader == null)
             return;
 

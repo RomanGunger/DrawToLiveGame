@@ -12,6 +12,12 @@ public class Unit : MonoBehaviour
 
     bool rearranging = false;
 
+    private void Start()
+    {
+        FinishLine.FinishLineReached += () => {
+            GetComponent<CapsuleCollider>().enabled = false;
+        };
+    }
 
     void FixedUpdate()
     {

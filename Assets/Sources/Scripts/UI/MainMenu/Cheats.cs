@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cheats : MonoBehaviour
 {
+    [SerializeField] MenuLivesBox lives;
+
     public void AddLevel()
     {
         XmlManager xmlManager = new XmlManager();
@@ -32,5 +34,10 @@ public class Cheats : MonoBehaviour
         //SaveFile saveFile = xmlManager.Load();
 
         xmlManager.RemoveXML();
+    }
+
+    public void AddLives()
+    {
+        lives.PlusLive();
     }
 }
