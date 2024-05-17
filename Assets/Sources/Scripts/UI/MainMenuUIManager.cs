@@ -38,7 +38,7 @@ public class MainMenuUIManager : MonoBehaviour
         SaveFile saveFile = xmlManager.Load();
 
         await FadeHandle(1f, 2f, true);
-        SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(saveFile._level), LoadSceneMode.Single);
+        //SceneManager.LoadSceneAsync(levelsProgression.GetSceneName(saveFile._level), LoadSceneMode.Single);
     }
 
     void SettingsButton(ClickEvent evt)

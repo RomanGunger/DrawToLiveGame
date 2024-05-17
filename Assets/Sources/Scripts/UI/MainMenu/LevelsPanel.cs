@@ -66,10 +66,12 @@ public class LevelsPanel : MonoBehaviour
 
             Button buttonComponent = button.GetButton();
 
-            buttonComponent.onClick.AddListener(() =>
+            buttonComponent.onClick.AddListener(async () =>
             {
-                buttonComponent.transform.DOPunchScale(new Vector3(.9f, .9f, .9f), .5f)
-                .SetEase(Ease.Linear);
+                buttonComponent.interactable = false;
+                await buttonComponent.transform.DOPunchScale(new Vector3(-.15f, -.15f, -.15f), .2f, 0, 0)
+                .SetEase(Ease.InOutBounce).AsyncWaitForCompletion();
+                buttonComponent.interactable = true;
             });
 
             buttonComponent.onClick.AddListener(() =>
@@ -98,8 +100,6 @@ public class LevelsPanel : MonoBehaviour
 
     async Task FadeHandle(float value, float duration, bool hideFader)
     {
-        Time.timeScale = 1;
-
         if (fader == null)
             return;
 
