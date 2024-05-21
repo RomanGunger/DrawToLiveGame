@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using DG.Tweening.Plugins.Core.PathCore;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class XmlManager
 {
@@ -17,15 +17,6 @@ public class XmlManager
             saveFile._chapters.Add(kvp.Key);
             saveFile._levels.Add(kvp.Value);
         }
-
-        //saveFile._level.Clear();
-        //saveFile._stars.Clear();
-
-        //foreach (var kvp in saveFile._starsLevel)
-        //{
-        //    saveFile._level.Add(kvp.Key);
-        //    saveFile._stars.Add(kvp.Value);
-        //}
 
         var serializer = new XmlSerializer(typeof(SaveFile));
 
@@ -47,11 +38,10 @@ public class XmlManager
             {
                 SaveFile saveFile = (SaveFile?)serializer.Deserialize(reader);
 
-                for (int i = 0; i != Math.Min(saveFile._chapters.Count, saveFile._levels.Count); i++)
+                for (int i = 0; i < saveFile._chapters.Count ; i++)
+                {
                     saveFile._passedLevels.Add(saveFile._chapters[i], saveFile._levels[i]);
-
-                //for (int i = 0; i != Math.Min(saveFile._level.Count, saveFile._stars.Count); i++)
-                //    saveFile._passedLevels.Add(saveFile._level[i], saveFile._stars[i]);
+                }
 
                 return saveFile;
             }

@@ -8,17 +8,24 @@ public abstract class MenuButtonBase : MonoBehaviour
 {
     protected Button button;
 
-    private void Start()
+    private void Awake()
     {
         button = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
         button.onClick.AddListener(OnClickAnimation);
         button.onClick.AddListener(OnClickAction);
     }
 
-    protected virtual void OnClickAnimation()
+    protected virtual async void OnClickAnimation()
     {
 
     }
 
-    protected abstract void OnClickAction();
+    protected virtual async void OnClickAction()
+    {
+
+    }
 }

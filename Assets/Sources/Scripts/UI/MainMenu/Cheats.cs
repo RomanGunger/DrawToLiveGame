@@ -12,9 +12,9 @@ public class Cheats : MonoBehaviour
         SaveFile saveFile = xmlManager.Load();
 
         saveFile._passedLevels.Clear();
-        saveFile._passedLevels.Add(0,-1);
-        saveFile._passedLevels.Add(1,-1);
+        saveFile._passedLevels.Add(0, new List<int> { 0 });
         xmlManager.Save(saveFile);
+        //xmlManager.CloudSave(saveFile);
     }
 
     public void LoadLevels()
@@ -22,10 +22,7 @@ public class Cheats : MonoBehaviour
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();
 
-        foreach (var item in saveFile._passedLevels)
-        {
-            Debug.Log(item.Key + " : " + item.Value);
-        }
+        //xmlManager.CloudLoad();
     }
 
     public void DeleteSaves()

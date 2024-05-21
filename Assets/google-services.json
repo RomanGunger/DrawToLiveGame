@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "147976960571",
+    "firebase_url": "https://draw-to-live-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "draw-to-live",
+    "storage_bucket": "draw-to-live.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147976960571:android:77f14c72e84478e7e8fa1e",
+        "android_client_info": {
+          "package_name": "com.SPDev.DrawToRun"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhl1GF8a22o1TxSk0Ddm5hLDWsce-kaDY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

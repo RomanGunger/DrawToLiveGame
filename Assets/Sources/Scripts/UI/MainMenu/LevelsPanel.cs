@@ -1,11 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class LevelsPanel : MonoBehaviour
 {
@@ -13,7 +12,10 @@ public class LevelsPanel : MonoBehaviour
     [SerializeField] MenuLivesBox lives;
     [SerializeField] GameObject buttonPrefab;
 
+    public static Action<int> ButtonsSet;
+
     GridLayoutGroup gridLayout;
+    int starsCount;
 
     private void Start()
     {
@@ -33,7 +35,7 @@ public class LevelsPanel : MonoBehaviour
             resolution.y = res.height;
         }
 
-        float width = resolution.x / 12;
+        float width = resolution.x / 13;
         float ratio = resolution.y / resolution.x;
         if (ratio < 1.7f)
             ratio = 1.7f;
@@ -41,12 +43,15 @@ public class LevelsPanel : MonoBehaviour
         gridLayout.cellSize = new Vector2(cellSize, cellSize * 1.15f);
     }
 
-    public void SetButtons(LevelsProgression levelsProgression, int passedLevels, int chapter)
+    public void SetButtons(LevelsProgression levelsProgression, List<int> passedLevels, int chapter)
     {
+        starsCount = 0;
+
         foreach (Transform trans in transform)
             Destroy(trans.gameObject);
 
         int levelsCount = levelsProgression.GetLevelsCount();
+        int passedLevelCount = passedLevels.Count;
 
         for (int i = 0; i < levelsCount; i++)
         {
@@ -56,13 +61,25 @@ public class LevelsPanel : MonoBehaviour
             LevelButton button = Instantiate(buttonPrefab, transform).GetComponent<LevelButton>();
             button.SetText((i + 1).ToString());
 
-            int lockLevels = 0;
-            if (passedLevels != -1 && passedLevels < levelsProgression.GetLevelsCount())
-                lockLevels++;
-
-            if (i > lockLevels)
+            if (passedLevelCount <= 0)
+            {
                 button.LockButton();
-            else button.UnLockButton();
+                continue;
+            }
+
+            if(i <= passedLevelCount)
+            {
+                if (i < passedLevels.Count)
+                {
+                    int levelStars = passedLevels[i];
+                    starsCount += levelStars;
+                    button.UnLockButton(levelStars);
+                }
+                else
+                    button.UnLockButton();
+            }
+            else
+                button.LockButton();
 
             Button buttonComponent = button.GetButton();
 
@@ -77,6 +94,8 @@ public class LevelsPanel : MonoBehaviour
             buttonComponent.onClick.AddListener(() =>
                 OnClickActionAsync(name, unitsCount, level, chapter));
         }
+
+        ButtonsSet?.Invoke(starsCount);
     }
 
     async void OnClickActionAsync(string sceneName, int unitsCount, int level, int chapter)
