@@ -7,6 +7,9 @@ public class CloseButton : MenuButtonBase
 
     protected override void OnClickAction()
     {
-        closeObject.gameObject.SetActive(false);
+        if (closeObject.TryGetComponent<MenuPanel>(out MenuPanel menuPanel))
+        {
+            menuPanel.Close(.3f);
+        }
     }
 }

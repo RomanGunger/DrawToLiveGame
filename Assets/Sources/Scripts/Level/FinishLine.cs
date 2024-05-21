@@ -17,17 +17,16 @@ public class FinishLine : MonoBehaviour
             XmlManager xmlManager = new XmlManager();
             SaveFile saveFile = xmlManager.Load();
 
-            if (saveFile._passedLevels.ContainsKey(LevelInfo.instance.CurrentChapter))
+            int starsCount = 2;
+
+            if (saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count > LevelInfo.instance.CurentLevel)
             {
-                if (saveFile._passedLevels[LevelInfo.instance.CurrentChapter] < LevelInfo.instance.CurentLevel)
-                {
-                    saveFile._passedLevels[LevelInfo.instance.CurrentChapter] = LevelInfo.instance.CurentLevel;
-                    xmlManager.Save(saveFile);
-                }
+                saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel] = starsCount;
+                xmlManager.Save(saveFile);
             }
             else
             {
-                saveFile._passedLevels.Add(LevelInfo.instance.CurrentChapter, LevelInfo.instance.CurentLevel);
+                saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Add(starsCount);
                 xmlManager.Save(saveFile);
             }
 

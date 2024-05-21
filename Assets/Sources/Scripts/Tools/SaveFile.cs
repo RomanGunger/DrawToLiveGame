@@ -17,11 +17,10 @@ public class SaveFile
     public bool _musicON = true;
 
     public List<int> _chapters = new List<int>();
-    public List<int> _levels = new List<int>();
-
-    //public List<int> _level = new List<int>();
-    //public List<int> _stars = new List<int>();
+    //public List<List<Tuple<int, int>>> _levels = new List<List<Tuple<int, int> >> ();
+    public List<List<int>> _levels = new List<List<int>>();
 
     [XmlIgnore]
-    public Dictionary<int, int> _passedLevels = new Dictionary<int, int>();
+    public Dictionary<int, List<int>> _passedLevels = new Dictionary<int, List<int>>();
+    //public Dictionary<int, List<Tuple<int, int>>> _passedLevels = new Dictionary<int, List<Tuple<int, int>>>();
 }
