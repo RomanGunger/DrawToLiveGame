@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Score : MonoBehaviour
+public class ScoreHandler : MonoBehaviour
 {
     public int CurrentScore { get; private set; } = 0;
 

@@ -23,7 +23,7 @@ public class LineDrawer : MonoBehaviour
     {
         currentPlatform = SetPlatform();
 
-        PauseMenuUIManager.LevelStarted += CanDraw;
+        LevelEventsHandler.LevelStarted += CanDraw;
     }
 
     RuntimePlatform SetPlatform()
@@ -123,6 +123,6 @@ public class LineDrawer : MonoBehaviour
 
     private void OnDestroy()
     {
-        PauseMenuUIManager.LevelStarted -= CanDraw;
+        LevelEventsHandler.LevelStarted -= CanDraw;
     }
 }

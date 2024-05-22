@@ -7,6 +7,7 @@ public class LevelInfo : MonoBehaviour
     public int UnitsCount { get; set; }
     public int CurentLevel { get; set; }
     public int CurrentChapter { get; set; }
+    public int CurrentChapterLevelsCount { get; set; }
 
     private void Awake()
     {

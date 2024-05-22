@@ -12,7 +12,7 @@ public class MenuButtonSidePanel : MenuButtonBase
 
     protected override async void OnClickAnimation()
     {
-        await button.transform.DOPunchScale(new Vector3(-.15f, -.15f, -.15f), .2f, 0, 0)
+        await button.transform.DOPunchScale(new Vector3(-.15f, -.15f, -.15f), .2f, 0, 0).SetUpdate(true)
         .SetEase(Ease.InOutBounce).AsyncWaitForCompletion();
     }
 }

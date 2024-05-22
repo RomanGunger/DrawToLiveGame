@@ -57,11 +57,9 @@ public class ChapterSelector : MonoBehaviour
         {
             levelsPanel.SetButtons(chapterProgression.GetLevelsProgression(currentChapter)
             , saveFile._passedLevels[currentChapter], currentChapter);
-            Debug.Log("Contains");
         }
         else
         {
-            Debug.Log("Null");
             levelsPanel.SetButtons(chapterProgression.GetLevelsProgression(currentChapter)
             , null, currentChapter);
         }
