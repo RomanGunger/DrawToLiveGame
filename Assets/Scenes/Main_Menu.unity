@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,7 +302,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1289869798}
+      - m_Target: {fileID: 1627865291}
         m_TargetAssemblyTypeName: Cheats, Assembly-CSharp
         m_MethodName: DeleteSaves
         m_Mode: 1
@@ -827,12 +826,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &118774242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1185,7 +1184,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1289869798}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Cheats, Assembly-CSharp
         m_MethodName: LoadLevels
         m_Mode: 1
@@ -2603,11 +2602,11 @@ RectTransform:
   - {fileID: 1702511772}
   m_Father: {fileID: 1055838759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 3092}
+  m_SizeDelta: {x: 1440, y: 3088}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &498152564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2620,6 +2619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93b1b8f04edba4bebba565e061d1e29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiBlocker: {fileID: 96576579}
 --- !u!1 &598311465
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,7 +5750,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1289869796}
   - component: {fileID: 1289869797}
-  - component: {fileID: 1289869798}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -5791,19 +5790,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBlocker: {fileID: 96576579}
---- !u!114 &1289869798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289869795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ada43fea639b46a9a8bc00dad155cda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: {fileID: 8545218887470987754}
 --- !u!1001 &1299292012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6586,6 +6572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627865289}
   - component: {fileID: 1627865290}
+  - component: {fileID: 1627865291}
   m_Layer: 5
   m_Name: SubscribeMenu
   m_TagString: Untagged
@@ -6630,6 +6617,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBlocker: {fileID: 96576579}
+--- !u!114 &1627865291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627865288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ada43fea639b46a9a8bc00dad155cda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: {fileID: 8545218887470987754}
 --- !u!1 &1629489480
 GameObject:
   m_ObjectHideFlags: 0
@@ -6831,7 +6831,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1289869798}
+      - m_Target: {fileID: 1627865291}
         m_TargetAssemblyTypeName: Cheats, Assembly-CSharp
         m_MethodName: AddLives
         m_Mode: 1
@@ -8233,7 +8233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0191005e56642699335a48c9c39ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuLevelsPanel: {fileID: 498152564}
+  openPanel: {fileID: 498152564}
 --- !u!114 &2004430697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8684,7 +8684,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1289869798}
+      - m_Target: {fileID: 1627865291}
         m_TargetAssemblyTypeName: Cheats, Assembly-CSharp
         m_MethodName: AddLevel
         m_Mode: 1

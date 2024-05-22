@@ -1,9 +1,7 @@
-using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
-using Newtonsoft.Json;
 
 public class XmlManager
 {

@@ -24,6 +24,7 @@ public class MenuPanel : MonoBehaviour
 
     public virtual async Task Close(float durration)
     {
+        Debug.Log(gameObject.name + " Closing");
         await transform.DOMoveY(height, durration).AsyncWaitForCompletion();
         gameObject.SetActive(false);
         uiBlocker.gameObject.SetActive(false);

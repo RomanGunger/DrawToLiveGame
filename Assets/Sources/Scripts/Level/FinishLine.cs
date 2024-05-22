@@ -19,17 +19,14 @@ public class FinishLine : MonoBehaviour
 
             int starsCount = 2;
 
-            if (saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count > LevelInfo.instance.CurentLevel)
-            {
-                saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel] = starsCount;
-                xmlManager.Save(saveFile);
-            }
-            else
-            {
-                saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Add(starsCount);
-                xmlManager.Save(saveFile);
-            }
+            Debug.Log(saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count + " : " + LevelInfo.instance.CurentLevel);
 
+            if (saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count - 1 > LevelInfo.instance.CurentLevel)
+                saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel] = starsCount;
+            else
+                saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Add(starsCount);
+
+            xmlManager.Save(saveFile);
         }
     }
 }
