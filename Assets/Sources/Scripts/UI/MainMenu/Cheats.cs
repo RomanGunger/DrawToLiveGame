@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Cheats : MonoBehaviour
 {
@@ -12,24 +13,15 @@ public class Cheats : MonoBehaviour
         SaveFile saveFile = xmlManager.Load();
 
         saveFile._passedLevels.Clear();
-        saveFile._passedLevels.Add(0, new List<int> { 0 });
+        saveFile._passedLevels.Add(0, new List<int> { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 });
         xmlManager.Save(saveFile);
-        //xmlManager.CloudSave(saveFile);
-    }
 
-    public void LoadLevels()
-    {
-        XmlManager xmlManager = new XmlManager();
-        SaveFile saveFile = xmlManager.Load();
-
-        //xmlManager.CloudLoad();
+        Debug.Log(saveFile._passedLevels.Count);
     }
 
     public void DeleteSaves()
     {
         XmlManager xmlManager = new XmlManager();
-        //SaveFile saveFile = xmlManager.Load();
-
         xmlManager.RemoveXML();
     }
 

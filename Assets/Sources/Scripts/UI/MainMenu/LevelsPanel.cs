@@ -51,7 +51,10 @@ public class LevelsPanel : MonoBehaviour
             Destroy(trans.gameObject);
 
         int levelsCount = levelsProgression.GetLevelsCount();
-        int passedLevelCount = passedLevels.Count;
+        int passedLevelCount = 0;
+
+        if (passedLevels != null)
+            passedLevelCount = passedLevels.Count;
 
         for (int i = 0; i < levelsCount; i++)
         {
@@ -61,15 +64,15 @@ public class LevelsPanel : MonoBehaviour
             LevelButton button = Instantiate(buttonPrefab, transform).GetComponent<LevelButton>();
             button.SetText((i + 1).ToString());
 
-            if (passedLevelCount <= 0)
+            if (passedLevels == null)
             {
                 button.LockButton();
                 continue;
             }
 
-            if(i <= passedLevelCount)
+            if(i + 1 <= passedLevelCount)
             {
-                if (i < passedLevels.Count)
+                if (i + 1 < passedLevelCount)
                 {
                     int levelStars = passedLevels[i];
                     starsCount += levelStars;
