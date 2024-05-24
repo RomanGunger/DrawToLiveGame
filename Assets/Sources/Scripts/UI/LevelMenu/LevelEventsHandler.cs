@@ -22,12 +22,14 @@ public class LevelEventsHandler : MonoBehaviour
         Time.timeScale = 0;
         await winPanel.Open(1f);
         UnitPosition.LevelPassed -= OnLevelPassed;
+        UnitsSpawner.LevelFailed -= OnLevelFailed;
     }
 
     async void OnLevelFailed()
     {
         Time.timeScale = 0;
         await loosePanel.Open(1f);
+        UnitPosition.LevelPassed -= OnLevelPassed;
         UnitsSpawner.LevelFailed -= OnLevelFailed;
     }
 

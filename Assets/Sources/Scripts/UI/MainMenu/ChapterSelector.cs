@@ -64,6 +64,9 @@ public class ChapterSelector : MonoBehaviour
             , null, currentChapter);
         }
 
+        LevelInfo.instance.CurrentChapterLevelsCount = chapterProgression.GetLevelsProgression(currentChapter).GetLevelsCount();
+        LevelInfo.instance.ChaptersCount = chaptersCount;
+
         saveFile._currentChapter = currentChapter;
         xmlManager.Save(saveFile);
     }

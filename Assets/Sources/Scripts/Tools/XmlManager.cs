@@ -39,6 +39,11 @@ public class XmlManager
                 for (int i = 0; i < saveFile._chapters.Count ; i++)
                 {
                     saveFile._passedLevels.Add(saveFile._chapters[i], saveFile._levels[i]);
+                    Debug.Log(saveFile._chapters[i]);
+                    foreach(var item in saveFile._levels[i])
+                    {
+                        Debug.Log(item.ToString());
+                    }
                 }
 
                 return saveFile;

@@ -27,7 +27,9 @@ public class StarsHandler : MonoBehaviour
             Stars = 2;
         else if (percentageComplete > 75f)
             Stars = 3;
+
     }
+
 
     void GetBaseLevelInfo()
     {
