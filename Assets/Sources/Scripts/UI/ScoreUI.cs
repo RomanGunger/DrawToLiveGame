@@ -13,7 +13,7 @@ public class ScoreUI : MonoBehaviour
 
     private void Start()
     {
-        Score.ScoreAdded += OnScoreAdded;
+        ScoreHandler.ScoreAdded += OnScoreAdded;
 
         uiDocument = GetComponent<UIDocument>();
         rootElement = uiDocument.rootVisualElement;

@@ -15,8 +15,6 @@ public class Mine : BaseObstacle
             {
                 if (inExp.gameObject.tag == "Player")
                 {
-                    Debug.Log("playre");
-
                     var unit = inExp.gameObject.GetComponent<Unit>();
                     UnitKilled?.Invoke(unit);
 

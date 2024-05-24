@@ -17,7 +17,7 @@ public class Moving : MonoBehaviour
     private void Start()
     {
         FinishLine.FinishLineReached += Stop;
-        PauseMenuUIManager.LevelStarted += Begin;
+        LevelEventsHandler.LevelStarted += Begin;
         UnitsSpawner.LevelFailed += Stop;
 
         splineFollower = GetComponent<SplineFollower>();
@@ -37,7 +37,7 @@ public class Moving : MonoBehaviour
     private void OnDestroy()
     {
         FinishLine.FinishLineReached -= Stop;
-        PauseMenuUIManager.LevelStarted -= Begin;
+        LevelEventsHandler.LevelStarted -= Begin;
         UnitsSpawner.LevelFailed -= Stop;
     }
 }

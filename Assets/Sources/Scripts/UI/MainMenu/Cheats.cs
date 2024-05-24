@@ -13,7 +13,7 @@ public class Cheats : MonoBehaviour
         SaveFile saveFile = xmlManager.Load();
 
         saveFile._passedLevels.Clear();
-        saveFile._passedLevels.Add(0, new List<int> { 0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 });
+        saveFile._passedLevels.Add(0, new List<int> { 0 });
         xmlManager.Save(saveFile);
 
         Debug.Log(saveFile._passedLevels.Count);

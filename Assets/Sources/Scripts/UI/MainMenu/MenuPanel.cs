@@ -19,13 +19,13 @@ public class MenuPanel : MonoBehaviour
     {
         uiBlocker.gameObject.SetActive(true);
         gameObject.SetActive(true);
-        await transform.DOMoveY(0, durration).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
+        await transform.DOMoveY(0, durration).SetUpdate(true).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
     }
 
     public virtual async Task Close(float durration)
     {
         Debug.Log(gameObject.name + " Closing");
-        await transform.DOMoveY(height, durration).AsyncWaitForCompletion();
+        await transform.DOMoveY(height, durration).SetUpdate(true).AsyncWaitForCompletion();
         gameObject.SetActive(false);
         uiBlocker.gameObject.SetActive(false);
     }

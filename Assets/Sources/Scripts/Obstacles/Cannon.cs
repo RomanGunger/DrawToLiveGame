@@ -15,7 +15,7 @@ public class Cannon : MonoBehaviour
     private void Start()
     {
         FinishLine.FinishLineReached += BeginStop;
-        PauseMenuUIManager.LevelStarted += BeginStop;
+        LevelEventsHandler.LevelStarted += BeginStop;
 
     }
 
@@ -42,6 +42,6 @@ public class Cannon : MonoBehaviour
     private void OnDestroy()
     {
         FinishLine.FinishLineReached -= BeginStop;
-        PauseMenuUIManager.LevelStarted -= BeginStop;
+        LevelEventsHandler.LevelStarted -= BeginStop;
     }
 }

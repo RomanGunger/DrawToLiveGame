@@ -14,9 +14,12 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        FinishLine.FinishLineReached += () => {
-            GetComponent<CapsuleCollider>().enabled = false;
-        };
+        FinishLine.FinishLineReached += OnFinishLineReached;
+    }
+
+    void OnFinishLineReached()
+    {
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 
     void FixedUpdate()
@@ -44,5 +47,10 @@ public class Unit : MonoBehaviour
 
         journeyLength = Vector3.Distance(startMarker, endMarker);
         rearranging = true;
+    }
+
+    private void OnDestroy()
+    {
+        FinishLine.FinishLineReached -= OnFinishLineReached;
     }
 }

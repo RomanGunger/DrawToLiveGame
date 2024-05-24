@@ -70,16 +70,15 @@ public class LevelsPanel : MonoBehaviour
                 continue;
             }
 
-            if(i + 1 <= passedLevelCount)
+            if (i < passedLevelCount)
             {
-                if (i + 1 < passedLevelCount)
-                {
-                    int levelStars = passedLevels[i];
-                    starsCount += levelStars;
-                    button.UnLockButton(levelStars);
-                }
-                else
-                    button.UnLockButton();
+                int levelStars = passedLevels[i];
+                starsCount += levelStars;
+                button.UnLockButton(levelStars);
+            }
+            else if(i == passedLevelCount)
+            {
+                button.UnLockButton();
             }
             else
                 button.LockButton();
