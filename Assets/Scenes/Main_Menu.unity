@@ -9004,9 +9004,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7013a9405f4e84ae3892899ce587aaf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fader: {fileID: 1888126400}
-  levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
-  settingsUI: {fileID: 437342956}
 --- !u!1 &2140863129
 GameObject:
   m_ObjectHideFlags: 0
@@ -9362,6 +9359,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2087812244733794754, guid: bc90b3a8d64b74b63bb3c9ef83be8aa1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00304
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087812244733794754, guid: bc90b3a8d64b74b63bb3c9ef83be8aa1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00081
+      objectReference: {fileID: 0}
     - target: {fileID: 3139388874488063292, guid: bc90b3a8d64b74b63bb3c9ef83be8aa1, type: 3}
       propertyPath: m_Name
       value: Robot_01_Menu
@@ -9507,6 +9512,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: de480c951ba994ac78e417b0bec8ec69, type: 2}
+    - target: {fileID: 8265550343802757380, guid: 2e3eeb05c3b8f411795a452758bff995, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265550343802757380, guid: 2e3eeb05c3b8f411795a452758bff995, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00213
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265550343802757380, guid: 2e3eeb05c3b8f411795a452758bff995, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
