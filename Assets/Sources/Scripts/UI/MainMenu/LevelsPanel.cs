@@ -35,7 +35,7 @@ public class LevelsPanel : MonoBehaviour
             resolution.y = res.height;
         }
 
-        float width = resolution.x / 13;
+        float width = resolution.x / 15;
         float ratio = resolution.y / resolution.x;
         if (ratio < 1.7f)
             ratio = 1.7f;
