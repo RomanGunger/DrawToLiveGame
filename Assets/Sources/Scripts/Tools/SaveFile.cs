@@ -1,17 +1,17 @@
-using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-using UnityEngine.UIElements;
 
 public class SaveFile
 {
     public int _currentChapter = 0;
     public bool _settingsSoundToogle = true;
     public bool _settingsmusicToogle = true;
-    public int currency = 0;
+    public int _currency = 0;
     public ulong _lastTimeFreeLiveReceive = 0;
     public int _lives;
     public int _maxLives = 5;
+
+    public bool _adds = true;
 
     public bool _soundON = true;
     public bool _musicON = true;

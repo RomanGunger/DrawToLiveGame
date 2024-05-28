@@ -29,7 +29,7 @@ public class LevelHandler : MonoBehaviour
 
     void SaveCurrency()
     {
-        saveFile.currency += scoreHandler.CurrentScore;
+        saveFile._currency += scoreHandler.CurrentScore;
     }
 
 
