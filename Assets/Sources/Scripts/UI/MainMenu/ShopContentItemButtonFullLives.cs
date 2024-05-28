@@ -16,7 +16,7 @@ public class ShopContentItemButtonFullLives : ShopContentItemButton
 
             xmlManager.Save(saveFile);
 
-            menuLivesBox.UpdateLives(saveFile._maxLives);
+            menuLivesBox.UpdateLives(saveFile._lives);
             menuCurrencyBox.UpdateCurrency(saveFile._currency);
         }
     }
