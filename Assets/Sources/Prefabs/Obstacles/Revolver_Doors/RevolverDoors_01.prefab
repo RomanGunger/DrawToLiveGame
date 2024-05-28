@@ -13,6 +13,10 @@ PrefabInstance:
       value: RevolverDoors_01
       objectReference: {fileID: 0}
     - target: {fileID: 3601385261043053919, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
+      propertyPath: rotationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3601385261043053919, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
       propertyPath: rotateTransform
       value: 
       objectReference: {fileID: 5130400157903865555}
@@ -30,19 +34,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4178183640733303595, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071079
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4178183640733303595, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178183640733303595, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70710576
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178183640733303595, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178183640733303595, guid: 7e277933e5d7b4c87aa78c620afd152e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
