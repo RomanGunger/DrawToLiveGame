@@ -13,6 +13,8 @@ public class LevelBuilder : MonoBehaviour
 
     public void Build()
     {
+#if UNITY_EDITOR
+
         var rnd = new System.Random();
 
         foreach (var obj in GetComponentsInChildren<LevelBlock>())
@@ -36,5 +38,8 @@ public class LevelBuilder : MonoBehaviour
 
             listLevelBlocks.Add(obj);
         }
+
+#endif
+
     }
 }
