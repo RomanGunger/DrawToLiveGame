@@ -16,17 +16,17 @@ MonoBehaviour:
   - unitsCount: 10
     sceneName: Level_01
   - unitsCount: 10
-    sceneName: Level_01
+    sceneName: Level_02
   - unitsCount: 10
-    sceneName: Level_01
+    sceneName: Level_03
   - unitsCount: 10
-    sceneName: Level_01
+    sceneName: Level_04
   - unitsCount: 10
-    sceneName: Level_01
+    sceneName: Level_05
   - unitsCount: 10
-    sceneName: Level_01
+    sceneName: Level_06
   - unitsCount: 10
-    sceneName: Level_01
+    sceneName: Level_07
   - unitsCount: 10
     sceneName: Level_01
   - unitsCount: 10
