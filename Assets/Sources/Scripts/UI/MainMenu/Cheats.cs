@@ -6,6 +6,7 @@ using static UnityEditor.Progress;
 public class Cheats : MonoBehaviour
 {
     [SerializeField] MenuLivesBox lives;
+    [SerializeField] MenuCurrencyBox currency;
 
     public void AddLevel()
     {
@@ -28,5 +29,16 @@ public class Cheats : MonoBehaviour
     public void AddLives()
     {
         lives.PlusLive();
+    }
+
+    public void AddCurrency()
+    {
+        XmlManager xmlManager = new XmlManager();
+        SaveFile saveFile = xmlManager.Load();
+
+        saveFile._currency += 10000;
+
+        currency.UpdateCurrency(saveFile._currency);
+        xmlManager.Save(saveFile);
     }
 }
