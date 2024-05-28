@@ -29,6 +29,10 @@ public class MenuLivesBox : MonoBehaviour
 
     public void UpdateLives(int lives)
     {
+        var xmlManager = new XmlManager();
+        var saveFile = xmlManager.Load();
+        Lives = saveFile._lives;
+
         livesCount.text = lives.ToString();
     }
 

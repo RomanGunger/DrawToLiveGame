@@ -13,10 +13,11 @@ public class ShopContentItemButtonFullLives : ShopContentItemButton
         {
             saveFile._currency -= price;
             saveFile._lives = saveFile._maxLives;
-            menuLivesBox.UpdateLives(saveFile._lives);
-            menuCurrencyBox.UpdateCurrency(saveFile._currency);
 
             xmlManager.Save(saveFile);
+
+            menuLivesBox.UpdateLives(saveFile._maxLives);
+            menuCurrencyBox.UpdateCurrency(saveFile._currency);
         }
     }
 }
