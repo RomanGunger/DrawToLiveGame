@@ -17,8 +17,6 @@ public class UnitsSpawner : MonoBehaviour
     [SerializeField] float spasing = 1f;
     [SerializeField] Vector3 sizeOfUnit;
 
-    public int initialCount = 10;
-
     private void Start()
     {
         SpawnUnits();
@@ -29,7 +27,7 @@ public class UnitsSpawner : MonoBehaviour
 
     public void SpawnUnits()
     {
-        List<Vector3> positions = DevUtils.UnitPos(initialCount
+        List<Vector3> positions = DevUtils.UnitPos(LevelInfo.instance.UnitsCount
              , spawnArea.GetComponent<Collider>()
              , 0, 0, spasing * 1.4f
              , sizeOfUnit);
