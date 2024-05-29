@@ -12,11 +12,14 @@ public class SpikesSet : BaseObstacle
 
     private float nextFire = 0.0f;
 
-    bool isUp = true;
+    bool isUp = false;
 
     private void Start()
     {
+        System.Random rnd = new System.Random();
+
         collider = GetComponent<BoxCollider>();
+        nextFire = rnd.Next(0, (int)fireRate);
     }
 
     private void Update()
