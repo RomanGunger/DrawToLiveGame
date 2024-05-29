@@ -12,6 +12,11 @@ public class MenuCurrencyBox : MonoBehaviour
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();
 
-        text.text = saveFile._currency.ToString();
+        UpdateCurrency(saveFile._currency);
+    }
+
+    public void UpdateCurrency(int currency)
+    {
+        text.text = currency.ToString();
     }
 }

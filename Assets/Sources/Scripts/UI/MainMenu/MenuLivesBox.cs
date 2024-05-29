@@ -16,19 +16,24 @@ public class MenuLivesBox : MonoBehaviour
 
     private void Start()
     {
-        UpdateLives();
-        CheckLivesOnRelog();
-    }
-
-    public void UpdateLives()
-    {
         var xmlManager = new XmlManager();
         var saveFile = xmlManager.Load();
 
         lastTimeFreeLiveReceive = saveFile._lastTimeFreeLiveReceive;
         Lives = saveFile._lives;
         maxLives = saveFile._maxLives;
-        livesCount.text = Lives.ToString();
+
+        UpdateLives(Lives);
+        CheckLivesOnRelog();
+    }
+
+    public void UpdateLives(int lives)
+    {
+        var xmlManager = new XmlManager();
+        var saveFile = xmlManager.Load();
+        Lives = saveFile._lives;
+
+        livesCount.text = lives.ToString();
     }
 
     private void Update()
@@ -138,16 +143,7 @@ public class MenuLivesBox : MonoBehaviour
             saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
             xmlManager.Save(saveFile);
 
-            livesCount.text = Lives.ToString();
+            UpdateLives(Lives);
         }
-    }
-
-    void OnApplicationQuit()
-    {
-        //var xmlManager = new XmlManager();
-        //var saveFile = xmlManager.Load();
-        //saveFile._lives = lives;
-        //saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
-        //xmlManager.Save(saveFile);
     }
 }
