@@ -8,7 +8,7 @@ public class SaveFile
     public bool _settingsmusicToogle = true;
     public int _currency = 0;
     public ulong _lastTimeFreeLiveReceive = 0;
-    public int _lives;
+    public int _lives = 5;
     public int _maxLives = 5;
 
     public bool _adds = true;

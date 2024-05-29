@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
@@ -46,8 +47,17 @@ public class XmlManager
         }
         else
         {
-            return new SaveFile();
+            return CreateNewXML();
         }
+    }
+
+    SaveFile? CreateNewXML()
+    {
+        SaveFile saveFile = new SaveFile();
+        saveFile._passedLevels.Clear();
+        saveFile._passedLevels.Add(0, new List<int> { });
+        Save(saveFile);
+        return saveFile;
     }
 
     public void RemoveXML()

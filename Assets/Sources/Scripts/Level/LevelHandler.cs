@@ -56,10 +56,5 @@ public class LevelHandler : MonoBehaviour
                 saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Add(starsHandler.Stars);
             }
         }
-
-        Debug.Log(saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count);
-        Debug.Log(LevelInfo.instance.CurentLevel);
-        Debug.Log(starsHandler.Stars);
-        Debug.Log(LevelInfo.instance.CurrentChapterLevelsCount);
     }
 }

@@ -1,30 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class LoadingScreenUIManager : MonoBehaviour
 {
-
-    UIDocument uiDocument;
-    VisualElement rootElement;
-    ProgressBar progressBar;
+    Slider progressBar;
 
     void Start()
     {
-        uiDocument = GetComponent<UIDocument>();
-        rootElement = uiDocument.rootVisualElement;
-
-        progressBar = rootElement.Q<ProgressBar>("loading-bar");
-
+        progressBar = GetComponent<Slider>();
         StartCoroutine(LoadScene("Main_Menu"));
     }
 
     IEnumerator LoadScene(string sceneName)
     {
+        XmlManager xmlManager = new XmlManager();
+        SaveFile saveFile = xmlManager.Load();
+
         var asyncSceneLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
         while (!asyncSceneLoad.isDone)
