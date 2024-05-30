@@ -15,6 +15,6 @@ public class StarsInfo : MonoBehaviour
 
     void SetStarsCount(int stars)
     {
-        text.text = $"Stars: {stars}";
+        text.text = $"Stars: <br>{stars}";
     }
 }

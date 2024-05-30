@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterProgression:
   - levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
-    chaptersName: Season one
+    chaptersName: Season <br>One
   - levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
-    chaptersName: Season two
+    chaptersName: Season <br>Two
   - levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
-    chaptersName: Season three
+    chaptersName: Season <br>Three

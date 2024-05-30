@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7687426977998945771}
   - component: {fileID: 6847539835423903351}
   m_Layer: 5
-  m_Name: OutOfLivesPopup
+  m_Name: Base_Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Out of lives
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e40c2681d9b884796ba760f9efbcdf77, type: 2}
+  m_sharedMaterial: {fileID: -4953521400886476137, guid: e40c2681d9b884796ba760f9efbcdf77, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
