@@ -11,6 +11,8 @@ public class LevelsPanel : MonoBehaviour
     [SerializeField] Fader fader;
     [SerializeField] MenuLivesBox lives;
     [SerializeField] GameObject buttonPrefab;
+    [SerializeField] PopupsDatabase popupsDatabase;
+    [SerializeField] Canvas popupParrentCanvas;
 
     public static Action<int> ButtonsSet;
 
@@ -105,7 +107,14 @@ public class LevelsPanel : MonoBehaviour
         int currentChapter = chapter;
 
         if (lives.Lives <= 0)
+        {
+            GameObject outOfLivesPopup = popupsDatabase.GetPopup("outOfLivesPopup");
+            if(outOfLivesPopup.TryGetComponent<BasePopupWindow>(out BasePopupWindow popup))
+            {
+                popup.InstantiatePopup(popupParrentCanvas.transform);
+            }
             return;
+        }
 
         lives.MinusLive();
 

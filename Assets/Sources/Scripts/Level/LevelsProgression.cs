@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "LevelProgression", menuName = "LevelProgression/New Level Progression", order = 0)]
 public class LevelsProgression : ScriptableObject

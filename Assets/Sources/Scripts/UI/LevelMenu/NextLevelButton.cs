@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class NextLevelButton : LevelButtonBase
 {
     [SerializeField] Fader fader;
+    [SerializeField] PopupsDatabase popupsDatabase;
+    [SerializeField] Canvas popupParrentCanvas;
 
     public override async void OnClickAction()
     {
@@ -16,6 +18,16 @@ public class NextLevelButton : LevelButtonBase
      
         if(LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1 && saveFile._lives > 0)
         {
+            if(saveFile._lives <= 0)
+            {
+                GameObject outOfLivesPopup = popupsDatabase.GetPopup("outOfLivesPopup");
+                if (outOfLivesPopup.TryGetComponent<BasePopupWindow>(out BasePopupWindow popup))
+                {
+                    popup.InstantiatePopup(popupParrentCanvas.transform);
+                }
+                return;
+            }
+
             var scene = SceneManager.LoadSceneAsync(
                 LevelInfo.instance.levelsProgression.GetSceneName(LevelInfo.instance.CurentLevel + 1), LoadSceneMode.Single);
 
