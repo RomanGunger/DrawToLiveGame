@@ -16,8 +16,14 @@ public class MenuPanel : MonoBehaviour
 
     public virtual async Task Open(float durration)
     {
-        uiBlocker.gameObject.SetActive(true);
-        uiBlocker.GetComponent<Image>().DOFade(.7f, durration);
+        if (uiBlocker != null)
+        {
+            uiBlocker.gameObject.SetActive(true);
+            uiBlocker.GetComponent<Image>().DOFade(.7f, durration);
+        }
+        else
+            Debug.Log("NO UIBLOCKER ASSIGNED");
+
         gameObject.SetActive(true);
         await transform.DOMoveY(0, durration).SetUpdate(true).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
     }

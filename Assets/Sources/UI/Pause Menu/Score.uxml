@@ -1,9 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Sources/UI/Pause%20Menu/ScoreStyles.uss?fileID=7433441132597879392&amp;guid=ef541666070454094aca5b2f4f386d2d&amp;type=3#ScoreStyles" />
-    <ui:VisualElement name="score-container" class="score-container">
-        <ui:VisualElement name="score-icon" class="score-icon" />
-        <ui:VisualElement name="score-text-container" class="score-text-container">
-            <ui:Label text="0" class="score-text" name="score-text" />
-        </ui:VisualElement>
-    </ui:VisualElement>
-</ui:UXML>

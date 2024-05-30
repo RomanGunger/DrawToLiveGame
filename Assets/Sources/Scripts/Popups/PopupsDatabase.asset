@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popups:
   - popupName: outOfLivesPopup
-    popupString: Not Enought Lives
     popupObject: {fileID: 1671514143223150086, guid: f760acd5f84b04b75994c1ccbb9ed310, type: 3}
+  - popupName: outOfCurrencyPopup
+    popupObject: {fileID: 1671514143223150086, guid: 4f660434d56744d6485c025d60dcfaf6, type: 3}

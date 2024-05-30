@@ -6,8 +6,7 @@ public class ContinueButton : LevelButtonBase
 
     public override async void OnClickAction()
     {
-        Debug.Log("Continue");
-        await pauseMenuPanel.Close(1f);
+        await pauseMenuPanel.Close(.3f);
         Time.timeScale = 1;
     }
 }

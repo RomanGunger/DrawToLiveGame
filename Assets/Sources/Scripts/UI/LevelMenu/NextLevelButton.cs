@@ -11,23 +11,10 @@ public class NextLevelButton : LevelButtonBase
 
     public override async void OnClickAction()
     {
-        XmlManager xmlManager = new XmlManager();
-        SaveFile saveFile = xmlManager.Load();
-
         Time.timeScale = 1;
      
-        if(LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1 && saveFile._lives > 0)
+        if(LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1)
         {
-            if(saveFile._lives <= 0)
-            {
-                GameObject outOfLivesPopup = popupsDatabase.GetPopup("outOfLivesPopup");
-                if (outOfLivesPopup.TryGetComponent<BasePopupWindow>(out BasePopupWindow popup))
-                {
-                    popup.InstantiatePopup(popupParrentCanvas.transform);
-                }
-                return;
-            }
-
             var scene = SceneManager.LoadSceneAsync(
                 LevelInfo.instance.levelsProgression.GetSceneName(LevelInfo.instance.CurentLevel + 1), LoadSceneMode.Single);
 

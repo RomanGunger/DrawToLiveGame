@@ -14,12 +14,10 @@ public class RestartButton : LevelButtonBase
 
         if (saveFile._lives <= 0)
         {
-            Debug.Log("popup");
             GameObject outOfLivesPopup = popupsDatabase.GetPopup("outOfLivesPopup");
             if (outOfLivesPopup.TryGetComponent<BasePopupWindow>(out BasePopupWindow popup))
             {
                 popup.InstantiatePopup(popupParrentCanvas.transform);
-                Debug.Log("popup");
             }
             return;
         }
@@ -27,6 +25,8 @@ public class RestartButton : LevelButtonBase
         if (LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1 && saveFile._lives > 0)
         {
             Time.timeScale = 1;
+            saveFile._lives --;
+            xmlManager.Save(saveFile);
 
             var scene = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
             scene.allowSceneActivation = false;
