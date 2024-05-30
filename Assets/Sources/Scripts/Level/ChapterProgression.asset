@@ -15,7 +15,7 @@ MonoBehaviour:
   chapterProgression:
   - levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
     chaptersName: Season one
-  - levelsProgression: {fileID: 11400000, guid: cbc67ba9bb9e14ac8afce6090d0f4e2d, type: 2}
+  - levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
     chaptersName: Season two
-  - levelsProgression: {fileID: 11400000, guid: 46bea4d110d00404e9db51993ba6d3b9, type: 2}
+  - levelsProgression: {fileID: 11400000, guid: e1a064db0ad2549dba21bf01afbe13b7, type: 2}
     chaptersName: Season three
