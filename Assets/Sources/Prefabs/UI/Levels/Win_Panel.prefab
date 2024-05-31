@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e49bb10721a945538bd7dbdee78a528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
   fader: {fileID: 0}
   popupsDatabase: {fileID: 11400000, guid: 0550af3ebf69f40849e39a0dbe531eb0, type: 2}
   popupParrentCanvas: {fileID: 0}

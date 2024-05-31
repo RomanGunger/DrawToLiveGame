@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class MenuButtonSidePanel : MenuButtonBase
 {
-    [SerializeField] protected MenuPanel openPanel;
+    [SerializeField] protected MenuPanel panel;
 
     protected override async void OnClickAction()
     {
-        await openPanel.gameObject.GetComponent<MenuPanel>().Open(1f);
+        await panel.gameObject.GetComponent<MenuPanel>().Open(1f);
     }
 
     protected override async void OnClickAnimation()

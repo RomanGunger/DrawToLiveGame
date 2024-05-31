@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RestartButton : LevelButtonBase
+public class RestartButton : MenuButtonBase
 {
     [SerializeField] Fader fader;
     [SerializeField] PopupsDatabase popupsDatabase;
-    [SerializeField] Canvas popupParrentCanvas;
+    [SerializeField] Canvas popupParrentCanvas; 
 
-    public override async void OnClickAction()
+    protected override async void OnClickAction()
     {
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();

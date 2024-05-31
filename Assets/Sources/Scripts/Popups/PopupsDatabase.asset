@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popups:
   - popupName: outOfLivesPopup
-    popupObject: {fileID: 1671514143223150086, guid: f760acd5f84b04b75994c1ccbb9ed310, type: 3}
+    popupObject: {fileID: 5118202800568516236, guid: 15e22c4d3674049099b2bdb481547b4b, type: 3}
   - popupName: outOfCurrencyPopup
-    popupObject: {fileID: 1671514143223150086, guid: 4f660434d56744d6485c025d60dcfaf6, type: 3}
+    popupObject: {fileID: 5118202800568516236, guid: 77a24b42aef3f4438a22a770099cf8d8, type: 3}

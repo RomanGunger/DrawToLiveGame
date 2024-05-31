@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class ContinueButton : LevelButtonBase
+public class ContinueButton : MenuButtonBase
 {
     [SerializeField] MenuPanel pauseMenuPanel;
 
-    public override async void OnClickAction()
+    protected override async void OnClickAction()
     {
         await pauseMenuPanel.Close(.3f);
         Time.timeScale = 1;

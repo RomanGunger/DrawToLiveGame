@@ -24,6 +24,7 @@ public class LevelHandler : MonoBehaviour
         HandleStars();
 
         xmlManager.Save(saveFile);
+        FinishLine.FinishLineReached -= Save;
     }
 
 

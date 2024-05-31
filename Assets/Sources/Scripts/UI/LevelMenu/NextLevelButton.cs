@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextLevelButton : LevelButtonBase
+public class NextLevelButton : MenuButtonBase
 {
     [SerializeField] Fader fader;
     [SerializeField] PopupsDatabase popupsDatabase;
     [SerializeField] Canvas popupParrentCanvas;
 
-    public override async void OnClickAction()
+    protected override async void OnClickAction()
     {
         Time.timeScale = 1;
      

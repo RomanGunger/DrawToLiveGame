@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24730a8f1670d478f8674e2bab783355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
   popup: {fileID: 1671514143223150086}
 --- !u!1 &6937852736510270972
 GameObject:

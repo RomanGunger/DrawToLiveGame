@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuButton : LevelButtonBase
+public class MainMenuButton : MenuButtonBase
 {
     [SerializeField] Fader fader;
 
-    public override async void OnClickAction()
+    protected override async void OnClickAction()
     {
         Time.timeScale = 1;
 

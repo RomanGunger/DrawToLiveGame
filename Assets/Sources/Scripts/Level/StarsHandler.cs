@@ -28,6 +28,7 @@ public class StarsHandler : MonoBehaviour
         else if (percentageComplete > 75f)
             Stars = 3;
 
+        FinishLine.FinishLineReached -= HandleStars;
     }
 
 

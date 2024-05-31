@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff3b9eb2d93742f1b96e40ef7bf4b82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
   fader: {fileID: 0}
   popupsDatabase: {fileID: 11400000, guid: 0550af3ebf69f40849e39a0dbe531eb0, type: 2}
   popupParrentCanvas: {fileID: 0}
@@ -517,6 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c066a51e06b40c0a2a6ca259711181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
   fader: {fileID: 0}
 --- !u!114 &4225740587903117430
 MonoBehaviour:
@@ -668,6 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdc4c1c78c6e34a3295564a6976a9588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
   pauseMenuPanel: {fileID: 0}
 --- !u!114 &1493698345050380026
 MonoBehaviour:
