@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class LevelButton : MonoBehaviour
 {
@@ -9,9 +10,28 @@ public class LevelButton : MonoBehaviour
     [SerializeField] Image lockImage;
     [SerializeField] LevelButtonStars levelButtonStars;
 
+    [SerializeField] protected AudioClip buttonSound;
+
+    protected AudioSource audioSource;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         button = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
+        audioSource.clip = buttonSound;
+
+        button.onClick.AddListener(async () =>
+        {
+            button.interactable = false;
+            audioSource.Play();
+            await button.transform.DOPunchScale(new Vector3(-.15f, -.15f, -.15f), .2f, 0, 0)
+            .SetEase(Ease.InOutBounce).AsyncWaitForCompletion();
+            button.interactable = true;
+        });
     }
 
 
