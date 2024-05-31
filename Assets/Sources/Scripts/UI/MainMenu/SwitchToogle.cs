@@ -17,6 +17,8 @@ public class SwitchToogle : MonoBehaviour
     [SerializeField] Image backgroundImage;
     [SerializeField] Image handleImage;
 
+    [SerializeField] SoundMixerManager soundMixerManager;
+
     public enum SwitchType
     {
         SoundToogle,
@@ -75,7 +77,7 @@ public class SwitchToogle : MonoBehaviour
 
     void TurnSound(bool isOn)
     {
-        AudioListener.volume = isOn ? 1 : 0;
+        soundMixerManager.SetSoundFXVolume(isOn);
 
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();
@@ -87,6 +89,8 @@ public class SwitchToogle : MonoBehaviour
 
     void TurnMusic(bool isOn)
     {
+        soundMixerManager.SetSoundMusicVolume(isOn);
+
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();
 
