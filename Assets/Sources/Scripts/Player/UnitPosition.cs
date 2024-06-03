@@ -20,6 +20,8 @@ public class UnitPosition : MonoBehaviour
     [SerializeField] float spasing = 1f;
     [SerializeField] Vector3 sizeOfUnit;
 
+    [SerializeField] BoxCollider spawnPlaneCollider;
+
     private void Start()
     {
         FinishLine.FinishLineReached += OnFinishLineReached;
@@ -65,7 +67,8 @@ public class UnitPosition : MonoBehaviour
 
                     Vector3 localPos = new Vector3(midPoint.x * 0.5f
                         , 0
-                        , midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y);
+                        , (midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y
+                        - spawnPlaneCollider.size.z) * .5f);
 
                     unit.Rearrange(localPos);
                 }
@@ -77,7 +80,8 @@ public class UnitPosition : MonoBehaviour
                 {
                     Vector3 localPos = new Vector3(currentLine.points[i].x * 0.5f
                         , 0
-                        , currentLine.points[i].y - camera.ScreenToWorldPoint(rect.transform.position).y);
+                        , (currentLine.points[i].y - camera.ScreenToWorldPoint(rect.transform.position).y
+                        - spawnPlaneCollider.size.z) * .5f);
 
                     i++;
                     if (i >= currentLine.points.Count)
