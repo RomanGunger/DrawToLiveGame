@@ -36,7 +36,8 @@ public class UnitPosition : MonoBehaviour
 
         for (int i = 0; i < unitsList.unitsList.Count; i++)
         {
-            tasks.Add(unitsList.unitsList[i].transform.DOMove(positions[i], 1.5f).AsyncWaitForCompletion());
+            var operation = unitsList.unitsList[i].transform.DOMove(positions[i], 1.5f).AsyncWaitForCompletion();
+            tasks.Add(operation);
             await Task.Delay(100);
         }
 

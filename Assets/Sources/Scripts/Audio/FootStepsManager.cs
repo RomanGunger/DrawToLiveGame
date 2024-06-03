@@ -8,6 +8,12 @@ public class FootStepsManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
+        PauseButton.PausePressed += () => {
+            audioSource.Stop();
+        };
+        MenuPause.PauseEnd += () => {
+            audioSource.Play();
+        };
         FinishLine.FinishLineReached += () => {
             audioSource.Stop();
         };

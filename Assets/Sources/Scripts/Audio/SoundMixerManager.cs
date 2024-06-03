@@ -21,13 +21,11 @@ public class SoundMixerManager : MonoBehaviour
     {
         float volume = !on ? -80f : 0f;
         audioMixer.SetFloat("SoundFX", volume);
-        Debug.Log($"SoundFX {on}");
     }
 
     public void SetSoundMusicVolume(bool on)
     {
         float volume = !on ? -80f : 0f;
         audioMixer.SetFloat("Music", volume);
-        Debug.Log($"Music {on}");
     }
 }
