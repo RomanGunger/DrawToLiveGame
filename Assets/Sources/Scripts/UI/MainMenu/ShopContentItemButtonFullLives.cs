@@ -14,10 +14,17 @@ public class ShopContentItemButtonFullLives : ShopContentItemButton
 
         if(saveFile._currency < price)
         {
-            XmlManager xmlManager = new XmlManager();
-            SaveFile saveFile = xmlManager.Load();
-
             GameObject outOfLivesPopup = popupsDatabase.GetPopup("outOfCurrencyPopup");
+            if (outOfLivesPopup.TryGetComponent<BasePopupWindow>(out BasePopupWindow popup))
+            {
+                popup.InstantiatePopup(popupParrentCanvas.transform);
+            }
+            return;
+        }
+
+        if(saveFile._lives >= saveFile._maxLives)
+        {
+            GameObject outOfLivesPopup = popupsDatabase.GetPopup("fullEnergyPopup");
             if (outOfLivesPopup.TryGetComponent<BasePopupWindow>(out BasePopupWindow popup))
             {
                 popup.InstantiatePopup(popupParrentCanvas.transform);
