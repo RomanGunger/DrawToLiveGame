@@ -21,6 +21,12 @@ public class NextLevelButton : MenuButtonBase
             LevelInfo.instance.CurentLevel++;
             LevelInfo.instance.UnitsCount = LevelInfo.instance.levelsProgression.GetUnitsCount(LevelInfo.instance.CurentLevel + 1);
 
+            XmlManager xmlManager = new XmlManager();
+            SaveFile saveFile = xmlManager.Load();
+
+            if (saveFile._lives > 0)
+                saveFile._lives--;
+
             scene.allowSceneActivation = false;
             await fader.FadeHandle(1f, 2f, false);
             scene.allowSceneActivation = true;

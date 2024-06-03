@@ -23,6 +23,9 @@ public class LevelHandler : MonoBehaviour
         SaveCurrency();
         HandleStars();
 
+        if(saveFile._lives < saveFile._maxLives)
+            saveFile._lives++;
+
         xmlManager.Save(saveFile);
         FinishLine.FinishLineReached -= Save;
     }
@@ -45,10 +48,10 @@ public class LevelHandler : MonoBehaviour
             return;
         }
 
-        if (saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count - 1 >= LevelInfo.instance.CurentLevel
-            && starsHandler.Stars > saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel])
+        if (saveFile._passedLevels[LevelInfo.instance.CurrentChapter].Count - 1 >= LevelInfo.instance.CurentLevel)
         {
-            saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel] = starsHandler.Stars;
+            if(starsHandler.Stars > saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel])
+                saveFile._passedLevels[LevelInfo.instance.CurrentChapter][LevelInfo.instance.CurentLevel] = starsHandler.Stars;
         }
         else
         {

@@ -125,7 +125,7 @@ public class MenuLivesBox : MonoBehaviour
             Lives--;
 
             saveFile._lives = Lives;
-            saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
+            //saveFile._lastTimeFreeLiveReceive = lastTimeFreeLiveReceive = (ulong)DateTime.Now.Ticks;
             xmlManager.Save(saveFile);
         }
     }
