@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using System;
 
 public class SwitchToogle : MonoBehaviour
 {
@@ -18,6 +15,7 @@ public class SwitchToogle : MonoBehaviour
     [SerializeField] Image handleImage;
 
     [SerializeField] SoundMixerManager soundMixerManager;
+    [SerializeField] protected AudioClip buttonSound;
 
     public enum SwitchType
     {
@@ -38,7 +36,6 @@ public class SwitchToogle : MonoBehaviour
 
         toggle = GetComponent<Toggle>();
         handlePos = handleRectTransform.anchoredPosition;
-        toggle.onValueChanged.AddListener(OnSwitch);
         toggle.onValueChanged.AddListener(delegate {
             ToggleValueChanged(toggle);
         });
@@ -73,6 +70,12 @@ public class SwitchToogle : MonoBehaviour
                 TurnMusic(change.isOn);
                 break;
         }
+
+        handleRectTransform.DOAnchorPos(change.isOn ? handlePos : handlePos * -1, 0.2f).SetEase(Ease.InOutBack);
+        backgroundImage.sprite = change.isOn ? backgroundActiveSprite : backgroundDefaultSprite;
+        handleImage.sprite = change.isOn ? handleActiveSprite : handleDefaultSprite;
+
+        SoundFXManager.instance.PlaySoundFXClip(buttonSound, transform, 1f);
     }
 
     void TurnSound(bool isOn)
@@ -99,22 +102,10 @@ public class SwitchToogle : MonoBehaviour
         xmlManager.Save(saveFile);
     }
 
-    void OnSwitch(bool isOn)
-    {
-        handleRectTransform.DOAnchorPos(isOn ? handlePos : handlePos * -1, 0.2f).SetEase(Ease.InOutBack);
-        backgroundImage.sprite = isOn ? backgroundActiveSprite : backgroundDefaultSprite;
-        handleImage.sprite = isOn ? handleActiveSprite : handleDefaultSprite;
-
-        switch (switchType)
-        {
-            case SwitchType.SoundToogle:
-                int audioOn = isOn ? 1 : 0;
-                PlayerPrefs.SetInt("audioOn", audioOn);
-                break;
-            case SwitchType.MusicToogle:
-                int vibrationOn = isOn ? 1 : 0;
-                PlayerPrefs.SetInt("vibrationOn", vibrationOn);
-                break;
-        }
-    }
+    //void OnSwitch(bool isOn)
+    //{
+    //    handleRectTransform.DOAnchorPos(isOn ? handlePos : handlePos * -1, 0.2f).SetEase(Ease.InOutBack);
+    //    backgroundImage.sprite = isOn ? backgroundActiveSprite : backgroundDefaultSprite;
+    //    handleImage.sprite = isOn ? handleActiveSprite : handleDefaultSprite;
+    //}
 }

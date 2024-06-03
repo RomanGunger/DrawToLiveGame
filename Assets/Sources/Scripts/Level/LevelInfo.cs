@@ -11,8 +11,8 @@ public class LevelInfo : MonoBehaviour
     public int CurrentChapterLevelsCount { get; set; }
     public int ChaptersCount { get; set; }
 
-    public LevelsProgression levelsProgression;
-    public ChapterProgression chapterProgression;
+    [HideInInspector] public LevelsProgression levelsProgression;
+    [HideInInspector] public ChapterProgression chapterProgression;
 
     private void Awake()
     {

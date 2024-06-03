@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b835c997b254aaabe9511cd41ceabf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectSound: {fileID: 8300000, guid: 58f0998cc6193455787673f6e7863df4, type: 3}
 --- !u!136 &4021125192543558494
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -104,8 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54dd083999224b30b9d6478207696c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  moving: {fileID: 0}
 --- !u!1001 &8787119038421872989
 PrefabInstance:
   m_ObjectHideFlags: 0
