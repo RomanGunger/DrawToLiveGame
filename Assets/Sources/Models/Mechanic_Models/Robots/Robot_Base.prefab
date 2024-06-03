@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rearrangeSpeed: 16
+  explosionSound: {fileID: 8300000, guid: 1d1c3730eee664f5fb17a8c3d4d8e6bc, type: 3}
 --- !u!114 &-2881027417707209407
 MonoBehaviour:
   m_ObjectHideFlags: 0

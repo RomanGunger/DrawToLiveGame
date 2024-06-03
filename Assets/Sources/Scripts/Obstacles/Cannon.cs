@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    [SerializeField] AudioClip shootSound;
     [SerializeField] GameObject projectile;
     [SerializeField] GameObject fireEffect;
     [SerializeField] GameObject dieEffect;
@@ -14,9 +15,13 @@ public class Cannon : MonoBehaviour
 
     private void Start()
     {
+        System.Random rnd = new System.Random();
+        nextFire = rnd.Next(0, (int)nextFire);
+        double db = rnd.NextDouble();
+        nextFire += (float)db;
+
         FinishLine.FinishLineReached += BeginStop;
         LevelEventsHandler.LevelStarted += BeginStop;
-
     }
 
     void BeginStop()
@@ -31,12 +36,22 @@ public class Cannon : MonoBehaviour
             if (Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;
-                GameObject clone = Instantiate(projectile, firePosition.position, firePosition.rotation);
-                clone.GetComponent<BaseObstacle>().dieEffect = dieEffect;
-                GameObject fire = Instantiate(fireEffect, firePosition.position, firePosition.rotation);
-                clone.GetComponent<BaseObstacle>();
+                Shoot();
             }
         }
+    }
+
+    private void Shoot()
+    {
+        GameObject clone = Instantiate(projectile, firePosition.position, firePosition.rotation);
+        clone.GetComponent<BaseObstacle>().dieEffect = dieEffect;
+        GameObject fire = Instantiate(fireEffect, firePosition.position, firePosition.rotation);
+        clone.GetComponent<BaseObstacle>();
+
+        if (shootSound != null)
+            SoundFXManager.instance.PlaySoundFXClip(shootSound, transform, 1f);
+        else
+            Debug.LogError("No collectSound assigned: CorrencyItem");
     }
 
     private void OnDestroy()

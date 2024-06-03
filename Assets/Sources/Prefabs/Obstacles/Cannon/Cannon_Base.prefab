@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e411cb56b5849d884393d67945b4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootSound: {fileID: 8300000, guid: a62fa817d90634148af8519b54a1806b, type: 3}
   projectile: {fileID: 4334735523196325755, guid: 6b8f3f45ac44344a38f467c2ecd41b70, type: 3}
   fireEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
   dieEffect: {fileID: 9122409607527181618, guid: a4d6934c2d792406094c4cea1faa8458, type: 3}

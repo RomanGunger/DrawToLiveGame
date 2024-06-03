@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9f525d2387b45fbbc052e8126f667e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectSound: {fileID: 8300000, guid: 0df062e63f31547618611869241406dc, type: 3}
   floatHight: 0.6
   cycleTime: 1.4
 --- !u!136 &6175451264655432287

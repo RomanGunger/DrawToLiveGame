@@ -22,7 +22,7 @@ public class MenuPanel : MonoBehaviour
             uiBlocker.GetComponent<Image>().DOFade(.7f, durration);
         }
         else
-            Debug.Log("NO UIBLOCKER ASSIGNED");
+            Debug.LogError("NO UIBLOCKER ASSIGNED: MenuPanel");
 
         gameObject.SetActive(true);
         await transform.DOMoveY(0, durration).SetUpdate(true).SetEase(Ease.OutBounce).AsyncWaitForCompletion();

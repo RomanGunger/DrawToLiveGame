@@ -3,6 +3,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [SerializeField] float rearrangeSpeed = 10f;
+    [SerializeField] AudioClip explosionSound;
 
     private float startTime;
     private float journeyLength;
@@ -47,6 +48,16 @@ public class Unit : MonoBehaviour
 
         journeyLength = Vector3.Distance(startMarker, endMarker);
         rearranging = true;
+    }
+
+    public void DestroyUnit()
+    {
+        if (explosionSound != null)
+            SoundFXManager.instance.PlaySoundFXClip(explosionSound, transform, 1f);
+        else
+            Debug.LogError("No collectSound assigned: CorrencyItem");
+
+        Destroy(gameObject);
     }
 
     private void OnDestroy()

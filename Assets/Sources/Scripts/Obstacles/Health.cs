@@ -12,7 +12,10 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, 1f);
+            if (collectSound != null)
+                SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, 1f);
+            else
+                Debug.LogError("No collectSound assigned: Health");
 
             var unit = other.gameObject.GetComponent<Unit>();
             var point = other.ClosestPoint(transform.position);

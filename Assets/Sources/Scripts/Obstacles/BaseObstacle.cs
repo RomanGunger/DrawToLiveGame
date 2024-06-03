@@ -20,7 +20,8 @@ public class BaseObstacle : MonoBehaviour
             Instantiate(dieEffect,
                 unit.transform.position + new Vector3(0, unit.GetComponent<CapsuleCollider>().height, 0)
                 , Quaternion.identity);
-            Destroy(unit.gameObject);
+            unit.DestroyUnit();
+            //Destroy(unit.gameObject);
         }
     }
 

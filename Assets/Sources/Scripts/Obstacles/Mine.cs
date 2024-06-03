@@ -4,6 +4,7 @@ public class Mine : BaseObstacle
 {
     [SerializeField][Range(0, 4f)] float explosionRadius = 2f;
     [SerializeField] GameObject mineExplosionEffect;
+    [SerializeField] AudioClip explosionSound;
 
     protected override void OnTriggerEnter(Collider other)
     {
@@ -24,6 +25,11 @@ public class Mine : BaseObstacle
                     Destroy(unit.gameObject);
                 }
             }
+
+            if (explosionSound != null)
+                SoundFXManager.instance.PlaySoundFXClip(explosionSound, transform, 1f);
+            else
+                Debug.LogError("No collectSound assigned: CorrencyItem");
 
             Destroy(gameObject);
         }

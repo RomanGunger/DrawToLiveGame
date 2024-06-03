@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
-  panel: {fileID: 0}
+  panel: {fileID: 834833518679491145}
 --- !u!1 &4399947567621569287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1482,14 @@ PrefabInstance:
       propertyPath: uiBlocker
       value: 
       objectReference: {fileID: 2640875923433531667}
+    - target: {fileID: 1520907306860634678, guid: c1372cb9a2a954f12964990c5b129d8a, type: 3}
+      propertyPath: panelExitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 97b4e769267124d33859e3573ff53704, type: 3}
+    - target: {fileID: 1520907306860634678, guid: c1372cb9a2a954f12964990c5b129d8a, type: 3}
+      propertyPath: panelStartSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c8f1692afa430427cb12b1d8d4bc626d, type: 3}
     - target: {fileID: 1902903406210952438, guid: c1372cb9a2a954f12964990c5b129d8a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1624,6 +1632,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1902903406210952438, guid: c1372cb9a2a954f12964990c5b129d8a, type: 3}
   m_PrefabInstance: {fileID: 2201896873462227071}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &834833518679491145 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1520907306860634678, guid: c1372cb9a2a954f12964990c5b129d8a, type: 3}
+  m_PrefabInstance: {fileID: 2201896873462227071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f23abb3ae0814b9fb882e7592e0aa6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4597507768244629226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1804,6 +1823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiBlocker: {fileID: 2640875923433531667}
+  panelStartSound: {fileID: 8300000, guid: b64c007eb95f44626b6c0b557f5cd30d, type: 3}
 --- !u!1001 &4637240175460908299
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2000,6 +2020,10 @@ PrefabInstance:
       propertyPath: uiBlocker
       value: 
       objectReference: {fileID: 2640875923433531667}
+    - target: {fileID: 8064630469640842493, guid: 6927bfee4e31e4ae28477133e4bfe6d1, type: 3}
+      propertyPath: panelStartSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8ecd3e84c2b51471c88d699c8b787025, type: 3}
     - target: {fileID: 8638515853893954096, guid: 6927bfee4e31e4ae28477133e4bfe6d1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2053,6 +2077,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8107029984152198260}
     m_Modifications:
+    - target: {fileID: 345442005546281056, guid: 86328362f9edd4f008eb7bea720b6ba8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ccd257be32c8f45258b4e8850da7d756, type: 3}
     - target: {fileID: 3233819792737857124, guid: 86328362f9edd4f008eb7bea720b6ba8, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.75

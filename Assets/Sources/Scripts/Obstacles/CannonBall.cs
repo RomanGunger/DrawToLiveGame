@@ -3,15 +3,40 @@ using UnityEngine;
 public class CannonBall : BaseObstacle
 {
     [SerializeField] float speed = 10f;
+    [SerializeField] Renderer ballRenderer;
+    [SerializeField] GameObject speedEffect;
+    float duration = 1.3f;
+
+    bool action = true;
+
+    float startTime;
 
     void Start()
     {
-        Destroy(gameObject, 1.0f);
+        startTime = Time.time;
+        Destroy(gameObject, duration + 2f);
     }
 
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+        if (action)
+        {
+            if (Time.time < startTime + duration)
+                transform.Translate(Vector3.forward * Time.deltaTime * speed);
+            else
+            {
+                action = false;
+
+                DeactivateCannonBall();
+            }
+        }
+    }
+
+    private void DeactivateCannonBall()
+    {
+        GetComponent<Collider>().enabled = false;
+        ballRenderer.enabled = false;
+        Destroy(speedEffect);
     }
 
     protected override void OnTriggerEnter(Collider other)

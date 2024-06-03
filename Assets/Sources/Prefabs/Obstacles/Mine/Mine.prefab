@@ -70,6 +70,7 @@ MonoBehaviour:
   dieEffect: {fileID: 9122409607527181618, guid: a4d6934c2d792406094c4cea1faa8458, type: 3}
   explosionRadius: 2
   mineExplosionEffect: {fileID: 100002, guid: c5713b57c62a91248b9c4dcb5d81bc78, type: 3}
+  explosionSound: {fileID: 8300000, guid: f5b98b433ebed44da9ead5cce3a7506d, type: 3}
 --- !u!1001 &5422387603489716113
 PrefabInstance:
   m_ObjectHideFlags: 0
