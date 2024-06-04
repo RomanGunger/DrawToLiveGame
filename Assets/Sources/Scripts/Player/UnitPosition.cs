@@ -53,6 +53,7 @@ public class UnitPosition : MonoBehaviour
         {
             int splitCount = currentLine.points.Count / unitsList.unitsList.Count;
 
+            //If there is more points then units
             if(splitCount > 0)
             {
                 List<List<Vector2>> slices = new List<List<Vector2>>();
@@ -72,7 +73,6 @@ public class UnitPosition : MonoBehaviour
                         - spawnPlaneCollider.size.z) * .5f);
 
                     unitsList.unitsList[0].Rearrange(localPos);
-                    Debug.Log("1 unit");
 
                     return;
                 }
@@ -101,8 +101,7 @@ public class UnitPosition : MonoBehaviour
             }
             else
             {
-                int i = 0;
-                foreach (var unit in unitsList.unitsList)
+                for (int i = 0; i < unitsList.unitsList.Count; i++)
                 {
                     Vector3 localPos = new Vector3(currentLine.points[i].x * 0.5f
                         , 0
@@ -113,7 +112,15 @@ public class UnitPosition : MonoBehaviour
                     if (i >= currentLine.points.Count)
                         i = 0;
 
-                    unit.Rearrange(localPos);
+                    unitsList.unitsList[i].Rearrange(localPos);
+
+
+                    //if (i > 0
+                    //    && Vector3.Distance(unitsList.unitsList[i - 1].transform.position
+                    //    , unitsList.unitsList[i].transform.position) < .1f)
+                    //{
+                    //    Destroy(unitsList.unitsList[i].gameObject);
+                    //}
                 }
             }
 
