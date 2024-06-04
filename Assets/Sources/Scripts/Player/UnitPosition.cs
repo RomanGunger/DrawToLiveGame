@@ -59,10 +59,36 @@ public class UnitPosition : MonoBehaviour
 
                 slices = currentLine.points.ChunkBy(splitCount);
 
-                foreach (var unit in unitsList.unitsList)
+                //If we have only one unit, we put him in the middle of the line
+                if (unitsList.unitsList.Count <= 1)
+                {
+                    var slice = slices[slices.Count / 2];
+                    Vector2 midPoint = slice[slice.Count / 2];
+
+
+                    Vector3 localPos = new Vector3(midPoint.x * 0.5f
+                        , 0
+                        , (midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y
+                        - spawnPlaneCollider.size.z) * .5f);
+
+                    unitsList.unitsList[0].Rearrange(localPos);
+                    Debug.Log("1 unit");
+
+                    return;
+                }
+
+                for (int i = 0; i < unitsList.unitsList.Count; i++)
                 {
                     var slice = slices[0];
-                    Vector2 midPoint = slice[slice.Count / 2];
+                    Vector2 midPoint;
+
+                    if (i == 0)
+                        midPoint = slice[0];
+                    else if (i == unitsList.unitsList.Count - 1)
+                        midPoint = slice[slice.Count - 1];
+                    else
+                        midPoint = slice[slice.Count / 2];
+
                     slices.RemoveAt(0);
 
                     Vector3 localPos = new Vector3(midPoint.x * 0.5f
@@ -70,7 +96,7 @@ public class UnitPosition : MonoBehaviour
                         , (midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y
                         - spawnPlaneCollider.size.z) * .5f);
 
-                    unit.Rearrange(localPos);
+                    unitsList.unitsList[i].Rearrange(localPos);
                 }
             }
             else

@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
 
     [HideInInspector] public Dictionary<GameObject, bool> obstacles = new Dictionary<GameObject, bool>();
 
-    float pointsMinDistance = .1f;
+    float pointsMinDistance = .05f;
 
     private void Awake()
     {
@@ -37,6 +37,17 @@ public class Line : MonoBehaviour
     public Vector2 GetLastPoint()
     {
         return (Vector2)lineRenderer.GetPosition(pointsCount - 1);
+    }
+
+    public void FillLineGaps()
+    {
+        for(int i = 0; i >= points.Count - 1; i++)
+        {
+            if (Vector2.Distance(points[i], points[i+1]) > pointsMinDistance)
+            {
+                points.Add(VectorsExtentions.LerpByDistance(points[i], points[i + 1], .5f));
+            }
+        }
     }
 
     public void SetLineColor(Gradient colorGradient)
