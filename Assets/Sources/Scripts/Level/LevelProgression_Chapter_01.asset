@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelProgression_Chapter_01
   m_EditorClassIdentifier: 
   levelProgressions:
-  - unitsCount: 2
+  - unitsCount: 20
     sceneName: Level_01
   - unitsCount: 5
     sceneName: Level_02

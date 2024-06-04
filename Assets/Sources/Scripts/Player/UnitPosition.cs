@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using DG.Tweening;
 using OwnGameDevUtils;
@@ -13,6 +14,8 @@ public class UnitPosition : MonoBehaviour
 
     [SerializeField] Transform finishLine;
     [SerializeField] Camera camera;
+
+    float distanceToStackUnit = .5f;
 
     [Header("Positioning")]
     [SerializeField] float offsetZ = 1f;
@@ -47,8 +50,10 @@ public class UnitPosition : MonoBehaviour
         LevelPassed?.Invoke();
     }
 
-    public void ArrangeUnitsLine(Line currentLine, RectTransform rect)
+    public async void ArrangeUnitsLine(Line currentLine, RectTransform rect)
     {
+        var tasks = new List<Task>();
+
         if (currentLine.PointsCount >= 1 && unitsList.unitsList.Count > 0)
         {
             int splitCount = currentLine.points.Count / unitsList.unitsList.Count;
@@ -96,34 +101,68 @@ public class UnitPosition : MonoBehaviour
                         , (midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y
                         - spawnPlaneCollider.size.z) * .5f);
 
-                    unitsList.unitsList[i].Rearrange(localPos);
+                    //unitsList.unitsList[i].Rearrange(localPos);
+                    tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
+                    StackUnits(tasks);
                 }
             }
             else
             {
+                int j = 0;
+
                 for (int i = 0; i < unitsList.unitsList.Count; i++)
                 {
-                    Vector3 localPos = new Vector3(currentLine.points[i].x * 0.5f
+                    Vector3 localPos = new Vector3(currentLine.points[j].x * 0.5f
                         , 0
-                        , (currentLine.points[i].y - camera.ScreenToWorldPoint(rect.transform.position).y
+                        , (currentLine.points[j].y - camera.ScreenToWorldPoint(rect.transform.position).y
                         - spawnPlaneCollider.size.z) * .5f);
 
-                    i++;
-                    if (i >= currentLine.points.Count)
-                        i = 0;
+                    j++;
 
-                    unitsList.unitsList[i].Rearrange(localPos);
+                    if (j >= currentLine.points.Count)
+                        j = 0;
 
+                    tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
+                }
 
-                    //if (i > 0
-                    //    && Vector3.Distance(unitsList.unitsList[i - 1].transform.position
-                    //    , unitsList.unitsList[i].transform.position) < .1f)
-                    //{
-                    //    Destroy(unitsList.unitsList[i].gameObject);
-                    //}
+                StackUnits(tasks);
+            }
+
+        }
+    }
+
+    private async Task StackUnits(List<Task> tasks)
+    {
+        if (tasks.Count > 1)
+        {
+            var listOfUnitsToRemove = new List<Unit>();
+            int currentIndex = 0;
+            for (int i = 1; i < tasks.Count; i++)
+            {
+                var tasksTemp = new List<Task>()
+                        {
+                            tasks[i-1],
+                            tasks[i]
+                        };
+
+                await Task.WhenAll(tasksTemp);
+
+                if (Vector3.Distance(unitsList.unitsList[currentIndex].transform.position
+                    , unitsList.unitsList[i].transform.position) < distanceToStackUnit)
+                {
+                    unitsList.unitsList[currentIndex].SetUnitsCount(unitsList.unitsList[i].UnitsCount);
+                    listOfUnitsToRemove.Add(unitsList.unitsList[i]);
+                    Destroy(unitsList.unitsList[i].gameObject);
+                }
+                else
+                {
+                    currentIndex = i;
+                    Debug.Log($"current index: {currentIndex}");
                 }
             }
 
+            var list = unitsList.unitsList.Except(listOfUnitsToRemove).ToList();
+            unitsList.unitsList = list;
         }
     }
 

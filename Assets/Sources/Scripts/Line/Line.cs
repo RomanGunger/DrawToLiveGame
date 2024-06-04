@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
 
     [HideInInspector] public Dictionary<GameObject, bool> obstacles = new Dictionary<GameObject, bool>();
 
-    float pointsMinDistance = .05f;
+    float pointsMinDistance = .3f;
 
     private void Awake()
     {
