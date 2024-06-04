@@ -4,25 +4,37 @@ public class FootStepsManager : MonoBehaviour
 {
     AudioSource audioSource;
 
-    private void Start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+    }
 
-        PauseButton.PausePressed += () => {
-            audioSource.Stop();
-        };
-        MenuPause.PauseEnd += () => {
-            audioSource.Play();
-        };
-        FinishLine.FinishLineReached += () => {
-            audioSource.Stop();
-        };
-        UnitsSpawner.LevelFailed += () => {
-            audioSource.Stop();
-        };
-        LevelEventsHandler.LevelStarted += () => {
-            audioSource.Play();
-        };
+    private void Start()
+    {
+        PauseButton.PausePressed += Stop;
+        MenuPause.PauseEnd += Play;
+        FinishLine.FinishLineReached += Stop;
+        UnitsSpawner.LevelFailed += Stop;
+        LevelEventsHandler.LevelStarted += Play;
+    }
+
+    private void OnDestroy()
+    {
+        PauseButton.PausePressed -= Stop;
+        MenuPause.PauseEnd -= Play;
+        FinishLine.FinishLineReached -= Stop;
+        UnitsSpawner.LevelFailed -= Stop;
+        LevelEventsHandler.LevelStarted -= Play;
+    }
+
+    void Stop()
+    {
+        audioSource.Stop();
+    }
+
+    void Play()
+    {
+        audioSource.Play();
     }
 
 }

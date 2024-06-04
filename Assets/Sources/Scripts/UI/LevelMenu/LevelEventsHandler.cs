@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelEventsHandler : MonoBehaviour
@@ -40,7 +38,7 @@ public class LevelEventsHandler : MonoBehaviour
 
     private void OnDestroy()
     {
-
-
+        UnitPosition.LevelPassed -= OnLevelPassed;
+        UnitsSpawner.LevelFailed -= OnLevelFailed;
     }
 }

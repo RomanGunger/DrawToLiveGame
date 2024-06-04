@@ -34,7 +34,6 @@ public class SpikesSet : BaseObstacle
     void SetSpikes()
     {
         spikes.DOLocalMoveY(isUp ? -collider.size.y : 0f, .1f);
-        Debug.Log(collider.size.y);
         isUp = !isUp;
         collider.enabled = isUp;
     }
