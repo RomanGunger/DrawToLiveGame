@@ -61,4 +61,9 @@ public class LevelHandler : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        FinishLine.FinishLineReached -= Save;
+    }
 }

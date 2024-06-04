@@ -17,3 +17,5 @@ MonoBehaviour:
     popupObject: {fileID: 5118202800568516236, guid: 15e22c4d3674049099b2bdb481547b4b, type: 3}
   - popupName: outOfCurrencyPopup
     popupObject: {fileID: 5118202800568516236, guid: 77a24b42aef3f4438a22a770099cf8d8, type: 3}
+  - popupName: fullEnergyPopup
+    popupObject: {fileID: 5118202800568516236, guid: 2d0e4cc1e21fc48489a71c23dbb876d0, type: 3}

@@ -54,8 +54,7 @@ public class CannonBall : BaseObstacle
             shape.shapeType = ParticleSystemShapeType.Cone;
             effect.transform.rotation = transform.rotation;
 
-
-            Destroy(other.gameObject);
+            unit.DestroyUnit();
         }
     }
 }
