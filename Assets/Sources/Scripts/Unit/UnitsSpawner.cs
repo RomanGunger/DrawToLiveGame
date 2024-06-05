@@ -23,6 +23,7 @@ public class UnitsSpawner : MonoBehaviour
 
         BaseObstacle.UnitKilled += RemoveUnit;
         Health.UnitAdded += AddUnit;
+        UnitPosition.UnitAdded += AddUnit;
     }
 
     public void SpawnUnits()
@@ -63,5 +64,6 @@ public class UnitsSpawner : MonoBehaviour
     {
         BaseObstacle.UnitKilled -= RemoveUnit;
         Health.UnitAdded -= AddUnit;
+        UnitPosition.UnitAdded -= AddUnit;
     }
 }

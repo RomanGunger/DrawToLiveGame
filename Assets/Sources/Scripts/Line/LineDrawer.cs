@@ -110,7 +110,7 @@ public class LineDrawer : MonoBehaviour
     {
         if (currentLine != null)
         {
-            unitPosition.ArrangeUnitsLine(currentLine, rect);
+            unitPosition.ArrangeUnitsLine(currentLine, rect, camera);
             Destroy(currentLine.gameObject);
             currentLine = null;
         }

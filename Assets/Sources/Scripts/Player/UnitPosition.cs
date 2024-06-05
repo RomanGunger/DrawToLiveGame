@@ -9,13 +9,13 @@ using UnityEngine;
 public class UnitPosition : MonoBehaviour
 {
     public static Action LevelPassed;
+    public static Action<Vector3> UnitAdded;
 
     [SerializeField] UnitsList unitsList;
 
     [SerializeField] Transform finishLine;
-    [SerializeField] Camera camera;
 
-    float distanceToStackUnit = .5f;
+    float distanceToStackUnit = 1f;
 
     [Header("Positioning")]
     [SerializeField] float offsetZ = 1f;
@@ -50,17 +50,19 @@ public class UnitPosition : MonoBehaviour
         LevelPassed?.Invoke();
     }
 
-    public async void ArrangeUnitsLine(Line currentLine, RectTransform rect)
+    public async void ArrangeUnitsLine(Line currentLine, RectTransform rect, Camera camera)
     {
         var tasks = new List<Task>();
 
         if (currentLine.PointsCount >= 1 && unitsList.unitsList.Count > 0)
         {
+            UnstackUnits(currentLine, distanceToStackUnit, unitsList.unitsList);
             int splitCount = currentLine.points.Count / unitsList.unitsList.Count;
 
             //If there is more points then units
-            if(splitCount > 0)
+            if (splitCount > 0)
             {
+
                 List<List<Vector2>> slices = new List<List<Vector2>>();
 
                 slices = currentLine.points.ChunkBy(splitCount);
@@ -103,8 +105,9 @@ public class UnitPosition : MonoBehaviour
 
                     //unitsList.unitsList[i].Rearrange(localPos);
                     tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
-                    StackUnits(tasks);
                 }
+
+                StackUnits(tasks);
             }
             else
             {
@@ -131,6 +134,82 @@ public class UnitPosition : MonoBehaviour
         }
     }
 
+    //private int CompareUnitsCounts(Unit a, Unit b)
+    //{
+    //    if (a.UnitsCount > b.UnitsCount)
+    //        return 1;
+    //    else if (a.UnitsCount < b.UnitsCount)
+    //        return -1;
+    //    else return 0;
+    //}
+
+    void UnstackUnits(Line currentLine, float unitSpacement, List<Unit> unitsList)
+    {
+        float lineLength = 0;
+        int averageUnitsCount = 0;
+
+        for (int i = 1; i < currentLine.points.Count; i++)
+        {
+            lineLength += Vector3.Distance(currentLine.points[i - 1], currentLine.points[i]);
+        }
+
+        int lineCapacity = (int)(lineLength / unitSpacement);
+        Debug.Log($"LineLength: {lineLength}");
+        Debug.Log($"LineCapacity: {lineCapacity}");
+
+        for(int i = 0; i < unitsList.Count; i++)
+        {
+            averageUnitsCount += unitsList[i].UnitsCount;
+        }
+        Debug.Log($"averageUnitsCount: {averageUnitsCount}");
+
+        if (averageUnitsCount >= lineCapacity)
+        {
+            unitsList.Sort((a,b) => {
+                if (a.UnitsCount > b.UnitsCount)
+                    return -1;
+                else if (a.UnitsCount < b.UnitsCount)
+                    return 1;
+                else return 0;
+            });
+
+            int index = 0;
+            while(unitsList.Count < lineCapacity)
+            {
+
+                if (unitsList.Count > 1)
+                {
+                    if (unitsList[index].UnitsCount < unitsList[index + 1].UnitsCount ||
+                        unitsList[index].UnitsCount <= 0 || unitsList[index] == null)
+                        {
+                            index++;
+                        }
+                }
+
+                unitsList[index].MinusUnitsCount();
+                UnitAdded?.Invoke(unitsList[index].transform.position);
+            }
+        }
+        else
+        {
+            var tempUnitsList = new List<Unit>();
+            tempUnitsList.AddRange(unitsList);
+
+            foreach(var unit in tempUnitsList)
+            {
+                if(unit.UnitsCount > 0)
+                {
+                    for(int i = 0; i < unit.UnitsCount; i++)
+                    {
+
+                        unit.MinusUnitsCount();
+                        UnitAdded?.Invoke(unit.transform.position);
+                    }
+                }
+            }
+        }
+    }
+
     private async Task StackUnits(List<Task> tasks)
     {
         if (tasks.Count > 1)
@@ -150,14 +229,13 @@ public class UnitPosition : MonoBehaviour
                 if (Vector3.Distance(unitsList.unitsList[currentIndex].transform.position
                     , unitsList.unitsList[i].transform.position) < distanceToStackUnit)
                 {
-                    unitsList.unitsList[currentIndex].SetUnitsCount(unitsList.unitsList[i].UnitsCount);
+                    unitsList.unitsList[currentIndex].AddUnitsCount(unitsList.unitsList[i].UnitsCount);
                     listOfUnitsToRemove.Add(unitsList.unitsList[i]);
                     Destroy(unitsList.unitsList[i].gameObject);
                 }
                 else
                 {
                     currentIndex = i;
-                    Debug.Log($"current index: {currentIndex}");
                 }
             }
 

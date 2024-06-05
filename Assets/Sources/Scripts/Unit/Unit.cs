@@ -22,9 +22,24 @@ public class Unit : MonoBehaviour
         FinishLine.FinishLineReached += OnFinishLineReached;
     }
 
-    public void SetUnitsCount(int unitsCount)
+    public void AddUnitsCount(int unitsCount)
     {
         UnitsCount += unitsCount;
+
+        if (UnitsCount > 0)
+        {
+            unitsCountText.text = UnitsCount.ToString();
+            unitsOverheadCanvas.gameObject.SetActive(true);
+        }
+        else
+        {
+            unitsOverheadCanvas.gameObject.SetActive(false);
+        }
+    }
+
+    public void MinusUnitsCount()
+    {
+        UnitsCount--;
 
         if (UnitsCount > 0)
         {
