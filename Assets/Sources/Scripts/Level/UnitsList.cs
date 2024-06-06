@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class UnitsList : MonoBehaviour
 {
     public static UnitsList instance;
+
+    public static Action<int> UnitsCountChanged;
 
     public List<Unit> unitsList = new List<Unit>();
     public int UnitsCount { get; private set; }
@@ -22,6 +25,7 @@ public class UnitsList : MonoBehaviour
     private void Start()
     {
         UnitsCount = LevelInfo.instance.UnitsCount;
+        UnitsCountChanged?.Invoke(UnitsCount);
     }
 
     public void DistributeUnitsCount(int unitsCount)
@@ -40,11 +44,13 @@ public class UnitsList : MonoBehaviour
     public void UnitKilled(int unitsCount)
     {
         UnitsCount -= unitsCount;
+        UnitsCountChanged?.Invoke(UnitsCount);
     }
 
     public void UnitAdded(int unitsCount)
     {
         UnitsCount += unitsCount;
+        UnitsCountChanged?.Invoke(UnitsCount);
     }
 
     private void Update()
