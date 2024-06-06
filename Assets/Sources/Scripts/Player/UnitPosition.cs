@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using DG.Tweening;
 using OwnGameDevUtils;
@@ -48,6 +47,7 @@ public class UnitPosition : MonoBehaviour
         LevelPassed?.Invoke();
     }
 
+
     public async void ArrangeUnitsLine(Line currentLine, RectTransform rect, Camera camera)
     {
         if (currentLine.points.Count <= 0 || UnitsList.instance.unitsList.Count <= 0)
@@ -59,43 +59,14 @@ public class UnitPosition : MonoBehaviour
                 VectorsExtentions.ConvertLineToLocalPositionsList(currentLine, camera, rect, spawnPlaneCollider)
                 , 1f);
 
-        int splitCount = rebuildedLinePointsList.Count / UnitsList.instance.unitsList.Count;
+        int splitCount = 1;
+        if (UnitsList.instance.unitsList.Count > 0)
+            splitCount = rebuildedLinePointsList.Count / UnitsList.instance.unitsList.Count;
 
         //If there is more points then units
         if (splitCount > 0)
         {
-            if(UnitsList.instance.unitsList.Count < rebuildedLinePointsList.Count
-                && UnitsList.instance.UnitsCount > UnitsList.instance.unitsList.Count)
-            {
-                int unitsNeeded = rebuildedLinePointsList.Count - UnitsList.instance.unitsList.Count;
-                if (unitsNeeded > UnitsList.instance.UnitsCount - UnitsList.instance.unitsList.Count)
-                    unitsNeeded = UnitsList.instance.UnitsCount - UnitsList.instance.unitsList.Count;
-                splitCount = rebuildedLinePointsList.Count / Mathf.Clamp(UnitsList.instance.unitsList.Count + unitsNeeded
-                    ,UnitsList.instance.unitsList.Count, rebuildedLinePointsList.Count);
-
-                UnitsList.instance.unitsList.Sort((a, b) => {
-                    if (a.UnitsCount > b.UnitsCount)
-                        return -1;
-                    else if (a.UnitsCount < b.UnitsCount)
-                        return 1;
-                    else return 0;
-                });
-
-                int j = 0;
-                for(int i = 0; i < unitsNeeded; i++)
-                {
-                    if (UnitsList.instance.unitsList[j].UnitsCount > 1)
-                    {
-                        unitsSpawner.AddUnit(UnitsList.instance.unitsList[j].transform.position);
-                        UnitsList.instance.unitsList[j].MinusUnitsCount();
-
-                        if (j >= UnitsList.instance.unitsList.Count)
-                            j = 0;
-                        if (UnitsList.instance.unitsList[j].UnitsCount <= UnitsList.instance.unitsList[j + 1].UnitsCount)
-                            j++;
-                    }
-                }
-            }
+            UnstackUnits(rebuildedLinePointsList, ref splitCount);
 
             List<List<Vector2>> slices = rebuildedLinePointsList.ChunkBy(splitCount);
             for (int i = 0; i < UnitsList.instance.unitsList.Count; i++)
@@ -116,7 +87,7 @@ public class UnitPosition : MonoBehaviour
                     if (sliceIndex % 2 != 0)
                         sliceIndex--;
                     slice = slices[sliceIndex];
-                    midPoint = slice[slice.Count /2];
+                    midPoint = slice[slice.Count / 2];
                 }
 
                 slices.Remove(slice);
@@ -161,6 +132,43 @@ public class UnitPosition : MonoBehaviour
             }
 
             UnitsList.instance.DistributeUnitsCount(unitsCount);
+        }
+    }
+
+    private void UnstackUnits(List<Vector2> rebuildedLinePointsList, ref int splitCount)
+    {
+        if (UnitsList.instance.unitsList.Count < rebuildedLinePointsList.Count
+            && UnitsList.instance.UnitsCount > UnitsList.instance.unitsList.Count)
+        {
+            int unitsNeeded = rebuildedLinePointsList.Count - UnitsList.instance.unitsList.Count;
+            if (unitsNeeded > UnitsList.instance.UnitsCount - UnitsList.instance.unitsList.Count)
+                unitsNeeded = UnitsList.instance.UnitsCount - UnitsList.instance.unitsList.Count;
+            splitCount = rebuildedLinePointsList.Count / Mathf.Clamp(UnitsList.instance.unitsList.Count + unitsNeeded
+                , UnitsList.instance.unitsList.Count, rebuildedLinePointsList.Count);
+
+            UnitsList.instance.unitsList.Sort((a, b) =>
+            {
+                if (a.UnitsCount > b.UnitsCount)
+                    return -1;
+                else if (a.UnitsCount < b.UnitsCount)
+                    return 1;
+                else return 0;
+            });
+
+            int j = 0;
+            for (int i = 0; i < unitsNeeded; i++)
+            {
+                if (UnitsList.instance.unitsList[j].UnitsCount > 1)
+                {
+                    unitsSpawner.AddUnit(UnitsList.instance.unitsList[j].transform.position);
+                    UnitsList.instance.unitsList[j].MinusUnitsCount();
+
+                    if (j >= UnitsList.instance.unitsList.Count)
+                        j = 0;
+                    if (UnitsList.instance.unitsList[j].UnitsCount <= UnitsList.instance.unitsList[j + 1].UnitsCount)
+                        j++;
+                }
+            }
         }
     }
 
