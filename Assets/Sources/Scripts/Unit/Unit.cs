@@ -25,31 +25,11 @@ public class Unit : MonoBehaviour
     public void AddUnitsCount(int unitsCount)
     {
         UnitsCount += unitsCount;
-
-        if (UnitsCount > 0)
-        {
-            unitsCountText.text = UnitsCount.ToString();
-            unitsOverheadCanvas.gameObject.SetActive(true);
-        }
-        else
-        {
-            unitsOverheadCanvas.gameObject.SetActive(false);
-        }
     }
 
     public void MinusUnitsCount()
     {
         UnitsCount--;
-
-        if (UnitsCount > 0)
-        {
-            unitsCountText.text = UnitsCount.ToString();
-            unitsOverheadCanvas.gameObject.SetActive(true);
-        }
-        else
-        {
-            unitsOverheadCanvas.gameObject.SetActive(false);
-        }
     }
 
     void OnFinishLineReached()
@@ -70,6 +50,8 @@ public class Unit : MonoBehaviour
 
     public void DestroyUnit()
     {
+        UnitsList.instance.UnitKilled(UnitsCount);
+
         if (explosionSound != null)
             SoundFXManager.instance.PlaySoundFXClip(explosionSound, transform, 1f);
         else

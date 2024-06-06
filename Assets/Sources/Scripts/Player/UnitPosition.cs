@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DG.Tweening;
 using OwnGameDevUtils;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class UnitPosition : MonoBehaviour
 {
@@ -14,8 +15,6 @@ public class UnitPosition : MonoBehaviour
     [SerializeField] UnitsList unitsList;
 
     [SerializeField] Transform finishLine;
-
-    float distanceToStackUnit = 1f;
 
     [Header("Positioning")]
     [SerializeField] float offsetZ = 1f;
@@ -52,96 +51,86 @@ public class UnitPosition : MonoBehaviour
 
     public async void ArrangeUnitsLine(Line currentLine, RectTransform rect, Camera camera)
     {
+        if (currentLine.points.Count <= 0 || unitsList.unitsList.Count <= 0)
+            return;
+
         var tasks = new List<Task>();
+        List<Vector2> rebuildedLinePointsList
+            = VectorsExtentions.RebuildLinePointsList(
+                VectorsExtentions.ConvertLineToLocalPositionsList(currentLine, camera, rect, spawnPlaneCollider)
+                , 1f);
 
-        if (currentLine.PointsCount >= 1 && unitsList.unitsList.Count > 0)
+        int splitCount = rebuildedLinePointsList.Count / unitsList.unitsList.Count;
+
+        //If there is more points then units
+        if (splitCount > 0)
         {
-            UnstackUnits(currentLine, distanceToStackUnit, unitsList.unitsList);
-            int splitCount = currentLine.points.Count / unitsList.unitsList.Count;
-
-            //If there is more points then units
-            if (splitCount > 0)
+            List<List<Vector2>> slices = rebuildedLinePointsList.ChunkBy(splitCount);
+            for (int i = 0; i < unitsList.unitsList.Count; i++)
             {
+                var slice = slices[0];
+                Vector2 midPoint;
 
-                List<List<Vector2>> slices = new List<List<Vector2>>();
-
-                slices = currentLine.points.ChunkBy(splitCount);
-
-                //If we have only one unit, we put him in the middle of the line
-                if (unitsList.unitsList.Count <= 1)
+                if (i == 0 && unitsList.unitsList.Count > 1)
+                    midPoint = slice[0];
+                else if (i == unitsList.unitsList.Count - 1 && unitsList.unitsList.Count > 1)
                 {
-                    var slice = slices[slices.Count / 2];
-                    Vector2 midPoint = slice[slice.Count / 2];
-
-
-                    Vector3 localPos = new Vector3(midPoint.x * 0.5f
-                        , 0
-                        , (midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y
-                        - spawnPlaneCollider.size.z) * .5f);
-
-                    unitsList.unitsList[0].Rearrange(localPos);
-
-                    return;
+                    slice = slices[slices.Count - 1];
+                    midPoint = slice[slice.Count - 1];
+                }
+                else
+                {
+                    int sliceIndex = slices.Count / 2;
+                    if (sliceIndex % 2 != 0)
+                        sliceIndex--;
+                    slice = slices[sliceIndex];
+                    midPoint = slice[slice.Count /2];
                 }
 
-                for (int i = 0; i < unitsList.unitsList.Count; i++)
-                {
-                    var slice = slices[0];
-                    Vector2 midPoint;
+                slices.Remove(slice);
 
-                    if (i == 0)
-                        midPoint = slice[0];
-                    else if (i == unitsList.unitsList.Count - 1)
-                        midPoint = slice[slice.Count - 1];
-                    else
-                        midPoint = slice[slice.Count / 2];
+                Vector3 localPos = new Vector3(midPoint.x, 0, midPoint.y);
 
-                    slices.RemoveAt(0);
-
-                    Vector3 localPos = new Vector3(midPoint.x * 0.5f
-                        , 0
-                        , (midPoint.y - camera.ScreenToWorldPoint(rect.transform.position).y
-                        - spawnPlaneCollider.size.z) * .5f);
-
-                    //unitsList.unitsList[i].Rearrange(localPos);
-                    tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
-                }
-
-                StackUnits(tasks);
+                tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
             }
-            else
+        }
+        else
+        {
+            int j = 0;
+            bool stackUnits = false;
+            var listOfUnitsToRemove = new List<Unit>();
+
+            for (int i = 0; i < unitsList.unitsList.Count; i++)
             {
-                int j = 0;
+                Vector3 localPos = new Vector3(rebuildedLinePointsList[j].x, 0, rebuildedLinePointsList[j].y);
 
-                for (int i = 0; i < unitsList.unitsList.Count; i++)
+                if (stackUnits)
+                    listOfUnitsToRemove.Add(unitsList.unitsList[i]);
+
+                j++;
+                if (j >= rebuildedLinePointsList.Count)
                 {
-                    Vector3 localPos = new Vector3(currentLine.points[j].x * 0.5f
-                        , 0
-                        , (currentLine.points[j].y - camera.ScreenToWorldPoint(rect.transform.position).y
-                        - spawnPlaneCollider.size.z) * .5f);
-
-                    j++;
-
-                    if (j >= currentLine.points.Count)
-                        j = 0;
-
-                    tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
+                    j = 0;
+                    stackUnits = true;
                 }
-
-                StackUnits(tasks);
+                tasks.Add(unitsList.unitsList[i].Rearrange(localPos));
             }
 
+            int unitsCount = 0;
+            await Task.WhenAll(tasks);
+            foreach (var item in listOfUnitsToRemove)
+            {
+                if (item != null)
+                {
+                    unitsCount += item.UnitsCount;
+                    UnitsList.instance.unitsList.Remove(item);
+                    Destroy(item.gameObject);
+                }
+            }
+
+            UnitsList.instance.DistributeUnitsCount(unitsCount);
         }
     }
-
-    //private int CompareUnitsCounts(Unit a, Unit b)
-    //{
-    //    if (a.UnitsCount > b.UnitsCount)
-    //        return 1;
-    //    else if (a.UnitsCount < b.UnitsCount)
-    //        return -1;
-    //    else return 0;
-    //}
 
     void UnstackUnits(Line currentLine, float unitSpacement, List<Unit> unitsList)
     {
@@ -216,26 +205,21 @@ public class UnitPosition : MonoBehaviour
         {
             var listOfUnitsToRemove = new List<Unit>();
             int currentIndex = 0;
+
+            await Task.WhenAll(tasks);
+
+
             for (int i = 1; i < tasks.Count; i++)
             {
-                var tasksTemp = new List<Task>()
-                        {
-                            tasks[i-1],
-                            tasks[i]
-                        };
-
-                await Task.WhenAll(tasksTemp);
-
-                if (Vector3.Distance(unitsList.unitsList[currentIndex].transform.position
-                    , unitsList.unitsList[i].transform.position) < distanceToStackUnit)
+                for (int j = i + 1; j < tasks.Count - 1; j++)
                 {
-                    unitsList.unitsList[currentIndex].AddUnitsCount(unitsList.unitsList[i].UnitsCount);
-                    listOfUnitsToRemove.Add(unitsList.unitsList[i]);
-                    Destroy(unitsList.unitsList[i].gameObject);
-                }
-                else
-                {
-                    currentIndex = i;
+                    if (Vector3.Distance(unitsList.unitsList[i].transform.position
+                         , unitsList.unitsList[j].transform.position) < .1f)
+                    {
+                        unitsList.unitsList[i].AddUnitsCount(unitsList.unitsList[j].UnitsCount);
+                        listOfUnitsToRemove.Add(unitsList.unitsList[j]);
+                        Destroy(unitsList.unitsList[j].gameObject);
+                    }
                 }
             }
 

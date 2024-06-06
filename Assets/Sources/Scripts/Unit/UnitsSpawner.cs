@@ -9,7 +9,6 @@ public class UnitsSpawner : MonoBehaviour
 
     public List<GameObject> unitPrefab;
     [SerializeField] Transform spawnArea;
-    [SerializeField] UnitsList unitsList;
 
     [Header("Positioning")]
     [SerializeField] float offsetZ = 1f;
@@ -49,14 +48,15 @@ public class UnitsSpawner : MonoBehaviour
         newUnit.transform.localScale = new Vector3(1, 1, 1);
         newUnit.transform.SetParent(spawnArea);
 
-        unitsList.unitsList.Add(unit);
+        UnitsList.instance.unitsList.Add(unit);
+        UnitsList.instance.UnitAdded(1);
     }
 
     public void RemoveUnit(Unit unit)
     {
-        unitsList.unitsList.Remove(unit);
+        UnitsList.instance.unitsList.Remove(unit);
 
-        if (unitsList.unitsList.Count <= 0)
+        if (UnitsList.instance.unitsList.Count <= 0)
             LevelFailed?.Invoke();
     }
 
