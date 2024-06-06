@@ -13,7 +13,7 @@ public class LevelsPanel : MonoBehaviour
     [SerializeField] PopupsDatabase popupsDatabase;
     [SerializeField] Canvas popupParrentCanvas;
 
-    public static Action<int> ButtonsSet;
+    public static Action<int> StarsCountChanged;
 
     GridLayoutGroup gridLayout;
     int starsCount;
@@ -90,7 +90,7 @@ public class LevelsPanel : MonoBehaviour
                 OnClickActionAsync(name, unitsCount, level, chapter));
         }
 
-        ButtonsSet?.Invoke(starsCount);
+        StarsCountChanged?.Invoke(starsCount);
     }
 
     async void OnClickActionAsync(string sceneName, int unitsCount, int level, int chapter)

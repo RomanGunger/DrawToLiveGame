@@ -3120,6 +3120,7 @@ GameObject:
   - component: {fileID: 478305548}
   - component: {fileID: 478305547}
   - component: {fileID: 478305549}
+  - component: {fileID: 478305550}
   m_Layer: 5
   m_Name: Chapter Selector
   m_TagString: Untagged
@@ -3198,6 +3199,19 @@ MonoBehaviour:
   chapterProgression: {fileID: 11400000, guid: e77ab4483093c47f5aa5be4f6434675a, type: 2}
   levelsPanel: {fileID: 1033986385}
   chaptersName: {fileID: 855879113}
+--- !u!114 &478305550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478305545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7425653eb1dbe4ec78cdb8a7e0cb636e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 855879113}
 --- !u!1 &497746302
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using System;
 
 public class ChapterSelector : MonoBehaviour
 {
     [SerializeField] ChapterProgression chapterProgression;
     [SerializeField] LevelsPanel levelsPanel;
-    [SerializeField] TextMeshProUGUI chaptersName;
+
+    public static Action<string> ChapterNameChanged;
+
     int chaptersCount;
     int currentChapter;
 
@@ -51,14 +51,14 @@ public class ChapterSelector : MonoBehaviour
 
     void SetChapter()
     {
-        chaptersName.text = chapterProgression.GetChaptersName(currentChapter);
+        ChapterNameChanged?.Invoke(chapterProgression.GetChaptersName(currentChapter));
 
         if (saveFile._passedLevels.ContainsKey(currentChapter))
         {
             levelsPanel.SetButtons(chapterProgression.GetLevelsProgression(currentChapter)
             , saveFile._passedLevels[currentChapter], currentChapter);
         }
-        else
+        else //If we didn't passed the chapter we set the passed levels value to "null"
         {
             levelsPanel.SetButtons(chapterProgression.GetLevelsProgression(currentChapter)
             , null, currentChapter);

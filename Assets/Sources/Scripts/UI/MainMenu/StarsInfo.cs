@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -10,10 +8,10 @@ public class StarsInfo : MonoBehaviour
     private void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
-        LevelsPanel.ButtonsSet += SetStarsCount;
+        LevelsPanel.StarsCountChanged += OnStarsCountChanged;
     }
 
-    void SetStarsCount(int stars)
+    void OnStarsCountChanged(int stars)
     {
         text.text = $"Stars: <br>{stars}";
     }
