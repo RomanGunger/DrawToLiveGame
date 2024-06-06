@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class RobotsAnimationsHandler : UnitAnimationsHandler
 {
     Moving moving;

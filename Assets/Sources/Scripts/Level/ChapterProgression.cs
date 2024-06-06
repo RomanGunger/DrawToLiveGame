@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using static LevelsProgression;
 
 [CreateAssetMenu(fileName = "ChapterProgression", menuName = "ChapterProgression/New Chapter Progression", order = 3)]
 public class ChapterProgression : ScriptableObject
