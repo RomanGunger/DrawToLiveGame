@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
             var point = other.ClosestPoint(transform.position);
 
             UnitAdded?.Invoke(new Vector3(point.x, unit.transform.position.y, point.z));
+            UnitsList.instance.UnitAdded(1);
             Destroy(gameObject);
         }
     }

@@ -1,22 +1,35 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using TMPro;
 
 public class Unit : MonoBehaviour
 {
     [SerializeField] float rearrangeSpeed = 10f;
     [SerializeField] AudioClip explosionSound;
 
+    [Header("Units Count")]
+    [SerializeField] TextMeshProUGUI unitsCountText;
+    [SerializeField] Canvas unitsOverheadCanvas;
+
+    public int UnitsCount { get; private set; } = 1;
+
     private float journeyLength;
-
-    Vector3 startMarker;
     Vector3 endMarker;
-
-    bool rearranging = false;
 
     private void Start()
     {
         FinishLine.FinishLineReached += OnFinishLineReached;
+    }
+
+    public void AddUnitsCount(int unitsCount)
+    {
+        UnitsCount += unitsCount;
+    }
+
+    public void MinusUnitsCount()
+    {
+        UnitsCount--;
     }
 
     void OnFinishLineReached()
@@ -26,7 +39,7 @@ public class Unit : MonoBehaviour
 
     public async Task Rearrange(Vector3 movePos)
     {
-        startMarker = transform.localPosition;
+        Vector3 startMarker = transform.localPosition;
 
         endMarker = new Vector3(movePos.x, 0, movePos.z);
 
@@ -37,6 +50,8 @@ public class Unit : MonoBehaviour
 
     public void DestroyUnit()
     {
+        UnitsList.instance.UnitKilled(UnitsCount);
+
         if (explosionSound != null)
             SoundFXManager.instance.PlaySoundFXClip(explosionSound, transform, 1f);
         else
