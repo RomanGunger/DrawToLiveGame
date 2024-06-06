@@ -49,7 +49,6 @@ public class UnitsSpawner : MonoBehaviour
         newUnit.transform.SetParent(spawnArea);
 
         UnitsList.instance.unitsList.Add(unit);
-        UnitsList.instance.UnitAdded(1);
     }
 
     public void RemoveUnit(Unit unit)

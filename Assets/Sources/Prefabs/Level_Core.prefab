@@ -1549,6 +1549,10 @@ PrefabInstance:
       propertyPath: finishLine
       value: 
       objectReference: {fileID: 1418770694385090342}
+    - target: {fileID: 2467761465720277391, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
+      propertyPath: unitsSpawner
+      value: 
+      objectReference: {fileID: 2458713751409279212}
     - target: {fileID: 7483889279614344195, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1309.6793
@@ -1603,6 +1607,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7483889279614344195, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
   m_PrefabInstance: {fileID: 5090260901631019262}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2458713751409279212 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7258437501324920850, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
+  m_PrefabInstance: {fileID: 5090260901631019262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fde98ec26af46568a72401a79a10be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3334343479302682941 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7557544749184266691, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
