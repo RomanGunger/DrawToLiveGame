@@ -14,4 +14,9 @@ public class UnitsCountUI : MonoBehaviour
     {
         text.text = unitsCount.ToString();
     }
+
+    private void OnDestroy()
+    {
+        UnitsList.UnitsCountChanged -= OnUnitCountChanged;
+    }
 }
