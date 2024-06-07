@@ -3198,7 +3198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterProgression: {fileID: 11400000, guid: e77ab4483093c47f5aa5be4f6434675a, type: 2}
   levelsPanel: {fileID: 1033986385}
-  chaptersName: {fileID: 855879113}
 --- !u!114 &478305550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25164,6 +25163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 345442005546281056, guid: 86328362f9edd4f008eb7bea720b6ba8, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 345442005546281056, guid: 86328362f9edd4f008eb7bea720b6ba8, type: 3}
       propertyPath: m_Volume
       value: 0.35
