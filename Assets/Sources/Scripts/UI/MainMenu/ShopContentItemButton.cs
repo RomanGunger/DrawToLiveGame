@@ -6,7 +6,6 @@ public class ShopContentItemButton : MonoBehaviour
 {
     protected Button button;
 
-    [SerializeField] protected int price;
     [SerializeField] protected AudioClip buttonSound;
 
     protected XmlManager xmlManager;

@@ -1,14 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuButton : MenuButtonBase
+public class MainMenuButton : LevelButtonBase
 {
     [SerializeField] Fader fader;
 
-    protected override async void OnClickAction()
+    public override async void ActionAfterAd()
     {
-        Time.timeScale = 1;
-
         var scene = SceneManager.LoadSceneAsync("Main_Menu", LoadSceneMode.Single);
         scene.allowSceneActivation = false;
         await fader.FadeHandle(1f, 2f, false);

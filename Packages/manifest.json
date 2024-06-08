@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
+    "com.google.external-dependency-manager": "file:/Users/romangunger/Downloads/com.google.external-dependency-manager-1.2.180.tgz",
+    "com.unity.ads": "4.4.2",
     "com.unity.cinemachine": "2.10.0",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.2d": "2.0.0",

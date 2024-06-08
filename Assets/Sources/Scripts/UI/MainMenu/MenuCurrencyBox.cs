@@ -5,15 +5,21 @@ public class MenuCurrencyBox : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI text;
 
+    private void Awake()
+    {
+        RewardedAdsButton.CurrencyAdded += OnCurrencyUpdated;
+        ShopContentItemButtonFullLives.CurrencyAdded += OnCurrencyUpdated;
+    }
+
     void Start()
     {
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();
 
-        UpdateCurrency(saveFile._currency);
+        OnCurrencyUpdated(saveFile._currency);
     }
 
-    public void UpdateCurrency(int currency)
+    public void OnCurrencyUpdated(int currency)
     {
         text.text = currency.ToString();
     }
