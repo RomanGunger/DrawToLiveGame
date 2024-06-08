@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Cheats : MonoBehaviour
 
         saveFile._passedLevels.Clear();
         saveFile._passedLevels.Add(0, new List<int> { });
+
+        saveFile._lastTimeAdWatched = (ulong)DateTime.Now.Ticks;
         xmlManager.Save(saveFile);
 
         Debug.Log(saveFile._passedLevels.Count);
@@ -36,7 +39,7 @@ public class Cheats : MonoBehaviour
 
         saveFile._currency += 10000;
 
-        currency.UpdateCurrency(saveFile._currency);
+        currency.OnCurrencyUpdated(saveFile._currency);
         xmlManager.Save(saveFile);
     }
 }

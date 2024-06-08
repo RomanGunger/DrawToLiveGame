@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
 
 public class ShopContentItemButtonFullLives : ShopContentItemButton
 {
+    [SerializeField] float price;
+
     [SerializeField] MenuLivesBox menuLivesBox;
-    [SerializeField] MenuCurrencyBox menuCurrencyBox;
 
     [SerializeField] PopupsDatabase popupsDatabase;
     [SerializeField] Canvas popupParrentCanvas;
+
+    public static Action<int> CurrencyAdded;
 
     protected override void OnClickAction()
     {
@@ -34,13 +38,13 @@ public class ShopContentItemButtonFullLives : ShopContentItemButton
 
         if (saveFile._currency >= price && saveFile._lives < saveFile._maxLives)
         {
-            saveFile._currency -= price;
+            saveFile._currency -= (int)price;
             saveFile._lives = saveFile._maxLives;
 
             xmlManager.Save(saveFile);
 
             menuLivesBox.UpdateLives(saveFile._lives);
-            menuCurrencyBox.UpdateCurrency(saveFile._currency);
+            CurrencyAdded?.Invoke(saveFile._currency);
         }
     }
 }

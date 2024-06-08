@@ -7,6 +7,12 @@
       "dependencies": {},
       "hash": "12574c32f658fa23c194357141abc3fc157ea362"
     },
+    "com.google.external-dependency-manager": {
+      "version": "file:/Users/romangunger/Downloads/com.google.external-dependency-manager-1.2.180.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,
@@ -98,6 +104,15 @@
         "com.unity.2d.tilemap": "1.0.0",
         "com.unity.ugui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ads": {
+      "version": "4.4.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

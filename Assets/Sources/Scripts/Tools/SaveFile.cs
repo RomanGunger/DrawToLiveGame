@@ -10,6 +10,8 @@ public class SaveFile
     public ulong _lastTimeFreeLiveReceive = 0;
     public int _lives = 5;
     public int _maxLives = 5;
+    public ulong _lastTimeAdWatched = 0;
+    public ulong _timeWithoutAdsInSeconds = 120;
 
     public bool _adds = true;
 
