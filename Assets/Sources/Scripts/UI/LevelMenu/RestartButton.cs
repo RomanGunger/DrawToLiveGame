@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RestartButton : MenuButtonBase
+public class RestartButton : LevelButtonBase
 {
     [SerializeField] Fader fader;
     [SerializeField] PopupsDatabase popupsDatabase;
-    [SerializeField] Canvas popupParrentCanvas; 
+    [SerializeField] Canvas popupParrentCanvas;
 
-    protected override async void OnClickAction()
+    public override async void ActionAfterAd()
     {
         XmlManager xmlManager = new XmlManager();
         SaveFile saveFile = xmlManager.Load();
@@ -25,7 +25,7 @@ public class RestartButton : MenuButtonBase
         if (LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1 && saveFile._lives > 0)
         {
             Time.timeScale = 1;
-            saveFile._lives --;
+            saveFile._lives--;
             xmlManager.Save(saveFile);
 
             var scene = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
@@ -33,6 +33,5 @@ public class RestartButton : MenuButtonBase
             await fader.FadeHandle(1f, 2f, false);
             scene.allowSceneActivation = true;
         }
-
     }
 }

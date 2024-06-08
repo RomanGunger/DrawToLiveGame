@@ -1,24 +1,49 @@
+using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Advertisements;
 
-public abstract class LevelButtonBase : MonoBehaviour
+public abstract class LevelButtonBase : MenuButtonBase
 {
-    Button button;
-
-    private void Awake()
+    protected override async void OnClickAction()
     {
-        button = GetComponent<Button>();
+        StartCoroutine(ShowAd(ActionAfterAd));
     }
 
-    private void Start()
+    IEnumerator ShowAd(Action actionAfterAd)
     {
-        button.onClick.AddListener(OnClickAction);
-        button.onClick.AddListener(OnClickAnimation);
+        bool addWaiting = false;
+
+        XmlManager xmlManager = new XmlManager();
+        SaveFile saveFile = xmlManager.Load();
+
+        ulong diffInSeconds = ((ulong)DateTime.Now.Ticks - saveFile._lastTimeAdWatched) / TimeSpan.TicksPerSecond;
+        float secondsLeft = (float)saveFile._timeWithoutAdsInSeconds - (float)diffInSeconds;
+
+        Debug.Log($"{saveFile._timeWithoutAdsInSeconds} - {diffInSeconds} = {secondsLeft}");
+        Debug.Log(saveFile._timeWithoutAdsInSeconds);
+        Debug.Log(secondsLeft);
+
+        if (Advertisement.isInitialized && secondsLeft <= 0)
+        {
+            addWaiting = true;
+            InterstitialAd.UnityAdCompleted += () => {
+                addWaiting = false;
+                saveFile._lastTimeAdWatched = (ulong)DateTime.Now.Ticks;
+                xmlManager.Save(saveFile);
+            };
+            InterstitialAd.instance.ShowAd();
+        }
+
+        while (addWaiting)
+        {
+            yield return null;
+        }
+
+        Time.timeScale = 1;
+
+        actionAfterAd();
     }
 
-    public abstract void OnClickAction();
-    public virtual void OnClickAnimation()
-    {
-
-    }
+    public abstract void ActionAfterAd();
 }

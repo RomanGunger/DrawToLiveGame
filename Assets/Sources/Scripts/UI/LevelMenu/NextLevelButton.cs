@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NextLevelButton : MenuButtonBase
+public class NextLevelButton : LevelButtonBase
 {
     [SerializeField] Fader fader;
     [SerializeField] PopupsDatabase popupsDatabase;
     [SerializeField] Canvas popupParrentCanvas;
 
-    protected override async void OnClickAction()
+    public override async void ActionAfterAd()
     {
         Time.timeScale = 1;
-     
-        if(LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1)
+
+        if (LevelInfo.instance.CurrentChapterLevelsCount >= LevelInfo.instance.CurentLevel + 1)
         {
             var scene = SceneManager.LoadSceneAsync(
                 LevelInfo.instance.levelsProgression.GetSceneName(LevelInfo.instance.CurentLevel + 1), LoadSceneMode.Single);
