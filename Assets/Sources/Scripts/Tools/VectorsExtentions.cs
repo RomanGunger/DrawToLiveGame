@@ -14,7 +14,7 @@ public static class VectorsExtentions
 
         foreach (var point in currentLine.points)
         {
-            Vector2 localPos = new Vector2(point.x
+            Vector2 localPos = new Vector2(point.x * 1.13f
                 , (point.y - camera.ScreenToWorldPoint(rect.transform.position).y)
                 - spawnPlaneCollider.size.z) * .5f;
 

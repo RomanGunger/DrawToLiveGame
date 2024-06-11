@@ -2085,6 +2085,22 @@ PrefabInstance:
       propertyPath: unitsSpawner
       value: 
       objectReference: {fileID: 2458713751409279212}
+    - target: {fileID: 5584207115615763982, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
+      propertyPath: m_Size.x
+      value: 10.459717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584207115615763982, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
+      propertyPath: m_Center.x
+      value: -0.010620117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584207115615763982, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
+      propertyPath: m_Center.y
+      value: 1.7189297e-15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584207115615763982, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
+      propertyPath: m_Center.z
+      value: -0.00006103515
+      objectReference: {fileID: 0}
     - target: {fileID: 7483889279614344195, guid: 4652a1c4ace1d4c3b9596f1e695c114a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1309.6793
