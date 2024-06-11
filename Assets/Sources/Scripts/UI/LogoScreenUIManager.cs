@@ -5,20 +5,30 @@ using UnityEngine.UI;
 
 public class LogoScreenUIManager : MonoBehaviour
 {
-    [SerializeField] Fader fader;
+    [SerializeField] Animator animator;
 
     private async void Start()
     {
-        Color color = fader.GetComponent<Image>().color;
-        color.a = 0;
-        fader.GetComponent<Image>().color = color;
+        var animation = FindAnimation(animator, "Logo_Animation");
+        animator.SetTrigger("Play");
 
         var asyncSceneLoad = SceneManager.LoadSceneAsync("Loading_Screen", LoadSceneMode.Single);
         asyncSceneLoad.allowSceneActivation = false;
-
-        await fader.Fade(1, 2f);
-        await Task.Delay(1000);
+        await Task.Delay((int)animation.length * 1000 + 2000);
 
         asyncSceneLoad.allowSceneActivation = true;
+    }
+
+    public AnimationClip FindAnimation(Animator animator, string name)
+    {
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == name)
+            {
+                return clip;
+            }
+        }
+
+        return null;
     }
 }

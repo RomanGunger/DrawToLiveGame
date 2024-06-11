@@ -1,11 +1,19 @@
 using UnityEngine;
 using TMPro;
 using System;
+using DG.Tweening;
 
 public class MenuLivesBox : MonoBehaviour
 {
     [SerializeField] TMP_Text livesCount;
     [SerializeField] TMP_Text livesCooldown;
+
+    [SerializeField] Transform gearToRotate1;
+    [SerializeField] int toothCountGear1 = 12;
+    [SerializeField] Transform gearToRotate2;
+    [SerializeField] int toothCountGear2 = 6;
+    [SerializeField] Transform gearToRotate3;
+    [SerializeField] int toothCountGear3 = 12;
 
     [SerializeField] float livesCooldownTime;
 
@@ -13,6 +21,8 @@ public class MenuLivesBox : MonoBehaviour
 
     ulong lastTimeFreeLiveReceive;
     int maxLives;
+
+    float secondsValue;
 
     private void Start()
     {
@@ -85,6 +95,22 @@ public class MenuLivesBox : MonoBehaviour
         {
             ulong diffInSeconds = ((ulong)DateTime.Now.Ticks - lastTimeFreeLiveReceive) / TimeSpan.TicksPerSecond;
             float secondsLeft = livesCooldownTime - diffInSeconds;
+
+            //Rotate gear
+            if (secondsValue != secondsLeft)
+            {
+                float gearRatio = toothCountGear1 / toothCountGear2;
+                float gearRatio2 = toothCountGear1 / toothCountGear3;
+
+                gearToRotate1.DORotate(gearToRotate1.transform.eulerAngles + new Vector3(0, 0, 15), 1f).SetEase(Ease.OutBounce);
+                secondsValue = secondsLeft;
+
+                gearToRotate2.DORotate(gearToRotate2.transform.eulerAngles + new Vector3(0, 0, -15 * gearRatio), 1f).SetEase(Ease.OutBounce);
+                secondsValue = secondsLeft;
+
+                gearToRotate3.DORotate(gearToRotate3.transform.eulerAngles + new Vector3(0, 0, 15 * gearRatio2), 1f).SetEase(Ease.OutBounce);
+                secondsValue = secondsLeft;
+            }
 
             if (secondsLeft <= 0)
             {

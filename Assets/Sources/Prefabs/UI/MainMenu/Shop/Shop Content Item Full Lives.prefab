@@ -224,7 +224,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2093474441908434641, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_text
-      value: FULL Energy
+      value: 'FULL
+
+        Energy'
       objectReference: {fileID: 0}
     - target: {fileID: 2093474441908434641, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_fontSize
@@ -395,9 +397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe163fa84cb554b73a66d9c564819fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 100
   buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
+  price: 100
   menuLivesBox: {fileID: 0}
-  menuCurrencyBox: {fileID: 0}
   popupsDatabase: {fileID: 0}
   popupParrentCanvas: {fileID: 0}

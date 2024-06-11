@@ -162,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 4977124022062982813, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c88250a631eef614da1b99afee860255, type: 3}
+      objectReference: {fileID: 21300000, guid: 2ce6287e437d85743972b6279244ee33, type: 3}
     - target: {fileID: 5984184058231473612, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -281,5 +281,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00846c042a9a4a77b9a031c34abed53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 0
   buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}

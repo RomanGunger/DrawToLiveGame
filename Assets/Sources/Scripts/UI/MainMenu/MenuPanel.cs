@@ -19,7 +19,7 @@ public class MenuPanel : MonoBehaviour
         if (uiBlocker != null)
         {
             uiBlocker.gameObject.SetActive(true);
-            uiBlocker.GetComponent<Image>().DOFade(.7f, durration);
+            uiBlocker.GetComponent<Image>().DOFade(.7f, durration).SetUpdate(true);
         }
         else
             Debug.LogError("NO UIBLOCKER ASSIGNED: MenuPanel");

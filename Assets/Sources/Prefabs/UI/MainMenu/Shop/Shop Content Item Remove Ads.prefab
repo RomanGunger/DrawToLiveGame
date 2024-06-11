@@ -237,7 +237,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1444812775662299188, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_Name
-      value: Shop Content Item Remove Adds
+      value: Shop Content Item Remove Ads
       objectReference: {fileID: 0}
     - target: {fileID: 2093474441908434641, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_text
@@ -302,7 +302,7 @@ PrefabInstance:
     - target: {fileID: 4977124022062982813, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5a630a93d4c55e84ea6602b02fb069a8, type: 3}
+      objectReference: {fileID: 21300000, guid: 715f64445bd8a9140b460859b5cb8cc9, type: 3}
     - target: {fileID: 5984184058231473612, guid: 8c89d1beefd774359a73cbaca6cfe7bf, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -416,5 +416,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63034a42777b4e96b1e752e9a51d384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 500
   buttonSound: {fileID: 8300000, guid: 7cabcc86182e54a75a85e240f142baa6, type: 3}
