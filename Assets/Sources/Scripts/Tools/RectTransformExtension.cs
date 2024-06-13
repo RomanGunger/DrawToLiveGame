@@ -8,16 +8,6 @@ public static class RectTransformExtension
         return rt.gameObject.GetComponentInParent<Canvas>();
     }
 
-    public static float GetWidth(RectTransform rt)
-    {
-        return rt.rect.width;
-    }
-
-    public static float GetHeight(RectTransform rt)
-    {
-        return rt.rect.height;
-    }
-
     public static void SetWidth(this RectTransform rt, float width)
     {
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
