@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class MenuPanel : MonoBehaviour
 {
-    float height;
+    float rectHeight;
 
     [SerializeField] GameObject uiBlocker;
+    RectTransform rectTransform;
+
+    Vector2 basePos;
 
     private void Awake()
     {
-        height = GetComponent<RectTransform>().sizeDelta.y;
+        rectTransform = GetComponent<RectTransform>();
+        float rectHeight = RectTransformExtension.GetHeight(rectTransform);
+
+        Debug.Log(rectHeight);
+        basePos = new Vector2(0, rectHeight);
+        rectTransform.anchoredPosition = basePos;
     }
 
     public virtual async Task Open(float durration)
@@ -25,13 +33,14 @@ public class MenuPanel : MonoBehaviour
             Debug.LogError("NO UIBLOCKER ASSIGNED: MenuPanel");
 
         gameObject.SetActive(true);
-        await transform.DOMoveY(0, durration).SetUpdate(true).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
+        await rectTransform.DOAnchorPosY(rectHeight, durration).SetUpdate(true).SetEase(Ease.OutBounce).AsyncWaitForCompletion();
+
     }
 
     public virtual async Task Close(float durration)
     {
         uiBlocker.GetComponent<Image>().DOFade(0f, durration);
-        await transform.DOMoveY(height, durration).SetUpdate(true).AsyncWaitForCompletion();
+        await rectTransform.DOAnchorPos(basePos, durration).SetUpdate(true).AsyncWaitForCompletion();
         gameObject.SetActive(false);
         uiBlocker.gameObject.SetActive(false);
     }

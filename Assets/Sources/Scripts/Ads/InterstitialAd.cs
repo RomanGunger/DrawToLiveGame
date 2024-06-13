@@ -12,8 +12,12 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     [SerializeField] string _iOsAdUnitId = "Interstitial_iOS";
     string _adUnitId;
 
+    public bool AdLoaded { get; private set; } = false;
+
     private void Awake()
     {
+        AdsInitializer.InitializationCompleted += LoadAd;
+
         if (instance != null && instance != this)
             Destroy(gameObject);
         else
@@ -49,19 +53,19 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     // Implement Load Listener and Show Listener interface methods: 
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
-        // Optionally execute code if the Ad Unit successfully loads content.
+        AdLoaded = true;
     }
 
     public void OnUnityAdsFailedToLoad(string _adUnitId, UnityAdsLoadError error, string message)
     {
         Debug.Log($"Error loading Ad Unit: {_adUnitId} - {error.ToString()} - {message}");
-        // Optionally execute code if the Ad Unit fails to load, such as attempting to try again.
+        AdLoaded = false;
     }
 
     public void OnUnityAdsShowFailure(string _adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {_adUnitId}: {error.ToString()} - {message}");
-        // Optionally execute code if the Ad Unit fails to show, such as loading another ad.
+        UnityAdCompleted?.Invoke();
     }
 
     public void OnUnityAdsShowStart(string _adUnitId) { }
@@ -69,5 +73,6 @@ public class InterstitialAd : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSho
     public void OnUnityAdsShowComplete(string _adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
         UnityAdCompleted?.Invoke();
+        LoadAd();
     }
 }

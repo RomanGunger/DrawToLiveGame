@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,17 +7,23 @@ using UnityEngine.UI;
 public class LogoScreenUIManager : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    AsyncOperation sceneLoad;
 
-    private async void Start()
+    private void Start()
     {
+        EventListener.AnimationFinished += OnAnimationFinished;
         var animation = FindAnimation(animator, "Logo_Animation");
         animator.SetTrigger("Play");
 
-        var asyncSceneLoad = SceneManager.LoadSceneAsync("Loading_Screen", LoadSceneMode.Single);
-        asyncSceneLoad.allowSceneActivation = false;
-        await Task.Delay((int)animation.length * 1000 + 2000);
+        sceneLoad = SceneManager.LoadSceneAsync("Loading_Screen", LoadSceneMode.Single);
+        sceneLoad.allowSceneActivation = false;
 
-        asyncSceneLoad.allowSceneActivation = true;
+    }
+
+    async void OnAnimationFinished()
+    {
+        await Task.Delay(500);
+        sceneLoad.allowSceneActivation = true;
     }
 
     public AnimationClip FindAnimation(Animator animator, string name)

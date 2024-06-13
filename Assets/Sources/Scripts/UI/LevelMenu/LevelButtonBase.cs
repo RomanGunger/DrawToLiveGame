@@ -24,7 +24,7 @@ public abstract class LevelButtonBase : MenuButtonBase
         Debug.Log(saveFile._timeWithoutAdsInSeconds);
         Debug.Log(secondsLeft);
 
-        if (Advertisement.isInitialized && secondsLeft <= 0)
+        if (Advertisement.isInitialized && secondsLeft <= 0 && InterstitialAd.instance.AdLoaded)
         {
             addWaiting = true;
             InterstitialAd.UnityAdCompleted += () => {
@@ -41,6 +41,12 @@ public abstract class LevelButtonBase : MenuButtonBase
         }
 
         Time.timeScale = 1;
+
+        InterstitialAd.UnityAdCompleted -= () => {
+            addWaiting = false;
+            saveFile._lastTimeAdWatched = (ulong)DateTime.Now.Ticks;
+            xmlManager.Save(saveFile);
+        };
 
         actionAfterAd();
     }

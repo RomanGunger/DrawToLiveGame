@@ -12,6 +12,7 @@ public class LevelsPanel : MonoBehaviour
     [SerializeField] GameObject buttonPrefab;
     [SerializeField] PopupsDatabase popupsDatabase;
     [SerializeField] Canvas popupParrentCanvas;
+    [SerializeField] Transform buttonsParrent;
 
     public static Action<int> StarsCountChanged;
 
@@ -22,7 +23,7 @@ public class LevelsPanel : MonoBehaviour
     {
         gridLayout = GetComponent<GridLayoutGroup>();
 
-        SetButtonsSize();
+        //SetButtonsSize();
     }
 
     private void SetButtonsSize()
@@ -48,7 +49,7 @@ public class LevelsPanel : MonoBehaviour
     {
         starsCount = 0;
 
-        foreach (Transform trans in transform)
+        foreach (Transform trans in buttonsParrent.transform)
             Destroy(trans.gameObject);
 
         int levelsCount = levelsProgression.GetLevelsCount();
@@ -62,7 +63,7 @@ public class LevelsPanel : MonoBehaviour
             string name = levelsProgression.GetSceneName(i);
             int unitsCount = levelsProgression.GetUnitsCount(i);
             int level = i;
-            LevelButton button = Instantiate(buttonPrefab, transform).GetComponent<LevelButton>();
+            LevelButton button = Instantiate(buttonPrefab, buttonsParrent.transform).GetComponent<LevelButton>();
             button.SetText((i + 1).ToString());
 
             if (passedLevels == null)
