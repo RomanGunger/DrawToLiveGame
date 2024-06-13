@@ -17,7 +17,6 @@ public class MenuPanel : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         float rectHeight = RectTransformExtension.GetHeight(rectTransform);
 
-        Debug.Log(rectHeight);
         basePos = new Vector2(0, rectHeight);
         rectTransform.anchoredPosition = basePos;
     }

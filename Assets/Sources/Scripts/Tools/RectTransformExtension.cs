@@ -8,15 +8,23 @@ public static class RectTransformExtension
         return rt.gameObject.GetComponentInParent<Canvas>();
     }
 
-    public static float GetWidth(this RectTransform rt)
+    public static float GetWidth(RectTransform rt)
     {
-        var w = (rt.anchorMax.x - rt.anchorMin.x) * Screen.width + rt.sizeDelta.x * rt.GetCanvas().scaleFactor;
-        return w;
+        return rt.rect.width;
     }
 
-    public static float GetHeight(this RectTransform rt)
+    public static float GetHeight(RectTransform rt)
     {
-        var h = (rt.anchorMax.y - rt.anchorMin.y) * Screen.height + rt.sizeDelta.y * rt.GetCanvas().scaleFactor;
-        return h;
+        return rt.rect.height;
+    }
+
+    public static void SetWidth(this RectTransform rt, float width)
+    {
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+    }
+
+    public static void SetHeight(this RectTransform rt, float height)
+    {
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height );
     }
 }
