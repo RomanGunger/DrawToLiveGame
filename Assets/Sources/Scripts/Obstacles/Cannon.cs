@@ -10,6 +10,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] float fireRate = 2f;
 
     private float nextFire = 0.0f;
+    [SerializeField] float volume = .5f;
 
     bool isSleeping = true;
 
@@ -49,9 +50,9 @@ public class Cannon : MonoBehaviour
         clone.GetComponent<BaseObstacle>();
 
         if (shootSound != null)
-            SoundFXManager.instance.PlaySoundFXClip(shootSound, transform, 1f);
+            SoundFXManager.instance.PlaySoundFXClip(shootSound, transform, volume);
         else
-            Debug.LogError("No collectSound assigned: CorrencyItem");
+            Debug.LogError("No shootSound assigned: Cannon");
     }
 
     private void OnDestroy()

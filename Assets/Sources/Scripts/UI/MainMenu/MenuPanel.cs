@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using System;
 
 public class MenuPanel : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class MenuPanel : MonoBehaviour
     RectTransform rectTransform;
 
     Vector2 basePos;
+
+    public static Action OnPanelClosed;
 
     private void Awake()
     {
@@ -43,5 +46,6 @@ public class MenuPanel : MonoBehaviour
         await rectTransform.DOAnchorPos(basePos, durration).SetUpdate(true).AsyncWaitForCompletion();
         gameObject.SetActive(false);
         uiBlocker.gameObject.SetActive(false);
+        OnPanelClosed?.Invoke();
     }
 }

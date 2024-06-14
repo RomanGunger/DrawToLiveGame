@@ -6,6 +6,7 @@ public class CurrencyItem : MonoBehaviour
 {
     public static Action ScoreItemCollected;
     [SerializeField] AudioClip collectSound;
+    [SerializeField] float volume = .5f;
 
     [SerializeField] float floatHight = .6f;
     [SerializeField] float cycleTime = 1.4f;
@@ -26,7 +27,7 @@ public class CurrencyItem : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             if (collectSound != null)
-                SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, 1f);
+                SoundFXManager.instance.PlaySoundFXClip(collectSound, transform, volume);
             else
                 Debug.LogError("No collectSound assigned: CorrencyItem");
 
