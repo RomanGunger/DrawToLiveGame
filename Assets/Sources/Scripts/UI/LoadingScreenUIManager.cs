@@ -11,6 +11,7 @@ public class LoadingScreenUIManager : MonoBehaviour
     {
         progressBar = GetComponent<Slider>();
         StartCoroutine(LoadScene("Main_Menu"));
+        progressBar.value = 0;
     }
 
     IEnumerator LoadScene(string sceneName)

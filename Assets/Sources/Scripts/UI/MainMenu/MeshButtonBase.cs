@@ -7,15 +7,15 @@ public abstract class MeshButtonBase : MonoBehaviour
     [SerializeField] protected MenuPanel panel;
     [SerializeField] protected AudioClip buttonSound;
 
-    public static Action PanelOpened;
+    public static Action<bool> PanelOpened;
 
     Collider collider;
 
     protected virtual void Awake()
     {
         collider = GetComponent<Collider>();
-        PanelOpened += () => { collider.enabled = false; };
-        MenuPanel.OnPanelClosed += () => { collider.enabled = true; };
+        PanelOpened += OnPanelOpened;
+        MenuPanel.OnPanelClosed += OnPanelOpened;
     }
 
     protected virtual void OnMouseUpAsButton()
@@ -27,7 +27,12 @@ public abstract class MeshButtonBase : MonoBehaviour
     protected virtual async void OnClickAction()
     {
         await panel.gameObject.GetComponent<MenuPanel>().Open(1f);
-        PanelOpened?.Invoke();
+        PanelOpened?.Invoke(true);
+    }
+
+    void OnPanelOpened(bool opened)
+    {
+        collider.enabled = !opened;
     }
 
     protected virtual async void OnClickAnimation()
@@ -41,7 +46,7 @@ public abstract class MeshButtonBase : MonoBehaviour
 
     private void OnDestroy()
     {
-        PanelOpened -= () => { collider.enabled = false; };
-        MenuPanel.OnPanelClosed -= () => { collider.enabled = true; };
+        PanelOpened -= OnPanelOpened;
+        MenuPanel.OnPanelClosed -= OnPanelOpened;
     }
 }

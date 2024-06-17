@@ -13,7 +13,7 @@ public class MenuPanel : MonoBehaviour
 
     Vector2 basePos;
 
-    public static Action OnPanelClosed;
+    public static Action<bool> OnPanelClosed;
 
     private void Awake()
     {
@@ -46,6 +46,6 @@ public class MenuPanel : MonoBehaviour
         await rectTransform.DOAnchorPos(basePos, durration).SetUpdate(true).AsyncWaitForCompletion();
         gameObject.SetActive(false);
         uiBlocker.gameObject.SetActive(false);
-        OnPanelClosed?.Invoke();
+        OnPanelClosed?.Invoke(false);
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(BoxCollider))]
 public class SpikesSet : BaseObstacle
 {
     [SerializeField] Transform spikes;
