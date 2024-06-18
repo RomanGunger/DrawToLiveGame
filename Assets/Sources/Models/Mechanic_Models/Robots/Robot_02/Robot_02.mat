@@ -29,7 +29,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mask:
-        m_Texture: {fileID: 2800000, guid: c4a2dcd1dc03848cf8e448caa7f6875b, type: 3}
+        m_Texture: {fileID: 2800000, guid: e650c881de26cb94e9d2b999c15c22e3, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_231252ba0c0649269a57658dffa02707_Texture_1_Texture2D:
@@ -41,17 +41,17 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture2D:
-        m_Texture: {fileID: 2800000, guid: 2eea9273d86fa4507a69a126deb11b94, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7ec8551c7e39e0d4cba23c51036a40e4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Is_Masking: 1
     m_Colors:
-    - _B_Color: {r: 1, g: 0.64949197, b: 0.40566027, a: 0}
+    - _B_Color: {r: 0.87219346, g: 1, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _G_Color: {r: 1, g: 0.25438586, b: 0.16666657, a: 0}
-    - _R_Color: {r: 0.81761, g: 0.6670242, b: 0.5527866, a: 0}
+    - _G_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _R_Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7920017161554629250
 MonoBehaviour:
